@@ -1,4 +1,4 @@
-package io.github.lucasvenez.ormclass.model;
+package br.com.nfe.model;
 
 public class Order {
 

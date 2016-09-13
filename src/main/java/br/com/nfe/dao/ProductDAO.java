@@ -1,8 +1,8 @@
-package io.github.lucasvenez.ormclass.dao;
-
-import io.github.lucasvenez.ormclass.model.Product;
+package br.com.nfe.dao;
 
 import java.util.List;
+
+import br.com.nfe.model.Product;
 
 public class ProductDAO extends DAO<Product> {
 

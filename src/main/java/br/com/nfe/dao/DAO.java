@@ -1,4 +1,4 @@
-package io.github.lucasvenez.ormclass.dao;
+package br.com.nfe.dao;
 
 import java.util.List;
 
