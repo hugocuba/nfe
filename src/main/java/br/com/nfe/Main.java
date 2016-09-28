@@ -1,9 +1,5 @@
 package br.com.nfe;
 
-import br.com.nfe.dao.ProductDAO;
-import br.com.nfe.model.Category;
-import br.com.nfe.model.Product;
-
 public class Main {
 
 	public static void main(String[] args) {
