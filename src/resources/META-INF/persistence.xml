@@ -5,21 +5,34 @@
     <persistence-unit name="hibernate-example" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
+        <!--
+        <class>io.github.lucasvenez.model.Person</class>
+        <class>io.github.lucasvenez.model.Company</class>
+        <class>io.github.lucasvenez.model.Individual</class>
+        
+        <class>io.github.lucasvenez.model.City</class>
+        <class>io.github.lucasvenez.model.State</class>
+        <class>io.github.lucasvenez.model.Country</class>
+        
+        <class>io.github.lucasvenez.model.Order</class>
+        <class>io.github.lucasvenez.model.OrderItem</class>
         <class>io.github.lucasvenez.model.Product</class>
+        <class>io.github.lucasvenez.model.Category</class>
+        -->
         
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nfe" />
             <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.password" value="root" />
              
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.use_sql_comments" value="false" />
             <property name="hibernate.jdbc.wrap_result_sets" value="false" />
             <property name="hibernate.hibernate.cache.use_query_cache" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
         </properties>
     </persistence-unit>
 </persistence>
