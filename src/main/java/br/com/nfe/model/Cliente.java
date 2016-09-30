@@ -10,7 +10,7 @@ package br.com.nfe.model;
  * @author a1502778
  */
 public class Cliente{
+    private Integer idCliente;
     private Pessoa pessoa;
-    private boolean isencaoIcms;
     private String inscricaoSuframa;
 }

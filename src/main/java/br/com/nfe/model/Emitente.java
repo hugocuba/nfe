@@ -9,10 +9,12 @@ package br.com.nfe.model;
  *
  * @author a1502778
  */
-public class Emitente{
+public class Emitente {
+
+    private Integer idEmitente;
     private Pessoa pessoa;
     private String inscricaoEstadualSubstTributario;
     private String cnaeFiscal;
     private String inscricaoMunicipal;
-    private String regimeTributario;
+    private RegimeTributario regimeTributario;
 }
