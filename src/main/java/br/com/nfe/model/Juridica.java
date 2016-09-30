@@ -1,8 +1,9 @@
 package br.com.nfe.model;
 
-public class Juridica {
+public class Juridica extends Pessoa{
 	
 	private String cnpj;
 	private String inscricaoEstadual;
+
 	
 }

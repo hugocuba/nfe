@@ -1,5 +1,6 @@
 package br.com.nfe.model;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 public class Pessoa {
@@ -10,4 +11,6 @@ public class Pessoa {
 	private ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 	private Municipio municipio;
 	private String email;
+        private Image logotipo;
+        
 }
