@@ -1,9 +1,23 @@
 package br.com.nfe.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Municipio {
 
+        @Id
+        @GeneratedValue
 	private Integer idMunicipio;
+        
+        @Column
 	private String nome;
+        
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "idEstado", nullable = false)
 	private Estado estado;
 
 	public Integer getIdMunicipio() {

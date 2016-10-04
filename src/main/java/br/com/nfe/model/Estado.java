@@ -1,13 +1,38 @@
 package br.com.nfe.model;
 
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 public class Estado {
 
+        @Id
+        @GeneratedValue
 	private Integer idEstado;
+        
+        @Column
 	private String nome;
+        
+        @OneToMany(
+                targetEntity = Municipio.class,
+                mappedBy = "estado",
+                cascade = CascadeType.ALL)
 	private ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+        
+        @ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPais", nullable = false)
 	private Pais pais;
+
+        public Estado(String nome, Pais pais) {
+            this.nome = nome;
+            this.pais = pais;
+        }
 
 	public Integer getIdEstado() {
 		return idEstado;

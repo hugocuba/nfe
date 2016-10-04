@@ -5,6 +5,8 @@
  */
 package br.com.nfe.model;
 
+import java.awt.Image;
+
 /**
  *
  * @author a1502778
@@ -17,4 +19,5 @@ public class Emitente {
     private String cnaeFiscal;
     private String inscricaoMunicipal;
     private RegimeTributario regimeTributario;
+    private Image logotipo;
 }

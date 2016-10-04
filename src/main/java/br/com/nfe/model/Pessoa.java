@@ -11,6 +11,5 @@ public class Pessoa {
 	private ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 	private Municipio municipio;
 	private String email;
-        private Image logotipo;
         
 }
