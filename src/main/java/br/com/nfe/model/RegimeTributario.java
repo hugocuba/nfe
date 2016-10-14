@@ -10,6 +10,15 @@ package br.com.nfe.model;
  * @author a1502778
  */
 public class RegimeTributario {
-    private Integer idRegime;
-    private String nome;
+	private Integer idRegime;
+	private String nome;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 }

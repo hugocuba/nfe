@@ -10,8 +10,42 @@ package br.com.nfe.model;
  * @author hugo
  */
 public class Icms {
-    private Integer idIcms;
-    private Produto produto;
-    private SituacaoTributaria situacaoTributaria;
-    private Origem origem;
+
+	private Integer idIcms;
+	private Produto produto;
+	private SituacaoTributaria situacaoTributaria;
+	private Origem origem;
+
+	public Integer getIdIcms() {
+		return idIcms;
+	}
+
+	public void setIdIcms(Integer idIcms) {
+		this.idIcms = idIcms;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public SituacaoTributaria getSituacaoTributaria() {
+		return situacaoTributaria;
+	}
+
+	public void setSituacaoTributaria(SituacaoTributaria situacaoTributaria) {
+		this.situacaoTributaria = situacaoTributaria;
+	}
+
+	public Origem getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(Origem origem) {
+		this.origem = origem;
+	}
+
 }

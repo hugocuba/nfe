@@ -1,11 +1,12 @@
 package br.com.nfe.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,30 +15,22 @@ import javax.persistence.Table;
 @Table
 public class Pais {
 
-        @Id
-	//@Column
-	@GeneratedValue
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idPais;
-        
-        @Column
-	private String nome;
-        
-        @OneToMany(
-                targetEntity = Estado.class,
-                mappedBy = "pais",
-                cascade = CascadeType.ALL)
-	private ArrayList<Estado> estados = new ArrayList<Estado>();
 
-        public Pais(String nome) {
-            this.nome = nome;
-        }
+	@Column
+	private String nome;
+
+	@OneToMany(targetEntity = Estado.class, mappedBy = "pais", cascade = CascadeType.ALL)
+	private List<Estado> estados = new ArrayList<Estado>();
+
+	public Pais(String nome) {
+		this.nome = nome;
+	}
 
 	public Integer getIdPais() {
 		return idPais;
-	}
-
-	public void setIdPais(Integer idPais) {
-		this.idPais = idPais;
 	}
 
 	public String getNome() {
@@ -48,11 +41,11 @@ public class Pais {
 		this.nome = nome;
 	}
 
-	public ArrayList<Estado> getEstados() {
+	public List<Estado> getEstados() {
 		return estados;
 	}
-	
-	public void addEstado(Estado estado){
+
+	public void addEstado(Estado estado) {
 		this.estados.add(estado);
 	}
 }

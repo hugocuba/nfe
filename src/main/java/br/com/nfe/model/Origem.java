@@ -10,6 +10,23 @@ package br.com.nfe.model;
  * @author hugo
  */
 public class Origem {
-    private Integer idOrigem;
-    private String origem;
+	private Integer idOrigem;
+	private String origem;
+
+	public Integer getIdOrigem() {
+		return idOrigem;
+	}
+
+	public void setIdOrigem(Integer idOrigem) {
+		this.idOrigem = idOrigem;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
 }

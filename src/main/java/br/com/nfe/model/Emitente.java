@@ -13,11 +13,60 @@ import java.awt.Image;
  */
 public class Emitente {
 
-    private Integer idEmitente;
-    private Pessoa pessoa;
-    private String inscricaoEstadualSubstTributario;
-    private String cnaeFiscal;
-    private String inscricaoMunicipal;
-    private RegimeTributario regimeTributario;
-    private Image logotipo;
+	private Integer idEmitente;
+	private Pessoa pessoa;
+	private String inscricaoEstadualSubstTributario;
+	private String cnaeFiscal;
+	private String inscricaoMunicipal;
+	private RegimeTributario regimeTributario;
+	private Image logotipo;
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public String getInscricaoEstadualSubstTributario() {
+		return inscricaoEstadualSubstTributario;
+	}
+
+	public void setInscricaoEstadualSubstTributario(String inscricaoEstadualSubstTributario) {
+		this.inscricaoEstadualSubstTributario = inscricaoEstadualSubstTributario;
+	}
+
+	public String getCnaeFiscal() {
+		return cnaeFiscal;
+	}
+
+	public void setCnaeFiscal(String cnaeFiscal) {
+		this.cnaeFiscal = cnaeFiscal;
+	}
+
+	public String getInscricaoMunicipal() {
+		return inscricaoMunicipal;
+	}
+
+	public void setInscricaoMunicipal(String inscricaoMunicipal) {
+		this.inscricaoMunicipal = inscricaoMunicipal;
+	}
+
+	public RegimeTributario getRegimeTributario() {
+		return regimeTributario;
+	}
+
+	public void setRegimeTributario(RegimeTributario regimeTributario) {
+		this.regimeTributario = regimeTributario;
+	}
+
+	public Image getLogotipo() {
+		return logotipo;
+	}
+
+	public void setLogotipo(Image logotipo) {
+		this.logotipo = logotipo;
+	}
+
 }

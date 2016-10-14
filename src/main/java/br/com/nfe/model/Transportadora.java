@@ -10,6 +10,15 @@ package br.com.nfe.model;
  * @author hugo
  */
 public class Transportadora {
-    private Integer idTransportadora;
-    private Pessoa pessoa;
+	private Integer idTransportadora;
+	private Pessoa pessoa;
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
 }

@@ -12,7 +12,24 @@ import java.util.ArrayList;
  * @author hugo
  */
 public class Produto {
-    private String idProduto;
-    private String descricao;
-    private ArrayList<Icms> icms = new ArrayList<>();
+	private String idProduto;
+	private String descricao;
+	private ArrayList<Icms> icms = new ArrayList<Icms>();
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public ArrayList<Icms> getIcms() {
+		return icms;
+	}
+
+	public void setIcms(ArrayList<Icms> icms) {
+		this.icms = icms;
+	}
+
 }

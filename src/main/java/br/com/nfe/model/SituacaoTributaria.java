@@ -10,7 +10,24 @@ package br.com.nfe.model;
  * @author hugo
  */
 public class SituacaoTributaria {
-    private Integer idSituacaoTributaria;
-    private RegimeTributario regimeTributario;
-    private String situacaoTributaria;
+	private Integer idSituacaoTributaria;
+	private RegimeTributario regimeTributario;
+	private String situacaoTributaria;
+
+	public RegimeTributario getRegimeTributario() {
+		return regimeTributario;
+	}
+
+	public void setRegimeTributario(RegimeTributario regimeTributario) {
+		this.regimeTributario = regimeTributario;
+	}
+
+	public String getSituacaoTributaria() {
+		return situacaoTributaria;
+	}
+
+	public void setSituacaoTributaria(String situacaoTributaria) {
+		this.situacaoTributaria = situacaoTributaria;
+	}
+
 }
