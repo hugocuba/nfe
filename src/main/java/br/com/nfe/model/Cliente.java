@@ -9,8 +9,26 @@ package br.com.nfe.model;
  *
  * @author a1502778
  */
-public class Cliente{
-    private Integer idCliente;
-    private Pessoa pessoa;
-    private String inscricaoSuframa;
+public class Cliente {
+
+	private Integer idCliente;
+	private Pessoa pessoa;
+	private String inscricaoSuframa;
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public String getInscricaoSuframa() {
+		return inscricaoSuframa;
+	}
+
+	public void setInscricaoSuframa(String inscricaoSuframa) {
+		this.inscricaoSuframa = inscricaoSuframa;
+	}
+
 }

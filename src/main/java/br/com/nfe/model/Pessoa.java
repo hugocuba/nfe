@@ -1,48 +1,69 @@
 package br.com.nfe.model;
 
-import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Pessoa {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPessoa;
+
+	@Column
 	private String nome;
-	private ArrayList<Telefone> telefones = new ArrayList<Telefone>();
-	private ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
-	private Municipio municipio;
+
+	@OneToMany(targetEntity = Telefone.class, mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private List<Telefone> telefones = new ArrayList<Telefone>();
+
+	@OneToMany(targetEntity = Endereco.class, mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
+
+	// private Municipio municipio;
+
+	@Column
 	private String email;
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public ArrayList<Telefone> getTelefones() {
+
+	public List<Telefone> getTelefones() {
 		return telefones;
 	}
+
 	public void setTelefones(ArrayList<Telefone> telefones) {
 		this.telefones = telefones;
 	}
-	public ArrayList<Endereco> getEnderecos() {
+
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
+
 	public void setEnderecos(ArrayList<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	public Municipio getMunicipio() {
-		return municipio;
-	}
-	public void setMunicipio(Municipio municipio) {
-		this.municipio = municipio;
-	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-        
+
 }
