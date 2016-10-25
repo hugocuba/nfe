@@ -9,6 +9,7 @@
 
 	<name>nfe</name>
 	<url>http://maven.apache.org</url>
+        
     <repositories>
         <repository>
             <id>unknown-jars-temp-repo</id>
@@ -23,6 +24,11 @@
     </properties>
 
 	<dependencies>
+                <dependency>
+                    <groupId>com.jtattoo</groupId>
+                    <artifactId>JTattoo</artifactId>
+                    <version>1.6.11</version>
+                </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
