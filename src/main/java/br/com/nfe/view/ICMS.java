@@ -37,6 +37,9 @@ public class ICMS extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1024, 700));
+        setOpaque(false);
+
         jLabel1.setText("Produto");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
