@@ -22,7 +22,7 @@ public class Endereco {
 	@JoinColumn(name = "idPessoa", nullable = false)
 	private Pessoa pessoa;
 	
-	//
+	@Column
 	private char tipo;
 	
 	@Column

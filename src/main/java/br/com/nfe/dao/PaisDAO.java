@@ -13,13 +13,13 @@ public class PaisDAO extends DAO<Pais>{
 	}
 
 	@Override
-	public Pais getById(Long id) {
+	public Pais getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean removeById(Long id) {
+	public boolean removeById(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

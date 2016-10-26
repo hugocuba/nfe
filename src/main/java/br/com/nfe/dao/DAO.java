@@ -79,8 +79,8 @@ public abstract class DAO<E> {
         return result;
     }
 
-	public abstract E getById(final Long id);
+	public abstract E getById(final Integer id);
     
-    public abstract boolean removeById(final Long id);
+    public abstract boolean removeById(final Integer id);
     
 }

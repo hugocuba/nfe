@@ -20,12 +20,12 @@ public class EstadoDAO extends DAO<Estado>{
     }
 
     @Override
-    public Estado getById(Long id) {
+    public Estado getById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean removeById(Long id) {
+    public boolean removeById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

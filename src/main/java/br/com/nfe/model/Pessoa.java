@@ -29,8 +29,6 @@ public class Pessoa {
 	@OneToMany(targetEntity = Endereco.class, mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 
-	// private Municipio municipio;
-
 	@Column
 	private String email;
 
@@ -56,6 +54,14 @@ public class Pessoa {
 
 	public void setEnderecos(ArrayList<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+	
+	public void addEndereco(Endereco endereco){
+		enderecos.add(endereco);
+	}
+	
+	public void addTelefone(Telefone telefone){
+		telefones.add(telefone);
 	}
 
 	public String getEmail() {

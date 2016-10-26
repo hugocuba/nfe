@@ -13,13 +13,13 @@ public class PessoaDAO extends DAO<Pessoa>{
 	}
 
 	@Override
-	public Pessoa getById(Long id) {
-		// TODO Auto-generated method stub
+	public Pessoa getById(Integer id) {
+		
 		return null;
 	}
 
 	@Override
-	public boolean removeById(Long id) {
+	public boolean removeById(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

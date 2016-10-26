@@ -13,13 +13,13 @@ public class MunicipioDAO extends DAO<Municipio>{
 	}
 
 	@Override
-	public Municipio getById(Long id) {
+	public Municipio getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean removeById(Long id) {
+	public boolean removeById(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
