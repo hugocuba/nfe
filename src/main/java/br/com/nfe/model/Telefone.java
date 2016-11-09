@@ -37,6 +37,7 @@ public class Telefone {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+		this.pessoa.addTelefone(this);
 	}
 
 	public char getTipo() {

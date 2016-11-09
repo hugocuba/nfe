@@ -50,6 +50,7 @@ public class Endereco {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+		this.pessoa.addEndereco(this);
 	}
 
 	public char getTipo() {

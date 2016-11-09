@@ -1,12 +1,9 @@
 package br.com.nfe;
 
-import br.com.nfe.dao.EnderecoDAO;
-import br.com.nfe.dao.EstadoDAO;
-import br.com.nfe.dao.MunicipioDAO;
-import br.com.nfe.dao.PaisDAO;
 import br.com.nfe.dao.PessoaDAO;
 import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Estado;
+import br.com.nfe.model.Fisica;
 import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.Pessoa;
@@ -15,7 +12,6 @@ import br.com.nfe.model.Telefone;
 public class Main {
 
 	public static void main(String[] args) {
-
 		Pais pais = new Pais("Brasil");
 
 		Estado estado = new Estado("São Paulo", pais);
@@ -24,7 +20,7 @@ public class Main {
 		municipio.setNome("Caraguatatuba");
 		municipio.setEstado(estado);
 		
-		Pessoa p = new Pessoa();
+		Fisica p = new Fisica();
 		p.setNome("Hugo");
 		p.setEmail("hscuba@gmail.com");
 		
@@ -47,18 +43,8 @@ public class Main {
 		p.addEndereco(e);
 		p.addTelefone(t);
 		
-		
 		PessoaDAO pDAO = new PessoaDAO();
-		Pessoa p2 = pDAO.getById(1);
-		
-		System.out.println(p2.getNome());
-		
-		
-
-		/*EnderecoDAO eDAO = new EnderecoDAO();
-		eDAO.persist(e);*/
-		
-		
+		pDAO.persist(p);
 	}
 
 }
