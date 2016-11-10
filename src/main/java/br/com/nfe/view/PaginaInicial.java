@@ -6,6 +6,7 @@
 package br.com.nfe.view;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
@@ -79,9 +80,10 @@ public class PaginaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1024, 700));
+        setResizable(false);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/nfe/view/images/Organization-80.png"))); // NOI18N
+        jButton1.setIcon(new ImageIcon ("src/resources/images/Organization-80.png"));
         jButton1.setText("Cadastrar / Selecionar Emitente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,12 +92,17 @@ public class PaginaInicial extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/nfe/view/images/Invoice-80.png"))); // NOI18N
+        jButton2.setIcon(new ImageIcon ("src/resources/images/Invoice-80.png"));
         jButton2.setText("Emitir NF-e");
         jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/nfe/view/images/Price Tag-80.png"))); // NOI18N
+        jButton3.setIcon(new ImageIcon ("src/resources/images/Price Tag-80.png"));
         jButton3.setText("Cadastrar Produto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +111,7 @@ public class PaginaInicial extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/nfe/view/images/User Group Man Man Filled-80.png"))); // NOI18N
+        jButton4.setIcon(new ImageIcon ("src/resources/images/User Group Man Man Filled-80.png"));
         jButton4.setText("Cadastrar Cliente");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +168,7 @@ public class PaginaInicial extends javax.swing.JFrame {
         );
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/nfe/view/images/logo-nfe-ifsp.png"))); // NOI18N
+        jLabel4.setIcon(new ImageIcon ("src/resources/images/logo_nfe.png"));
 
         jMenu1.setText("Notas Fiscais");
 
@@ -307,16 +314,24 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JFrame cadastroEmitente = new CadastroEmitente();
+        cadastroEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        JFrame cadastroCliente = new Cliente();
+        cadastroCliente.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        JFrame cadastroProduto = new Produto();
+        cadastroProduto.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFrame notaFiscal = new NotaFiscal();
+        notaFiscal.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
