@@ -17,7 +17,7 @@ public abstract class DAO<E> {
     private EntityManager getEntityManager() {
         
     	EntityManagerFactory factory = 
-        		Persistence.createEntityManagerFactory("hibernate-example");
+        		Persistence.createEntityManagerFactory("br.com.nfe");
     	
         if (entityManager == null) {
             entityManager = factory.createEntityManager();

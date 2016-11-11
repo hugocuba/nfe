@@ -8,14 +8,16 @@ public class PessoaDAO extends DAO<Pessoa>{
 
 	@Override
 	public List<Pessoa> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Pessoa> p;
+		p = entityManager.createQuery("	SELECT e FROM Pessoa e").getResultList();
+		return p;		
 	}
 
 	@Override
 	public Pessoa getById(Integer id) {
-		
-		return null;
+		Pessoa p;
+		p = entityManager.find(Pessoa.class, id);
+		return p;
 	}
 
 	@Override

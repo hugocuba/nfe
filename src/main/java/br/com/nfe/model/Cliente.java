@@ -5,14 +5,34 @@
  */
 package br.com.nfe.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author a1502778
  */
+
+@Entity
+@Table
 public class Cliente {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCliente;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPessoa", nullable = false)
 	private Pessoa pessoa;
+	
+	@Column
 	private String inscricaoSuframa;
 
 	public Pessoa getPessoa() {
