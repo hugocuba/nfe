@@ -1,5 +1,8 @@
 package br.com.nfe;
 
+import java.util.List;
+
+import br.com.nfe.dao.ClienteDAO;
 import br.com.nfe.dao.PessoaDAO;
 import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Estado;
@@ -8,11 +11,12 @@ import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Telefone;
+import br.com.nfe.model.Cliente;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Pais pais = new Pais("Brasil");
+		/*Pais pais = new Pais("Brasil");
 
 		Estado estado = new Estado("São Paulo", pais);
 
@@ -43,8 +47,25 @@ public class Main {
 		p.addEndereco(e);
 		p.addTelefone(t);
 		
+		Cliente c = new Cliente();
+		c.setInscricaoSuframa("123456");
+		c.setPessoa(p);
+
+		//PessoaDAO pDAO = new PessoaDAO();
+		//pDAO.persist(p);
+		
+		ClienteDAO cDAO = new ClienteDAO();
+		cDAO.persist(c);*/
+		
 		PessoaDAO pDAO = new PessoaDAO();
-		pDAO.persist(p);
+		List<Pessoa> p;
+		p = pDAO.findAll();
+	
+		
+		
+		for(Pessoa pp : p){
+			System.out.println(pp.getNome());
+		}
 	}
 
 }
