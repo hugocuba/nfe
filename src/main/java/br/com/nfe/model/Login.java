@@ -8,6 +8,8 @@ package br.com.nfe.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,31 +22,35 @@ import javax.persistence.TemporalType;
 @Entity
 @Table
 public class Login {
+	
     @Id
-    @Column(nullable = false, unique = true)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idLogin;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String usuario;
 
-    @Column(nullable = false, unique = false)
+    @Column
     private String senha;
 
-    @Column(name = "lastAccess", unique = true)
-    @Temporal(TemporalType.DATE)
-    private Date ultimoAcesso;
+    //@Temporal(TemporalType.DATE)
+    //private Date ultimoAcesso;
 
     public Login(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }
+    
+    public Login(){
+    	
+    }
 
     public Integer getId() {
-        return id;
+        return idLogin;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idLogin = id;
     }
 
     public String getUsuario() {
@@ -61,15 +67,6 @@ public class Login {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Date getUltimoAcesso() {
-        return ultimoAcesso;
-    }
-
-    public void setUltimoAcesso(Date ultimoAcesso) {
-        this.ultimoAcesso = ultimoAcesso;
-    }
-    
+    }   
     
 }
