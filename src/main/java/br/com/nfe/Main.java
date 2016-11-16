@@ -3,6 +3,7 @@ package br.com.nfe;
 import java.util.List;
 
 import br.com.nfe.dao.ClienteDAO;
+import br.com.nfe.dao.LoginDAO;
 import br.com.nfe.dao.PessoaDAO;
 import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Estado;
@@ -12,6 +13,7 @@ import br.com.nfe.model.Pais;
 import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Telefone;
 import br.com.nfe.model.Cliente;
+import br.com.nfe.model.Login;
 
 public class Main {
 
@@ -57,7 +59,7 @@ public class Main {
 		ClienteDAO cDAO = new ClienteDAO();
 		cDAO.persist(c);*/
 		
-		PessoaDAO pDAO = new PessoaDAO();
+		/*PessoaDAO pDAO = new PessoaDAO();
 		List<Pessoa> p;
 		p = pDAO.findAll();
 	
@@ -65,7 +67,14 @@ public class Main {
 		
 		for(Pessoa pp : p){
 			System.out.println(pp.getNome());
-		}
+		}*/
+                
+                LoginDAO lDAO = new LoginDAO();
+                
+                Login login = lDAO.verifica("hugo","123");
+                
+                System.out.println(login.getUsuario());
+                
 	}
 
 }

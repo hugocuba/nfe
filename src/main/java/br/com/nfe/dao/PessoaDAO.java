@@ -9,7 +9,7 @@ public class PessoaDAO extends DAO<Pessoa>{
 	@Override
 	public List<Pessoa> findAll() {
 		List<Pessoa> p;
-		p = entityManager.createQuery("	SELECT e FROM Pessoa e").getResultList();
+		p = entityManager.createQuery("SELECT e FROM Pessoa e").getResultList();
 		return p;		
 	}
 
