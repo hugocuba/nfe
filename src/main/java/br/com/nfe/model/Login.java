@@ -5,7 +5,7 @@
  */
 package br.com.nfe.model;
 
-import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,21 +24,29 @@ import javax.persistence.TemporalType;
 public class Login {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idLogin;
 
-    @Column
+    @Column(unique = true)
     private String usuario;
 
-    @Column
+    @Column(nullable = false)
     private String senha;
 
-    //@Temporal(TemporalType.DATE)
-    //private Date ultimoAcesso;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar ultimoAcesso;
 
     public Login(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
+    }
+    
+    public void setUltimoAcesso(Calendar data){
+    	this.ultimoAcesso = data;
+    }
+    
+    public Calendar getUltimoAcesso(){
+    	return this.ultimoAcesso;
     }
     
     public Login(){
@@ -67,6 +75,6 @@ public class Login {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }   
+    }  
     
 }

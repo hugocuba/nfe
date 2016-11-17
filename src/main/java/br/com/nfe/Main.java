@@ -1,5 +1,9 @@
 package br.com.nfe;
 
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.nfe.dao.ClienteDAO;
@@ -12,12 +16,13 @@ import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Telefone;
+import br.com.nfe.utils.SHA;
 import br.com.nfe.model.Cliente;
 import br.com.nfe.model.Login;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException {
 		/*
 		 * Pais pais = new Pais("Brasil");
 		 * 
@@ -55,15 +60,21 @@ public class Main {
 		 * for(Pessoa pp : p){ System.out.println(pp.getNome()); }
 		 */
 
-		//Login usuario = new Login("hugo", "123");
+		//Login usuario = new Login("hugo", SHA.gerarSHA("123"));
 		
 		LoginDAO lDAO = new LoginDAO();
 
 		//lDAO.persist(usuario);
 
 		Login login = lDAO.verifica("hugo", "123");
+		
+		//login.setUltimoAcesso(Calendar.getInstance());
+		
+		//lDAO.merge(login);
+		
+		//if(login != null)
 
-		System.out.println(login.getUsuario());
+		//System.out.println(login.getUsuario());
 
 	}
 
