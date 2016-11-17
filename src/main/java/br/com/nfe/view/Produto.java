@@ -5,8 +5,11 @@
  */
 package br.com.nfe.view;
 
+import br.com.nfe.controller.ProdutoController;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +17,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Produto extends javax.swing.JFrame {
 
+     br.com.nfe.model.Produto p = new br.com.nfe.model.Produto();
     /**
      * Creates new form Produto
      */
@@ -352,12 +356,34 @@ public class Produto extends javax.swing.JFrame {
         );
 
         jButton4.setText("Incluir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Editar");
+        jButton5.setEnabled(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Excluir");
+        jButton6.setEnabled(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Exportar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Fechar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -501,6 +527,109 @@ public class Produto extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ArrayList<String> icms = new ArrayList<String> ();
+        icms.add("testando");
+        icms.add("testando2");
+                        
+        p.setDescricao(jTextField1.getText());
+        p.setCodigo(Integer.parseInt(jTextField2.getText()));
+        p.setEAN(jTextField3.getText());
+        p.setEXTIPE(jTextField4.getText());
+        p.setUnid_com(jTextField5.getText());
+        p.setUnid_trib(jTextField6.getText());
+        p.setEAN_unid(jTextField7.getText());
+        p.setGenero(jTextField8.getText());
+        p.setValor_unid_com(jTextField9.getText());
+        p.setQtd_trib(jTextField10.getText());
+        p.setValor_unit_trib(jTextField11.getText());
+        p.setNMC(jTextField12.getText());
+        p.setCEST(jTextField13.getText());
+        p.setClasse_en(jTextField14.getText());
+        p.setCEL(jTextField15.getText());
+        p.setCNPJ_produtor(jTextField16.getText());
+        p.setIcms(icms);
+         
+        
+        ProdutoController pc = new ProdutoController();
+        pc.Incluir(p);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    ProdutoController pc = new ProdutoController();
+    
+    int codigo = Integer.parseInt(JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
+    
+        p = pc.exportar(codigo);    
+        
+    
+        jTextField1.setText(p.getDescricao());
+        jTextField2.setText(Integer.toString(p.getCodigo()));
+        jTextField3.setText(p.getEAN());
+        jTextField4.setText(p.getEXTIPE());
+        jTextField5.setText(p.getUnid_com());
+        jTextField6.setText(p.getUnid_trib());
+        jTextField7.setText(p.getEAN_unid());
+        jTextField8.setText(p.getGenero());
+        jTextField9.setText(p.getValor_unid_com());
+        jTextField10.setText(p.getQtd_trib());
+        jTextField11.setText(p.getValor_unit_trib());
+        jTextField12.setText(p.getNMC());
+        jTextField13.setText(p.getCEST());
+        jTextField14.setText(p.getClasse_en());
+        jTextField15.setText(p.getCEL());
+        jTextField16.setText(p.getCNPJ_produtor());
+        
+        jButton5.setEnabled(true);
+        jButton6.setEnabled(true);
+        
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
+        jTextField6.setEditable(false);
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        jTextField9.setEditable(false);
+        jTextField10.setEditable(false);
+        jTextField11.setEditable(false);
+        jTextField12.setEditable(false);
+        jTextField13.setEditable(false);
+        jTextField14.setEditable(false);
+        jTextField15.setEditable(false);
+        jTextField16.setEditable(false);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jTextField1.setEditable(true);
+        jTextField2.setEditable(true);
+        jTextField3.setEditable(true);
+        jTextField4.setEditable(true);
+        jTextField5.setEditable(true);
+        jTextField6.setEditable(true);
+        jTextField7.setEditable(true);
+        jTextField8.setEditable(true);
+        jTextField9.setEditable(true);
+        jTextField10.setEditable(true);
+        jTextField11.setEditable(true);
+        jTextField12.setEditable(true);
+        jTextField13.setEditable(true);
+        jTextField14.setEditable(true);
+        jTextField15.setEditable(true);
+        jTextField16.setEditable(true);
+        
+        jButton5.setEnabled(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    ProdutoController pc = new ProdutoController();
+    pc.excluir(p.getCodigo());
+    
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
