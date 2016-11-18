@@ -14,12 +14,12 @@ import javax.swing.UIManager;
  *
  * @author a1502824
  */
-public class PaginaInicial extends javax.swing.JFrame {
+public class PaginaInicialView extends javax.swing.JFrame {
 
     /**
      * Creates new form PaginaInicial
      */
-    public PaginaInicial() {
+    public PaginaInicialView() {
         initComponents();
     }
 
@@ -314,7 +314,7 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame cadastroEmitente = new CadastroEmitente();
+        JFrame cadastroEmitente = new CadastroEmitenteView();
         cadastroEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -345,13 +345,13 @@ public class PaginaInicial extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaginaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaginaInicialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaginaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaginaInicialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaginaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaginaInicialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PaginaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaginaInicialView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -361,7 +361,7 @@ public class PaginaInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaginaInicial().setVisible(true);
+                new PaginaInicialView().setVisible(true);
             }
         });
     }

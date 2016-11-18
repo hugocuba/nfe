@@ -2,24 +2,11 @@ package br.com.nfe;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
-import br.com.nfe.dao.ClienteDAO;
 import br.com.nfe.dao.LoginDAO;
-import br.com.nfe.dao.PessoaDAO;
-import br.com.nfe.model.Endereco;
-import br.com.nfe.model.Estado;
-import br.com.nfe.model.Fisica;
-import br.com.nfe.model.Municipio;
-import br.com.nfe.model.Pais;
-import br.com.nfe.model.Pessoa;
-import br.com.nfe.model.Telefone;
-import br.com.nfe.utils.PasswordHash;
-import br.com.nfe.model.Cliente;
 import br.com.nfe.model.Login;
+import br.com.nfe.utils.PasswordHash;
+import br.com.nfe.view.LoginView;
 
 public class Main {
 
@@ -61,15 +48,15 @@ public class Main {
 		 * for(Pessoa pp : p){ System.out.println(pp.getNome()); }
 		 */
 
-		//Login usuario = new Login("hugo", PasswordHash.createHash("123"));
+		Login usuario = new Login("hugo", PasswordHash.createHash("123"));
 		
 		LoginDAO lDAO = new LoginDAO();
 
-		//lDAO.persist(usuario);
+		lDAO.persist(usuario);
 		
-		Login login = lDAO.verifica("hugo");
+		//Login login = lDAO.verifica("hugo");
 		
-		System.out.println(PasswordHash.validatePassword("123", login.getSenha()));
+		//System.out.println(PasswordHash.validatePassword("123", login.getSenha()));
 		
 		//login.setUltimoAcesso(Calendar.getInstance());
 		
@@ -78,6 +65,9 @@ public class Main {
 		//if(login != null)
 
 		//System.out.println(login.getUsuario());
+		
+		LoginView loginView = new LoginView();
+		loginView.setVisible(true);
 
 	}
 

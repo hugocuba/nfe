@@ -5,20 +5,31 @@
  */
 package br.com.nfe.view;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import br.com.nfe.controller.LoginController;
 
 /**
  *
  * @author a1502824
  */
-public class Login extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
+	
+	LoginController loginController;
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public LoginView() {
         initComponents();
+        loginController = new LoginController();
         lblIncorreto.setVisible(false);
     }
 
@@ -55,7 +66,12 @@ public class Login extends javax.swing.JFrame {
         btEntrar.setText("Entrar");
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEntrarActionPerformed(evt);
+                try {
+					btEntrarActionPerformed(evt);
+				} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -125,7 +141,18 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
+    private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException, InvalidKeySpecException {//GEN-FIRST:event_btEntrarActionPerformed
+        Map<String, String> dados = new HashMap<>();
+            
+        dados.put("login", tfUsuario.getText());
+        dados.put("senha", new String(pfSenha.getPassword()));
+             
+        if(loginController.verificaUsuarioSenha(dados)){
+        	PaginaInicialView paginaInicialView = new PaginaInicialView();
+        	paginaInicialView.setVisible(true);
+        }else{
+        	lblIncorreto.setVisible(true);
+        }
         
     }//GEN-LAST:event_btEntrarActionPerformed
 
@@ -141,20 +168,20 @@ public class Login extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginView().setVisible(true);
             }
         });
     }
