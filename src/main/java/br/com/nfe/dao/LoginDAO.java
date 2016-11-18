@@ -30,16 +30,16 @@ public class LoginDAO extends DAO<Login> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Login verifica(String usuario, String senha) {
-        Login login = null;
+    public Login verifica(String usuario) {
+        Login login;
         try {
              login = (Login) entityManager
                     .createQuery(
-                            "SELECT u from Login u where u.usuario = :usuario and u.senha = :senha")
+                            "SELECT u from Login u where u.usuario = :usuario")
                     .setParameter("usuario", usuario)
-                    .setParameter("senha", senha).getSingleResult();
+                    .getSingleResult();
         } catch (NoResultException e) {
-            System.err.println("Erro ao buscar no banco");
+            login = null;
         }
         return login;
     }
