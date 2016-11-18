@@ -2,6 +2,7 @@ package br.com.nfe.controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Calendar;
 import java.util.Map;
 
 import br.com.nfe.dao.LoginDAO;
@@ -22,6 +23,8 @@ public class LoginController {
 		if (user != null) {
 			if(PasswordHash.validatePassword(dados.get("senha"), user.getSenha())){
 				valido = true;
+				user.setUltimoAcesso(Calendar.getInstance());
+				lDAO.merge(user);
 				Sessao sessao = Sessao.getInstance();
 				sessao.setUsuario(user);
 			}
