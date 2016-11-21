@@ -6,8 +6,6 @@
 package br.com.nfe.model;
 
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
 
 /**
  *

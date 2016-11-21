@@ -8,18 +8,20 @@ import javax.persistence.Persistence;
 
 public abstract class DAO<E> {
 
-	protected EntityManager entityManager;
+	protected static EntityManager entityManager = DAO.getEntityManager();
 	 
     public DAO() {
-        entityManager = getEntityManager();
+        //entityManager = getEntityManager();
     }
  
-    private EntityManager getEntityManager() {
+    private static EntityManager getEntityManager() {
         
-    	EntityManagerFactory factory = 
+        EntityManager entityManager = DAO.entityManager;
+        
+    	if (entityManager == null) {
+    	    EntityManagerFactory factory = 
         		Persistence.createEntityManagerFactory("br.com.nfe");
-    	
-        if (entityManager == null) {
+         
             entityManager = factory.createEntityManager();
         }
  
@@ -79,7 +81,7 @@ public abstract class DAO<E> {
         return result;
     }
 
-	public abstract E getById(final Integer id);
+    public abstract E getById(final Integer id);
     
     public abstract boolean removeById(final Integer id);
     
