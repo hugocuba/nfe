@@ -5,6 +5,9 @@
  */
 package br.com.nfe.view;
 
+import br.com.nfe.controller.ClienteController;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
 
@@ -111,14 +114,24 @@ public class Cliente extends javax.swing.JFrame {
         jLabel1.setText("Cadastro de Cliente");
 
         checkBoxICMS.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        checkBoxICMS.setText("Maque ser for isento de ICMS.");
+        checkBoxICMS.setText("Marque ser for isento de ICMS.");
         checkBoxICMS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 checkBoxICMSMouseClicked(evt);
             }
         });
+        checkBoxICMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxICMSActionPerformed(evt);
+            }
+        });
 
         button1.setLabel("Salvar");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         button2.setLabel("Novo");
 
@@ -131,7 +144,7 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel1.setName(""); // NOI18N
 
         lbNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -230,7 +243,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Cliente", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         buttonGroupTipoCliente.add(jRadioButtonPF);
         jRadioButtonPF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -276,7 +289,7 @@ public class Cliente extends javax.swing.JFrame {
                     .addComponent(jRadioButtonPJ)))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         lbLogradouro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbLogradouro.setText("Logradouro:");
@@ -552,11 +565,33 @@ public class Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MousePressed
 
+    private void checkBoxICMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxICMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBoxICMSActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        salvar();
+    }//GEN-LAST:event_button1ActionPerformed
+
     private void fechar(){ 
     this.dispose(); 
     } 
     
-    
+    private boolean salvar (){
+        boolean salvo = false;
+        
+        Map<String, Object> dados = new HashMap<>();
+        dados.put("tipo", jRadioButtonPF);
+        dados.put("icms", checkBoxICMS);
+        dados.put("nome", textNome);
+        
+        ClienteController cController = new ClienteController();
+        
+        if(cController.salvar(dados))
+            salvo = true;
+        
+        return salvo;
+    }
         
         
      

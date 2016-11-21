@@ -5,7 +5,6 @@
  */
 package br.com.nfe.controller;
 
-import java.util.ArrayList;
 import br.com.nfe.model.Produto;
 import br.com.nfe.dao.ProdutoDAO;
 
@@ -16,7 +15,6 @@ import br.com.nfe.dao.ProdutoDAO;
 public class ProdutoController {
 
     public void Incluir(Produto p) {
-        
         ProdutoDAO pd = new ProdutoDAO();
         pd.persist(p);
     }

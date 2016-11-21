@@ -8,14 +8,16 @@ public class ClienteDAO extends DAO<Cliente>{
 
 	@Override
 	public List<Cliente> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> c;
+		c = entityManager.createQuery("SELECT e FROM Cliente e").getResultList();
+		return c;
 	}
 
 	@Override
 	public Cliente getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente c;
+		c = entityManager.find(Cliente.class, id);
+		return c;
 	}
 
 	@Override
