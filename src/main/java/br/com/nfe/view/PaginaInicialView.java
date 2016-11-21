@@ -83,7 +83,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         setResizable(false);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setIcon(new ImageIcon ("src/resources/images/Organization-80.png"));
+        jButton1.setIcon(new ImageIcon(PaginaInicialView.class.getResource("/images/Organization-80.png")));
         jButton1.setText("Cadastrar / Selecionar Emitente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +92,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setIcon(new ImageIcon ("src/resources/images/Invoice-80.png"));
+        jButton2.setIcon(new ImageIcon(PaginaInicialView.class.getResource("/images/Invoice-80.png")));
         jButton2.setText("Emitir NF-e");
         jButton2.setToolTipText("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setIcon(new ImageIcon ("src/resources/images/Price Tag-80.png"));
+        jButton3.setIcon(new ImageIcon(PaginaInicialView.class.getResource("/images/Price Tag-80.png")));
         jButton3.setText("Cadastrar Produto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setIcon(new ImageIcon ("src/resources/images/User Group Man Man Filled-80.png"));
+        jButton4.setIcon(new ImageIcon(PaginaInicialView.class.getResource("/images/User Group Man Man Filled-80.png")));
         jButton4.setText("Cadastrar Cliente");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

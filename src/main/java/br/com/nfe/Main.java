@@ -3,6 +3,8 @@ package br.com.nfe;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.swing.UIManager;
+
 import br.com.nfe.dao.LoginDAO;
 import br.com.nfe.model.Login;
 import br.com.nfe.utils.PasswordHash;
@@ -11,6 +13,19 @@ import br.com.nfe.view.LoginView;
 public class Main {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+		
+        try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
 		/*
 		 * Pais pais = new Pais("Brasil");
 		 * 

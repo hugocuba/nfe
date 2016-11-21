@@ -54,7 +54,7 @@ public class LoginView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel3.setIcon(new ImageIcon ("src/resources/images/logo_nfe.png"));
+        jLabel3.setIcon(new ImageIcon(LoginView.class.getResource("/images/logo_nfe.png")));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Usuário");
