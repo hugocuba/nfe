@@ -64,14 +64,14 @@ public class ClienteController {
                 p.setIsencaoIcms(((JCheckBox) dados.get("icms")).isSelected());
                 p.setSuframa(((JTextField) dados.get("suframa")).getText());
                 
-                Endereco endereco = new Endereco();
+                /*Endereco endereco = new Endereco();
                 endereco.setEndereco(((JTextField) dados.get("logradouro")).getText());
                 endereco.setNumero(Integer.parseInt(((JTextField) dados.get("num")).getText()));
                 endereco.setBairro(((JTextField) dados.get("bairro")).getText());
                 endereco.setComplemento(((JTextField) dados.get("complemento")).getText());
                 endereco.setCep(((JTextField) dados.get("cep")).getText());
                 //endereco.setMunicipio(municipio);
-                endereco.setPessoa(p);
+                endereco.setPessoa(p);*/
                 
                 Telefone telefone = new Telefone();
                 telefone.setDdd("12");
@@ -84,8 +84,7 @@ public class ClienteController {
 		ClienteDAO clienteDAO = new ClienteDAO();
 
 		if (clienteDAO.persist(cliente))
-			;
-		salvo = true;
+                    salvo = true;
 
 		return salvo;
 	}
