@@ -8,6 +8,7 @@ package br.com.nfe.view;
 import br.com.nfe.controller.ClienteController;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
 
@@ -43,10 +44,6 @@ public class Cliente extends javax.swing.JFrame {
         buttonGroupTipoCliente = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         checkBoxICMS = new javax.swing.JCheckBox();
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
-        button3 = new java.awt.Button();
-        button4 = new java.awt.Button();
         jPanel1 = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
@@ -82,6 +79,10 @@ public class Cliente extends javax.swing.JFrame {
         lbCep = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -126,25 +127,7 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
-        button1.setLabel("Salvar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-
-        button2.setLabel("Novo");
-
-        button3.setLabel("Modificar");
-
-        button4.setLabel("Pesquisar");
-        button4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button4ActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel1.setName(""); // NOI18N
 
         lbNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -243,7 +226,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Cliente", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         buttonGroupTipoCliente.add(jRadioButtonPF);
         jRadioButtonPF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -289,7 +272,7 @@ public class Cliente extends javax.swing.JFrame {
                     .addComponent(jRadioButtonPJ)))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         lbLogradouro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbLogradouro.setText("Logradouro:");
@@ -411,6 +394,19 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
+        btNovo.setText("Novo");
+
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        btModificar.setText("Modificar");
+
+        btPesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -425,27 +421,26 @@ public class Cliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(305, 305, 305)
-                                        .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(34, 34, 34)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(90, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(425, 425, 425)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btNovo)
+                .addGap(18, 18, 18)
+                .addComponent(btSalvar)
+                .addGap(18, 18, 18)
+                .addComponent(btModificar)
+                .addGap(18, 18, 18)
+                .addComponent(btPesquisar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,35 +448,27 @@ public class Cliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(checkBoxICMS)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 677, Short.MAX_VALUE)
-                        .addComponent(jLabel7)))
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(checkBoxICMS)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btNovo)
+                    .addComponent(btSalvar)
+                    .addComponent(btModificar)
+                    .addComponent(btPesquisar)
+                    .addComponent(jLabel7))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button4ActionPerformed
 
     private void abreListaPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaPaisActionPerformed
         // TODO add your handling code here:
@@ -520,27 +507,19 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonPFMouseClicked
 
     private void jRadioButtonPJMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonPJMouseClicked
-    if(jRadioButtonPJ.isSelected()){
-
-          jRadioButtonPF.setSelected(false);
-          try {
-            ftfCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-          
-         
-       }else if(jRadioButtonPJ.isSelected()){
-
-       jRadioButtonPF.setSelected(false);
-  try {
-            ftfCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
+        if(jRadioButtonPJ.isSelected()){
+            jRadioButtonPF.setSelected(false);
+            try {
+                ftfCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            } catch (java.text.ParseException ex) {
+            }
+        }else if(jRadioButtonPJ.isSelected()){
+            jRadioButtonPJ.setSelected(false);
+            try {
+                ftfCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            } catch (java.text.ParseException ex) {
+            }
        }
-        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonPJMouseClicked
 
     private void checkBoxICMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBoxICMSMouseClicked
@@ -569,9 +548,9 @@ public class Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxICMSActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         salvar();
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_btSalvarActionPerformed
 
     private void fechar(){ 
     this.dispose(); 
@@ -584,6 +563,24 @@ public class Cliente extends javax.swing.JFrame {
         dados.put("tipo", jRadioButtonPF);
         dados.put("icms", checkBoxICMS);
         dados.put("nome", textNome);
+        dados.put("ie", textIE);
+        dados.put("suframa", textSuframa);
+        dados.put("email", textEmail);
+        dados.put("telefone", tftFone);
+        dados.put("logradouro", textLogradouro);
+        dados.put("num", textNum);
+        dados.put("bairro", textBairro);
+        dados.put("complemento", textComplemento);
+        dados.put("cep", textCep);
+        dados.put("pais", abreListaPais);
+        dados.put("estado", abreListaEstado);
+        dados.put("municipio", abreListaMunicipio);
+        
+        if(jRadioButtonPF.isSelected()){
+            dados.put("cpf", ftfCpfCnpj);
+        }else{
+            dados.put("cnpj", ftfCpfCnpj);
+        }
         
         ClienteController cController = new ClienteController();
         
@@ -625,66 +622,17 @@ public class Cliente extends javax.swing.JFrame {
                 new Cliente().setVisible(true);
             }
         });
-    }
-    
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JComboBox abreListaEstado;
-    private javax.swing.JComboBox abreListaMunicipio;
-    private javax.swing.JComboBox abreListaPais;
-    private java.awt.Button button1;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
-    private java.awt.Button button4;
-    private javax.swing.ButtonGroup buttonGroupTipoCliente;
-    private javax.swing.JCheckBox checkBoxICMS;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButtonPF;
-    private javax.swing.JRadioButton jRadioButtonPJ;
-    private javax.swing.JLabel lbBairro;
-    private javax.swing.JLabel lbCep;
-    private javax.swing.JLabel lbComplemento;
-    private javax.swing.JLabel lbEmail;
-    private javax.swing.JLabel lbEstado;
-    private javax.swing.JLabel lbIE;
-    private javax.swing.JLabel lbLogradouro;
-    private javax.swing.JLabel lbMunicipio;
-    private javax.swing.JLabel lbNome;
-    private javax.swing.JLabel lbNum;
-    private javax.swing.JLabel lbPais;
-    private javax.swing.JTextField textBairro;
-    private javax.swing.JTextField textCep;
-    private javax.swing.JTextField textComplemento;
-    private javax.swing.JTextField textEmail;
-    private javax.swing.JTextField textFone;
-    private javax.swing.JTextField textIE;
-    private javax.swing.JTextField textLogradouro;
-    private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textNum;
-    private javax.swing.JTextField textSuframa;
-    private javax.swing.JFormattedTextField ftfCpfCnpj;
-    private javax.swing.JFormattedTextField tftFone;
-    // End of variables declaration                   
+      
 }
-    /*
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox abreListaEstado;
     private javax.swing.JComboBox abreListaMunicipio;
     private javax.swing.JComboBox abreListaPais;
-    private java.awt.Button button1;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
-    private java.awt.Button button4;
+    private javax.swing.JButton btModificar;
+    private javax.swing.JButton btNovo;
+    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btSalvar;
     private javax.swing.ButtonGroup buttonGroupTipoCliente;
     private javax.swing.JCheckBox checkBoxICMS;
     private javax.swing.JFormattedTextField ftfCpfCnpj;
@@ -723,4 +671,4 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField textSuframa;
     private javax.swing.JFormattedTextField tftFone;
     // End of variables declaration//GEN-END:variables
-}*/
+}
