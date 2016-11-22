@@ -9,6 +9,7 @@ import br.com.nfe.controller.ClienteController;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
 
@@ -557,9 +558,11 @@ public class Cliente extends javax.swing.JFrame {
     } 
     
     private boolean salvar (){
+    	
         boolean salvo = false;
         
-        Map<String, Object> dados = new HashMap<>();
+        Map<String, JComponent> dados = new HashMap<>();
+        
         dados.put("tipo", jRadioButtonPF);
         dados.put("icms", checkBoxICMS);
         dados.put("nome", textNome);
@@ -575,13 +578,8 @@ public class Cliente extends javax.swing.JFrame {
         dados.put("pais", abreListaPais);
         dados.put("estado", abreListaEstado);
         dados.put("municipio", abreListaMunicipio);
-        
-        if(jRadioButtonPF.isSelected()){
-            dados.put("cpf", ftfCpfCnpj);
-        }else{
-            dados.put("cnpj", ftfCpfCnpj);
-        }
-        
+        dados.put("documento", ftfCpfCnpj);
+
         ClienteController cController = new ClienteController();
         
         if(cController.salvar(dados))
