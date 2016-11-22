@@ -34,6 +34,12 @@ public class Pessoa {
 
 	@Column
 	private String email;
+        
+        private boolean isencaoIcms;
+        
+        private String suframa;
+        
+        private String inscricaoEstadual;
 
 	public String getNome() {
 		return nome;
@@ -74,5 +80,27 @@ public class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+        
+        
+	public boolean isIsencaoIcms() {
+		return isencaoIcms;
+	}
+	public void setIsencaoIcms(boolean isencaoIcms) {
+		this.isencaoIcms = isencaoIcms;
+	}
+        
+        public String getSuframa() {
+		return suframa;
+	}
 
+	public void setSuframa(String suframa) {
+		this.suframa = suframa;
+	}
+        
+        public String getInscricaoEstadual() {
+		return inscricaoEstadual;
+	}
+	public void setInscricaoEstadual(String inscricaoEstadual) {
+		this.inscricaoEstadual = inscricaoEstadual;
+	}
 }
