@@ -9,7 +9,7 @@ public class ProdutoDAO extends DAO<Produto>{
 	@Override
 	public List<Produto> findAll() {
 		List<Produto> p;
-		p = entityManager.createQuery("SELECT e FROM Pessoa e").getResultList();
+		p = entityManager.createQuery("SELECT e FROM Produto e").getResultList();
 		return p;		
 	}
 

@@ -6,12 +6,24 @@
 package br.com.nfe.model;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author hugo
  */
+
+@Entity
+@Table
 public class Produto {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduto;
     
     private ArrayList<String> icms = new ArrayList<String>();
     private String descricao, EAN, EAN_unid, EXTIPE, genero, NMC, CEST, unid_com, valor_unid_com, unid_trib, qtd_trib, valor_unit_trib, classe_en, CEL, CNPJ_produtor;
