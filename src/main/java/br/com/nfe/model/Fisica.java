@@ -9,17 +9,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(referencedColumnName = "idPessoa")
 public class Fisica extends Pessoa {
 
-	private String rg;
-
 	private String cpf;
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
 
 	public String getCpf() {
 		return cpf;

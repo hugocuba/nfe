@@ -5,6 +5,11 @@ import br.com.nfe.model.Fisica;
 import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Cliente;
+import br.com.nfe.model.Endereco;
+import br.com.nfe.model.Estado;
+import br.com.nfe.model.Municipio;
+import br.com.nfe.model.Pais;
+import br.com.nfe.model.Telefone;
 import java.util.Map;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -19,7 +24,10 @@ import javax.swing.JTextField;
 public class ClienteController {
 	public boolean salvar(Map<String, JComponent> dados) {
 		boolean salvo = false;
-
+                
+                Municipio municipio;
+                Estado estado;
+                Pais pais;
 		Pessoa p;
 
 		//JRadioButton tipo = (JRadioButton) dados.get("tipo");
@@ -43,7 +51,7 @@ public class ClienteController {
 		if (((JRadioButton) dados.get("tipo")).isSelected()) {
 			p = new Fisica();
 
-			((Fisica) p).setRg(((JTextField) dados.get("documento")).getText());
+			((Fisica) p).setCpf(((JTextField) dados.get("documento")).getText());
 		} else {
 			p = new Juridica();
 
@@ -52,15 +60,31 @@ public class ClienteController {
 
 		p.setNome(((JTextField) dados.get("nome")).getText());
 		p.setEmail(((JTextField) dados.get("email")).getText());
-
+                p.setInscricaoEstadual(((JTextField) dados.get("ie")).getText());
+                p.setIsencaoIcms(((JCheckBox) dados.get("icms")).isSelected());
+                p.setSuframa(((JTextField) dados.get("suframa")).getText());
+                
+                /*Endereco endereco = new Endereco();
+                endereco.setEndereco(((JTextField) dados.get("logradouro")).getText());
+                endereco.setNumero(Integer.parseInt(((JTextField) dados.get("num")).getText()));
+                endereco.setBairro(((JTextField) dados.get("bairro")).getText());
+                endereco.setComplemento(((JTextField) dados.get("complemento")).getText());
+                endereco.setCep(((JTextField) dados.get("cep")).getText());
+                //endereco.setMunicipio(municipio);
+                endereco.setPessoa(p);*/
+                
+                Telefone telefone = new Telefone();
+                telefone.setDdd("12");
+                telefone.setNumero(((JTextField) dados.get("telefone")).getText());
+                telefone.setPessoa(p);
+                
 		Cliente cliente = new Cliente();
 		cliente.setPessoa(p);
 
 		ClienteDAO clienteDAO = new ClienteDAO();
 
 		if (clienteDAO.persist(cliente))
-			;
-		salvo = true;
+                    salvo = true;
 
 		return salvo;
 	}
