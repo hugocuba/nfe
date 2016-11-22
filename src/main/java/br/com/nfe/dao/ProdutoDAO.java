@@ -19,9 +19,19 @@ public class ProdutoDAO extends DAO<Produto>{
 		p = entityManager.find(Produto.class, id);
 		return p;
 	}
+        
+	public Produto getByCod(String codigo) {
+		Produto p;
+		p = entityManager.find(Produto.class, codigo);
+		return p;
+	}
 
 	@Override
 	public boolean removeById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean removeByCod(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

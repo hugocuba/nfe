@@ -9,7 +9,10 @@ import br.com.nfe.controller.ProdutoController;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -532,55 +535,58 @@ public class Produto extends javax.swing.JFrame {
         ArrayList<String> icms = new ArrayList<String> ();
         icms.add("testando");
         icms.add("testando2");
-                        
-        p.setDescricao(jTextField1.getText());
-        p.setCodigo(Integer.parseInt(jTextField2.getText()));
-        p.setEAN(jTextField3.getText());
-        p.setEXTIPE(jTextField4.getText());
-        p.setUnid_com(jTextField5.getText());
-        p.setUnid_trib(jTextField6.getText());
-        p.setEAN_unid(jTextField7.getText());
-        p.setGenero(jTextField8.getText());
-        p.setValor_unid_com(jTextField9.getText());
-        p.setQtd_trib(jTextField10.getText());
-        p.setValor_unit_trib(jTextField11.getText());
-        p.setNMC(jTextField12.getText());
-        p.setCEST(jTextField13.getText());
-        p.setClasse_en(jTextField14.getText());
-        p.setCEL(jTextField15.getText());
-        p.setCNPJ_produtor(jTextField16.getText());
-        p.setIcms(icms);
+        Map<String , String> dados = new HashMap<>();
+        
          
+        dados.put("Descrição",jTextField1.getText());
+        dados.put("Codigo",jTextField2.getText());
+        dados.put("EAN",jTextField3.getText());
+        dados.put("EXTIPE",jTextField4.getText());
+        dados.put("Unid_com",jTextField5.getText());
+        dados.put("Unid_trib",jTextField6.getText());
+        dados.put("EAN_unid",jTextField7.getText());
+        dados.put("Genero",jTextField8.getText());
+        dados.put("Valor_unid_com",jTextField9.getText());
+        dados.put("Qtd_trib",jTextField10.getText());
+        dados.put("Valor_unit_trib",jTextField11.getText());
+        dados.put("NMC",jTextField12.getText());
+        dados.put("CEST",jTextField13.getText());
+        dados.put("Classe_en",jTextField14.getText());
+        dados.put("CEL",jTextField15.getText());
+        dados.put("CNPJ_produtor",jTextField15.getText());
         
         ProdutoController pc = new ProdutoController();
-        pc.Incluir(p);
+        pc.Incluir(dados,icms);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
     ProdutoController pc = new ProdutoController();
+    Map<String , String> dados = new HashMap<>();
+    ArrayList<String> icms;
+    String codigo = (JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
     
-    int codigo = Integer.parseInt(JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
+        pc.exportar(codigo);    
+        dados = pc.getDados();
+        icms = pc.getIcms();
     
-        p = pc.exportar(codigo);    
         
-    
-        jTextField1.setText(p.getDescricao());
-        jTextField2.setText(Integer.toString(p.getCodigo()));
-        jTextField3.setText(p.getEAN());
-        jTextField4.setText(p.getEXTIPE());
-        jTextField5.setText(p.getUnid_com());
-        jTextField6.setText(p.getUnid_trib());
-        jTextField7.setText(p.getEAN_unid());
-        jTextField8.setText(p.getGenero());
-        jTextField9.setText(p.getValor_unid_com());
-        jTextField10.setText(p.getQtd_trib());
-        jTextField11.setText(p.getValor_unit_trib());
-        jTextField12.setText(p.getNMC());
-        jTextField13.setText(p.getCEST());
-        jTextField14.setText(p.getClasse_en());
-        jTextField15.setText(p.getCEL());
-        jTextField16.setText(p.getCNPJ_produtor());
+        jTextField1.setText(dados.get("Descrição"));
+        jTextField2.setText(dados.get("Codigo"));
+        jTextField3.setText(dados.get("EAN"));
+        jTextField4.setText(dados.get("EXTIPE"));
+        jTextField5.setText(dados.get("Unid_com"));
+        jTextField6.setText(dados.get("Unid_trib"));
+        jTextField7.setText(dados.get("EAN_unid"));
+        jTextField8.setText(dados.get("Genero"));
+        jTextField9.setText(dados.get("Valor_unid_com"));
+        jTextField10.setText(dados.get("Qtd_trib"));
+        jTextField11.setText(dados.get("Valor_unit_trib"));
+        jTextField12.setText(dados.get("NMC"));
+        jTextField13.setText(dados.get("CEST"));
+        jTextField14.setText(dados.get("Classe_en"));
+        jTextField15.setText(dados.get("CEL"));
+        jTextField16.setText(dados.get("CNPJ_produtor"));
         
         jButton5.setEnabled(true);
         jButton6.setEnabled(true);

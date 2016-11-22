@@ -27,7 +27,7 @@ public class Produto {
     
     private ArrayList<String> icms = new ArrayList<String>();
     private String descricao, EAN, EAN_unid, EXTIPE, genero, NMC, CEST, unid_com, valor_unid_com, unid_trib, qtd_trib, valor_unit_trib, classe_en, CEL, CNPJ_produtor;
-    private int codigo;
+    private String codigo;
     
     public ArrayList<String> getIcms() {
         return icms;
@@ -45,11 +45,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
