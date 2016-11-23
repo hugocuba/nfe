@@ -382,6 +382,7 @@ public class Produto extends javax.swing.JFrame {
         });
 
         jButton7.setText("Exportar");
+        jButton7.setEnabled(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -560,56 +561,6 @@ public class Produto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-    ProdutoController pc = new ProdutoController();
-    Map<String , String> dados = new HashMap<>();
-    ArrayList<String> icms;
-    String codigo = (JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
-    
-        pc.exportar(codigo);    
-        dados = pc.getDados();
-        icms = pc.getIcms();
-    
-        
-        jTextField1.setText(dados.get("Descrição"));
-        jTextField2.setText(dados.get("Codigo"));
-        jTextField3.setText(dados.get("EAN"));
-        jTextField4.setText(dados.get("EXTIPE"));
-        jTextField5.setText(dados.get("Unid_com"));
-        jTextField6.setText(dados.get("Unid_trib"));
-        jTextField7.setText(dados.get("EAN_unid"));
-        jTextField8.setText(dados.get("Genero"));
-        jTextField9.setText(dados.get("Valor_unid_com"));
-        jTextField10.setText(dados.get("Qtd_trib"));
-        jTextField11.setText(dados.get("Valor_unit_trib"));
-        jTextField12.setText(dados.get("NMC"));
-        jTextField13.setText(dados.get("CEST"));
-        jTextField14.setText(dados.get("Classe_en"));
-        jTextField15.setText(dados.get("CEL"));
-        jTextField16.setText(dados.get("CNPJ_produtor"));
-        
-        jButton5.setEnabled(true);
-        jButton6.setEnabled(true);
-        
-        jTextField1.setEditable(false);
-        jTextField2.setEditable(false);
-        jTextField3.setEditable(false);
-        jTextField4.setEditable(false);
-        jTextField5.setEditable(false);
-        jTextField6.setEditable(false);
-        jTextField7.setEditable(false);
-        jTextField8.setEditable(false);
-        jTextField9.setEditable(false);
-        jTextField10.setEditable(false);
-        jTextField11.setEditable(false);
-        jTextField12.setEditable(false);
-        jTextField13.setEditable(false);
-        jTextField14.setEditable(false);
-        jTextField15.setEditable(false);
-        jTextField16.setEditable(false);
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         jTextField1.setEditable(true);
         jTextField2.setEditable(true);
@@ -636,6 +587,55 @@ public class Produto extends javax.swing.JFrame {
     pc.excluir(p.getCodigo());
     
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ProdutoController pc = new ProdutoController();
+        Map<String , String> dados = new HashMap<>();
+        ArrayList<String> icms;
+        String codigo = (JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
+
+        pc.exportar(codigo);
+        dados = pc.getDados();
+        icms = pc.getIcms();
+
+        jTextField1.setText(dados.get("Descrição"));
+        jTextField2.setText(dados.get("Codigo"));
+        jTextField3.setText(dados.get("EAN"));
+        jTextField4.setText(dados.get("EXTIPE"));
+        jTextField5.setText(dados.get("Unid_com"));
+        jTextField6.setText(dados.get("Unid_trib"));
+        jTextField7.setText(dados.get("EAN_unid"));
+        jTextField8.setText(dados.get("Genero"));
+        jTextField9.setText(dados.get("Valor_unid_com"));
+        jTextField10.setText(dados.get("Qtd_trib"));
+        jTextField11.setText(dados.get("Valor_unit_trib"));
+        jTextField12.setText(dados.get("NMC"));
+        jTextField13.setText(dados.get("CEST"));
+        jTextField14.setText(dados.get("Classe_en"));
+        jTextField15.setText(dados.get("CEL"));
+        jTextField16.setText(dados.get("CNPJ_produtor"));
+
+        jButton5.setEnabled(true);
+        jButton6.setEnabled(true);
+
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
+        jTextField6.setEditable(false);
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        jTextField9.setEditable(false);
+        jTextField10.setEditable(false);
+        jTextField11.setEditable(false);
+        jTextField12.setEditable(false);
+        jTextField13.setEditable(false);
+        jTextField14.setEditable(false);
+        jTextField15.setEditable(false);
+        jTextField16.setEditable(false);
+
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -401,8 +401,10 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         btNovo.setText("Novo");
+        btNovo.setEnabled(false);
 
         btSalvar.setText("Salvar");
+        btSalvar.setEnabled(false);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -410,6 +412,7 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         btModificar.setText("Editar");
+        btModificar.setEnabled(false);
 
         btPesquisar.setText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -419,6 +422,7 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         jButton2.setText("Excluir");
+        jButton2.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
