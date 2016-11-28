@@ -37,6 +37,8 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public void preencheView() {
+        abreListaMunicipio.removeAllItems();
+        abreListaEstado.removeAllItems();
         abreListaPais.removeAllItems();
         PaisDAO pDAO = new PaisDAO();
         List<Pais> listPais = pDAO.findAll();
@@ -290,11 +292,6 @@ public class ClienteView extends javax.swing.JFrame {
         jRadioButtonPF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonPFMouseClicked(evt);
-            }
-        });
-        jRadioButtonPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPFActionPerformed(evt);
             }
         });
 
@@ -589,10 +586,6 @@ public class ClienteView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkBoxICMSMouseClicked
 
-    private void jRadioButtonPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonPFActionPerformed
-
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
 
         //Janela nova = new Janela(); // para abrir a nova janela (Janela Ã© o nome da classe) 
@@ -608,7 +601,7 @@ public class ClienteView extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if(salvar()){
-            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
         }
     }//GEN-LAST:event_btSalvarActionPerformed

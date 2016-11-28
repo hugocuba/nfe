@@ -80,4 +80,11 @@ public class ClienteController {
 
         return salvo;
     }
+    
+    public List<Cliente> pesquisar(String nome, String cpf, String cnpj){
+        List<Cliente> c;
+        ClienteDAO cDAO = new ClienteDAO();
+        c = cDAO.findByNome(nome);
+        return c;
+    }
 }
