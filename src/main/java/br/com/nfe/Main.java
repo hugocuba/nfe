@@ -6,7 +6,11 @@ import java.security.spec.InvalidKeySpecException;
 import javax.swing.UIManager;
 
 import br.com.nfe.dao.LoginDAO;
+import br.com.nfe.dao.MunicipioDAO;
+import br.com.nfe.model.Estado;
 import br.com.nfe.model.Login;
+import br.com.nfe.model.Municipio;
+import br.com.nfe.model.Pais;
 import br.com.nfe.utils.PasswordHash;
 import br.com.nfe.view.LoginView;
 
@@ -64,10 +68,20 @@ public class Main {
 		 */
 
 		Login usuario = new Login("hugo", PasswordHash.createHash("123"));
+		usuario.setNome("Hugo Salles Cuba");
 		
 		LoginDAO lDAO = new LoginDAO();
 
 		lDAO.persist(usuario);
+                
+                Pais p = new Pais("Brasil");
+                Estado e = new Estado("São Paulo", p);
+                Municipio m = new Municipio();
+                m.setEstado(e);
+                m.setNome("Caraguatatuba");
+                
+                MunicipioDAO mDAO = new MunicipioDAO();
+                mDAO.persist(m);
 		
 		//Login login = lDAO.verifica("hugo");
 		

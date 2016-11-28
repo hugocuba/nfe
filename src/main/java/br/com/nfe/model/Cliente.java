@@ -31,9 +31,6 @@ public class Cliente {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPessoa", nullable = false)
 	private Pessoa pessoa;
-	
-	@Column
-	private String inscricaoSuframa;
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -42,13 +39,4 @@ public class Cliente {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
-	public String getInscricaoSuframa() {
-		return inscricaoSuframa;
-	}
-
-	public void setInscricaoSuframa(String inscricaoSuframa) {
-		this.inscricaoSuframa = inscricaoSuframa;
-	}
-
 }

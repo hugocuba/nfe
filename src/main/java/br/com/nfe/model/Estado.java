@@ -35,6 +35,10 @@ public class Estado {
 		this.nome = nome;
 		this.pais = pais;
 	}
+        
+        public Estado(){
+            
+        }
 
 	public Integer getIdEstado() {
 		return idEstado;
@@ -60,5 +64,12 @@ public class Estado {
 	public void addMunicipio(Municipio municipio) {
 		this.municipios.add(municipio);
 	}
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+        
+        
 
 }

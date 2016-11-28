@@ -16,7 +16,9 @@ public class EstadoDAO extends DAO<Estado>{
 
     @Override
     public List<Estado> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Estado> e;
+        e = entityManager.createQuery("SELECT e FROM Estado e").getResultList();
+        return e;
     }
 
     @Override

@@ -8,8 +8,9 @@ public class PaisDAO extends DAO<Pais>{
 
 	@Override
 	public List<Pais> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+            List<Pais> p;
+            p = entityManager.createQuery("SELECT e FROM Pais e").getResultList();
+            return p;
 	}
 
 	@Override

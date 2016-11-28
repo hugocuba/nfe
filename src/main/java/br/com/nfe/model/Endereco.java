@@ -23,9 +23,6 @@ public class Endereco {
 	private Pessoa pessoa;
 	
 	@Column
-	private char tipo;
-	
-	@Column
 	private String endereco;
 	
 	@Column
@@ -51,14 +48,6 @@ public class Endereco {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 		this.pessoa.addEndereco(this);
-	}
-
-	public char getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(char tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getEndereco() {

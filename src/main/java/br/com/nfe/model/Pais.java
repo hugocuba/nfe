@@ -15,37 +15,47 @@ import javax.persistence.Table;
 @Table
 public class Pais {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idPais;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPais;
 
-	@Column
-	private String nome;
+    @Column
+    private String nome;
 
-	@OneToMany(targetEntity = Estado.class, mappedBy = "pais", cascade = CascadeType.ALL)
-	private List<Estado> estados = new ArrayList<Estado>();
+    @OneToMany(targetEntity = Estado.class, mappedBy = "pais", cascade = CascadeType.ALL)
+    private List<Estado> estados = new ArrayList<Estado>();
 
-	public Pais(String nome) {
-		this.nome = nome;
-	}
+    public Pais(String nome) {
+        this.nome = nome;
+    }
 
-	public Integer getIdPais() {
-		return idPais;
-	}
+    public Pais() {
 
-	public String getNome() {
-		return nome;
-	}
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Integer getIdPais() {
+        return idPais;
+    }
 
-	public List<Estado> getEstados() {
-		return estados;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void addEstado(Estado estado) {
-		this.estados.add(estado);
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    public void addEstado(Estado estado) {
+        this.estados.add(estado);
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+
 }

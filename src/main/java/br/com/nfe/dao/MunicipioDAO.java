@@ -8,8 +8,9 @@ public class MunicipioDAO extends DAO<Municipio>{
 
 	@Override
 	public List<Municipio> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+            List<Municipio> m;
+            m = entityManager.createQuery("SELECT e FROM Municipio e").getResultList();
+            return m;
 	}
 
 	@Override

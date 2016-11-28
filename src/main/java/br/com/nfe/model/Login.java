@@ -29,6 +29,9 @@ public class Login {
 
     @Column(unique = true)
     private String usuario;
+    
+    @Column(nullable = false)
+    private String nome;
 
     @Column(nullable = false)
     private String senha;
@@ -75,6 +78,13 @@ public class Login {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }  
-    
+    }
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}  
 }

@@ -50,4 +50,10 @@ public class Municipio {
 		this.estado.addMunicipio(this);
 	}
 
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+
+        
 }

@@ -5,6 +5,7 @@
  */
 package br.com.nfe.view;
 
+import br.com.nfe.model.Sessao;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,10 @@ public class PaginaInicialView extends javax.swing.JFrame {
      */
     public PaginaInicialView() {
         initComponents();
+        
+        Sessao sessao = Sessao.getInstance();
+        
+        preencheView(sessao);
     }
 
     /**
@@ -44,6 +49,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         lblCnpj = new javax.swing.JLabel();
         lblIE = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblLogadoComo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,11 +85,10 @@ public class PaginaInicialView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1024, 700));
         setResizable(false);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setIcon(new ImageIcon ("src/resources/images/Organization-80.png"));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Organization-80.png"))); // NOI18N
         jButton1.setText("Cadastrar / Selecionar Emitente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +97,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setIcon(new ImageIcon ("src/resources/images/Invoice-80.png"));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Invoice-80.png"))); // NOI18N
         jButton2.setText("Emitir NF-e");
         jButton2.setToolTipText("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +107,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setIcon(new ImageIcon ("src/resources/images/Price Tag-80.png"));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Price Tag-80.png"))); // NOI18N
         jButton3.setText("Cadastrar Produto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +116,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setIcon(new ImageIcon ("src/resources/images/User Group Man Man Filled-80.png"));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User Group Man Man Filled-80.png"))); // NOI18N
         jButton4.setText("Cadastrar Cliente");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +174,8 @@ public class PaginaInicialView extends javax.swing.JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new ImageIcon ("src/resources/images/logo_nfe.png"));
+
+        lblLogadoComo.setText("Logado como");
 
         jMenu1.setText("Notas Fiscais");
 
@@ -275,18 +282,24 @@ public class PaginaInicialView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(179, 179, 179)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(371, 371, 371)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(179, 179, 179)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(371, 371, 371)
+                                .addComponent(jLabel4)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblLogadoComo)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,6 +315,8 @@ public class PaginaInicialView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblLogadoComo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -319,7 +334,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        JFrame cadastroCliente = new Cliente();
+        JFrame cadastroCliente = new ClienteView();
         cadastroCliente.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -364,6 +379,10 @@ public class PaginaInicialView extends javax.swing.JFrame {
                 new PaginaInicialView().setVisible(true);
             }
         });
+    }
+    
+    public void preencheView(Sessao sessao){
+        lblLogadoComo.setText("Logado como " + sessao.getUsuario().getNome());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -410,6 +429,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JLabel lblCnpj;
     private javax.swing.JLabel lblIE;
+    private javax.swing.JLabel lblLogadoComo;
     private javax.swing.JLabel lblRazaoSocial;
     // End of variables declaration//GEN-END:variables
 }
