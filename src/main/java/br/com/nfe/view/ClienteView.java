@@ -135,7 +135,6 @@ public class ClienteView extends javax.swing.JFrame {
         btSalvar = new javax.swing.JButton();
         btModificar = new javax.swing.JButton();
         btPesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -183,7 +182,7 @@ public class ClienteView extends javax.swing.JFrame {
         jPanel1.setName(""); // NOI18N
 
         lbNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbNome.setText("Nome / Razão Social:*");
+        lbNome.setText("*Nome / Razão Social:");
 
         lbIE.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbIE.setText("Inscrição Estadual:");
@@ -198,7 +197,7 @@ public class ClienteView extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("CPF / CNPJ:*");
+        jLabel3.setText("*CPF / CNPJ:");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Nº Inscrição SUFRAMA:");
@@ -440,6 +439,7 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel7.setText("* Item de preenchimento obrigatório");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jButton1.setText("Sair");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -447,9 +447,11 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btNovo.setText("Novo");
         btNovo.setEnabled(false);
 
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -457,18 +459,17 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
+        btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btModificar.setText("Editar");
         btModificar.setEnabled(false);
 
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         btPesquisar.setText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPesquisarActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Excluir");
-        jButton2.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -484,12 +485,10 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btSalvar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
                 .addComponent(btPesquisar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addComponent(jButton1)
+                .addGap(109, 109, 109))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -523,10 +522,9 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(btNovo)
                     .addComponent(btModificar)
-                    .addComponent(btPesquisar)
                     .addComponent(jLabel7)
                     .addComponent(btSalvar)
-                    .addComponent(jButton2))
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -736,7 +734,6 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkBoxICMS;
     private javax.swing.JFormattedTextField ftfCpfCnpj;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
