@@ -5,12 +5,14 @@
  */
 package br.com.nfe.model;
 
+import java.awt.Image;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.swing.Icon;
@@ -35,8 +37,10 @@ public class Emitente {
 	private String inscricaoEstadualSubstTributario;
 	private String cnaeFiscal;
 	private String inscricaoMunicipal;
-	private RegimeTributario regimeTributario;
-	private Icon logotipo;
+	//private RegimeTributario regimeTributario;
+        
+        @Lob
+	private byte[] logotipo;
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -70,19 +74,19 @@ public class Emitente {
 		this.inscricaoMunicipal = inscricaoMunicipal;
 	}
 
-	public RegimeTributario getRegimeTributario() {
+	/*public RegimeTributario getRegimeTributario() {
 		return regimeTributario;
 	}
 
 	public void setRegimeTributario(RegimeTributario regimeTributario) {
 		this.regimeTributario = regimeTributario;
-	}
+	}*/
 
-	public Icon getLogotipo() {
+	public byte[] getLogotipo() {
 		return logotipo;
 	}
 
-	public void setLogotipo(Icon logotipo) {
+	public void setLogotipo(byte[] logotipo) {
 		this.logotipo = logotipo;
 	}
 
