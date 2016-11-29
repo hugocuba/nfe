@@ -5,21 +5,38 @@
  */
 package br.com.nfe.model;
 
-import java.awt.Image;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.swing.Icon;
 
 /**
  *
  * @author a1502778
  */
+
+@Entity
+@Table
 public class Emitente {
 
+        @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEmitente;
+        
+        @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPessoa", nullable = false)
 	private Pessoa pessoa;
+        
 	private String inscricaoEstadualSubstTributario;
 	private String cnaeFiscal;
 	private String inscricaoMunicipal;
 	private RegimeTributario regimeTributario;
-	private Image logotipo;
+	private Icon logotipo;
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -61,11 +78,11 @@ public class Emitente {
 		this.regimeTributario = regimeTributario;
 	}
 
-	public Image getLogotipo() {
+	public Icon getLogotipo() {
 		return logotipo;
 	}
 
-	public void setLogotipo(Image logotipo) {
+	public void setLogotipo(Icon logotipo) {
 		this.logotipo = logotipo;
 	}
 

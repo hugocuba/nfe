@@ -23,9 +23,6 @@ public class Telefone {
 	private Pessoa pessoa;
 	
 	@Column
-	private char tipo;
-	
-	@Column
 	private String ddd;
 	
 	@Column
@@ -38,14 +35,6 @@ public class Telefone {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 		this.pessoa.addTelefone(this);
-	}
-
-	public char getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(char tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getDdd() {
