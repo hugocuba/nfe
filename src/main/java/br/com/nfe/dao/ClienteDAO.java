@@ -3,6 +3,8 @@ package br.com.nfe.dao;
 import java.util.List;
 
 import br.com.nfe.model.Cliente;
+import java.sql.ResultSet;
+import java.util.Collection;
 import javax.persistence.Query;
 
 public class ClienteDAO extends DAO<Cliente> {
@@ -30,19 +32,14 @@ public class ClienteDAO extends DAO<Cliente> {
 
     }
 
-    public List<Cliente> findByCPF(String cpf) {
+    public List<Cliente> findByDoc(String doc) {
         List<Cliente> c;
-        c = entityManager.createQuery("SELECT e FROM Cliente e").getResultList();
+        Query q = entityManager.createQuery("SELECT e FROM Cliente e, Fisica f, Juridica j INNER JOIN e.pessoa p WHERE (p.idPessoa LIKE f.idPessoa AND f.cpf LIKE :doc) OR (p.idPessoa LIKE j.idPessoa AND j.cnpj LIKE :doc)");
+        q.setParameter("doc", "%" + doc + "%");
+        c = q.getResultList();
         return c;
 
     }
-
-    public List<Cliente> findByCNPJ(String cnpj) {
-        List<Cliente> c;
-        c = entityManager.createQuery("SELECT e FROM Cliente e").getResultList();
-        return c;
-    }
-
     @Override
     public boolean removeById(Integer id) {
         // TODO Auto-generated method stub

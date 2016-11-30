@@ -81,10 +81,17 @@ public class ClienteController {
         return salvo;
     }
     
-    public List<Cliente> pesquisar(String nome, String cpf, String cnpj){
+    public List<Cliente> pesquisar(String nome, Boolean doc){
         List<Cliente> c;
         ClienteDAO cDAO = new ClienteDAO();
-        c = cDAO.findByNome(nome);
+        
+        if(doc){
+            c = cDAO.findByDoc(nome);
+        }
+        else{
+            c = cDAO.findByNome(nome);
+        }
+        
         return c;
     }
 }

@@ -13,9 +13,12 @@ import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import java.awt.Color;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -612,10 +615,14 @@ public class CadastroEmitenteView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (verificaCampos()) {
-            if (salvar()) {
-                JOptionPane.showMessageDialog(this, "Emitente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Falha ao cadastrar emitente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            try {
+                if (salvar()) {
+                    JOptionPane.showMessageDialog(this, "Emitente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao cadastrar emitente.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CadastroEmitenteView.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -725,7 +732,7 @@ public class CadastroEmitenteView extends javax.swing.JFrame {
         }
     }
 
-    private Boolean salvar() {
+    private Boolean salvar() throws IOException {
         Boolean salvo = false;
 
         Map<String, JComponent> dados = new HashMap<>();
