@@ -614,7 +614,7 @@ public class NotaFiscal extends javax.swing.JFrame {
         jRadioButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jRadioButton3.setText("Nota Fiscal");
 
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NF-e/CT-e", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NF-e/CT-e", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel22.setText("Chave de Acesso:");
@@ -642,7 +642,7 @@ public class NotaFiscal extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota Fiscal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota Fiscal", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel23.setText("Série*:");
@@ -1155,7 +1155,7 @@ public class NotaFiscal extends javax.swing.JFrame {
 
         GuiaPrincipal.addTab("Dados NF-e", jPanel1);
 
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel44.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel44.setText("CNPJ:");
@@ -1275,7 +1275,7 @@ public class NotaFiscal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel24.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         jLabel52.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1435,7 +1435,7 @@ public class NotaFiscal extends javax.swing.JFrame {
 
         GuiaPrincipal.addTab("Emitente", jPanel2);
 
-        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         jLabel61.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1589,7 +1589,7 @@ public class NotaFiscal extends javax.swing.JFrame {
                     .addComponent(jComboBox20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel70.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel70.setText("CPF*:");
@@ -1722,7 +1722,7 @@ public class NotaFiscal extends javax.swing.JFrame {
                     .addComponent(jTextField46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         jLabel78.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1859,7 +1859,7 @@ public class NotaFiscal extends javax.swing.JFrame {
             }
         });
 
-        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel28.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
