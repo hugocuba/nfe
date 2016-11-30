@@ -14,14 +14,9 @@ import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Telefone;
 import br.com.nfe.utils.Telephone;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +77,7 @@ public class EmitenteController {
         icon.paintIcon(null, g2d, 0, 0);
         g2d.dispose();
         
-         byte[] bytes = null;
+        byte[] bytes = null;
 
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
@@ -106,5 +101,19 @@ public class EmitenteController {
         };
 
         return salvo;
+    }
+    
+    public List<Emitente> pesquisar(String nome, Boolean doc){
+        List<Emitente> e;
+        EmitenteDAO eDAO = new EmitenteDAO();
+        
+        if(doc){
+            e = eDAO.findByDoc(nome);
+        }
+        else{
+            e = eDAO.findByNome(nome);
+        }
+        
+        return e;
     }
 }

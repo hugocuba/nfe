@@ -5,7 +5,6 @@
  */
 package br.com.nfe.model;
 
-import java.awt.Image;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.swing.Icon;
 
 /**
  *
