@@ -7,7 +7,10 @@
 package br.com.nfe.view.model;
 
 import br.com.nfe.model.Cliente;
+import br.com.nfe.view.Produto;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -20,6 +23,7 @@ public class ClienteTableModel extends AbstractTableModel {
     //constantes que vão representar as colunas
     //(só para facilitar o entendimento do código)
     private final int COL_NOME = 0;
+    private final int COL_DOC = 1;
 
     private List<Cliente> clientes;
 
@@ -38,7 +42,7 @@ public class ClienteTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -46,8 +50,9 @@ public class ClienteTableModel extends AbstractTableModel {
         //qual o nome da coluna
         if (column == COL_NOME) {
             return "Nome";
+        } else if (column == COL_DOC) {
+            return "CPF / CNPJ";
         }
-
         return "";
     }
 
@@ -56,21 +61,25 @@ public class ClienteTableModel extends AbstractTableModel {
         //retorna a classe que representa a coluna
         if (columnIndex == COL_NOME) {
             return String.class;
+        } else if (columnIndex == COL_DOC) {
+            return String.class;
         }
 
         return String.class;
     }
 
-    public Cliente getValueAt(int rowIndex, int columnIndex) {
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
         //pega o produto da linha
         Cliente c = clientes.get(rowIndex);
 
         //verifica qual valor deve ser retornado
         if (columnIndex == COL_NOME) {
-            return c;
+            return c.getPessoa().getNome();
+        } else if (columnIndex == COL_DOC) {
+            return c.getPessoa().getEmail();
         }
-
-        return null;
+        return "";
     }
 
     @Override
@@ -83,11 +92,27 @@ public class ClienteTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public Cliente getProduto(int pos) {
+    public Cliente getCliente(int pos) {
         if (pos < 0 || pos >= clientes.size()) {
             return null;
         }
 
         return clientes.get(pos);
+    }
+
+    public void ordenarPorNome() {
+//ordena pelo nome
+        Collections.sort(clientes, new Comparator() {
+
+            @Override
+            public int compare(Object t, Object t1) {
+                Cliente c1 = (Cliente) t;
+                Cliente c2 = (Cliente) t1;
+                return c1.getPessoa().getNome().compareTo(c2.getPessoa().getNome());
+            }
+        });
+
+        //avisa que a tabela foi alterada
+        fireTableDataChanged();
     }
 }

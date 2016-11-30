@@ -7,16 +7,21 @@ package br.com.nfe.view;
 
 import br.com.nfe.controller.ClienteController;
 import br.com.nfe.dao.PaisDAO;
+import br.com.nfe.model.Cliente;
+import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Estado;
+import br.com.nfe.model.Fisica;
+import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.Sessao;
+import br.com.nfe.model.Telefone;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -27,6 +32,7 @@ import javax.swing.UIManager;
 public class ClienteView extends javax.swing.JFrame {
 
     Sessao sessao = Sessao.getInstance();
+    Cliente cliente;
 
     /**
      * Creates new form Cliente
@@ -34,6 +40,46 @@ public class ClienteView extends javax.swing.JFrame {
     public ClienteView() {
         initComponents();
         preencheView();
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+
+        limparCampos();
+        liberarCampos(false);
+
+        btModificar.setEnabled(true);
+
+        textNome.setText(cliente.getPessoa().getNome());
+        textEmail.setText(cliente.getPessoa().getEmail());
+        textIE.setText(cliente.getPessoa().getInscricaoEstadual());
+        textSuframa.setText(cliente.getPessoa().getSuframa());
+        checkBoxICMS.setEnabled(cliente.getPessoa().isIsencaoIcms());
+
+        List<Telefone> t = cliente.getPessoa().getTelefones();
+        List<Endereco> e = cliente.getPessoa().getEnderecos();
+
+        tftFone.setText(t.get(0).getDdd() + t.get(0).getNumero());
+
+        textLogradouro.setText(e.get(0).getEndereco());
+        textNum.setText(String.valueOf(e.get(0).getNumero()));
+        textBairro.setText(e.get(0).getBairro());
+        textComplemento.setText(e.get(0).getComplemento());
+        textCep.setText(e.get(0).getCep());
+        abreListaPais.addItem(e.get(0).getMunicipio().getEstado().getPais());
+        abreListaEstado.addItem(e.get(0).getMunicipio().getEstado());
+        abreListaMunicipio.addItem(e.get(0).getMunicipio());
+
+        if (cliente.getPessoa() instanceof Fisica) {
+            jRadioButtonPF.setEnabled(true);
+            ftfCpfCnpj.setText(((Fisica) cliente.getPessoa()).getCpf());
+        } else {
+            if (cliente.getPessoa() instanceof Juridica) {
+                jRadioButtonPJ.setEnabled(true);
+                ftfCpfCnpj.setText(((Juridica) cliente.getPessoa()).getCnpj());
+            }
+        }
+
     }
 
     public void preencheView() {
@@ -60,8 +106,8 @@ public class ClienteView extends javax.swing.JFrame {
             abreListaMunicipio.addItem(municipio);
         }
     }
-    
-    public void limparCampos(){
+
+    public void limparCampos() {
         checkBoxICMS.setSelected(false);
         textNome.setText(null);
         ftfCpfCnpj.setText(null);
@@ -76,6 +122,26 @@ public class ClienteView extends javax.swing.JFrame {
         textComplemento.setText(null);
         textCep.setText(null);
         preencheView();
+    }
+
+    private void liberarCampos(Boolean opcao) {
+        checkBoxICMS.setEnabled(opcao);
+        textNome.setEnabled(opcao);
+        ftfCpfCnpj.setEnabled(opcao);
+        jRadioButtonPF.setEnabled(opcao);
+        jRadioButtonPJ.setEnabled(opcao);
+        textIE.setEnabled(opcao);
+        textSuframa.setEnabled(opcao);
+        textEmail.setEnabled(opcao);
+        tftFone.setEnabled(opcao);
+        textLogradouro.setEnabled(opcao);
+        textNum.setEnabled(opcao);
+        textBairro.setEnabled(opcao);
+        textComplemento.setEnabled(opcao);
+        textCep.setEnabled(opcao);
+        abreListaPais.setEnabled(opcao);
+        abreListaEstado.setEnabled(opcao);
+        abreListaPais.setEnabled(opcao);
     }
 
     /*  public ClienteView() {
@@ -234,20 +300,20 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(lbEmail))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textIE, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(textIE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addComponent(textEmail, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel3)
                     .addComponent(jLabel17))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ftfCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                        .addComponent(textSuframa))
-                    .addComponent(tftFone, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ftfCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(textSuframa)
+                    .addComponent(tftFone))
                 .addGap(313, 313, 313))
         );
         jPanel1Layout.setVerticalGroup(
@@ -446,6 +512,11 @@ public class ClienteView extends javax.swing.JFrame {
                 jButton1MousePressed(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btNovo.setText("Novo");
@@ -462,6 +533,11 @@ public class ClienteView extends javax.swing.JFrame {
         btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btModificar.setText("Editar");
         btModificar.setEnabled(false);
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         btPesquisar.setText("Pesquisar");
@@ -475,34 +551,36 @@ public class ClienteView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btNovo)
-                .addGap(18, 18, 18)
-                .addComponent(btModificar)
-                .addGap(18, 18, 18)
-                .addComponent(btSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btPesquisar)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(109, 109, 109))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(checkBoxICMS)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btNovo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btPesquisar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(386, 386, 386)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkBoxICMS)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(386, 386, 386)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,13 +596,14 @@ public class ClienteView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btNovo)
-                    .addComponent(btModificar)
-                    .addComponent(jLabel7)
-                    .addComponent(btSalvar)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btNovo)
+                        .addComponent(btModificar)
+                        .addComponent(jLabel7)
+                        .addComponent(btSalvar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -598,9 +677,18 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxICMSActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if(salvar()){
-            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            limparCampos();
+        if (cliente == null) {
+            if (salvar()) {
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                limparCampos();
+                liberarCampos(false);
+            }
+        }
+        else{
+            if(atualizar(cliente)){
+                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                liberarCampos(false);
+            }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -609,7 +697,7 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_tftFoneActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        JFrame pesquisaCliente = new PesquisaCliente();
+        JDialog pesquisaCliente = new PesquisaCliente(this);
         pesquisaCliente.setVisible(true);
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -625,6 +713,14 @@ public class ClienteView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_abreListaEstadoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+        liberarCampos(true);
+    }//GEN-LAST:event_btModificarActionPerformed
+
     private void fechar() {
         this.dispose();
     }
@@ -636,15 +732,14 @@ public class ClienteView extends javax.swing.JFrame {
             valido = false;
             textNome.setBackground(Color.yellow);
             textNome.requestFocus();
-        }
-        else{
-            if("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))){
+        } else {
+            if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))) {
                 valido = false;
                 ftfCpfCnpj.setBackground(Color.yellow);
                 ftfCpfCnpj.requestFocus();
             }
         }
-        
+
         System.out.println(ftfCpfCnpj.getText().replaceAll("\\D", ""));
 
         return valido;
@@ -680,12 +775,23 @@ public class ClienteView extends javax.swing.JFrame {
             if (cController.salvar(dados)) {
                 salvo = true;
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Erro", JOptionPane.WARNING_MESSAGE);
         }
 
         return salvo;
+    }
+
+    private boolean atualizar(Cliente c) {
+        
+        boolean atualizado = false;
+
+        ClienteController cController = new ClienteController();
+        
+        if(cController.atualizar(cliente))
+            atualizado = true;
+        
+        return atualizado;
     }
 
     /**

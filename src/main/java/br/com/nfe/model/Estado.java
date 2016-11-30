@@ -61,6 +61,12 @@ public class Estado {
 		this.pais.addEstado(this);
 	}
 
+    public Pais getPais() {
+        return pais;
+    }
+        
+        
+
 	public void addMunicipio(Municipio municipio) {
 		this.municipios.add(municipio);
 	}

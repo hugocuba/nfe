@@ -6,7 +6,6 @@
 package br.com.nfe.view;
 
 import br.com.nfe.controller.ClienteController;
-import br.com.nfe.dao.ClienteDAO;
 import br.com.nfe.model.Cliente;
 import br.com.nfe.view.model.ClienteTableModel;
 import java.util.List;
@@ -19,15 +18,23 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author a1502824
  */
-public class PesquisaCliente extends javax.swing.JFrame {
-    
-    private ClienteTableModel model;
+public class PesquisaCliente extends javax.swing.JDialog {
 
+    private ClienteTableModel model;
+    private ClienteView clienteView;
     /**
      * Creates new form PesquisaCliente
      */
-    public PesquisaCliente() {
+    public PesquisaCliente(ClienteView clienteView) {
         initComponents();
+        this.clienteView = clienteView;
+        this.setModalityType(ModalityType.DOCUMENT_MODAL);
+        t.start();
+    }
+
+    private PesquisaCliente() {
+        initComponents();
+        t.start();
     }
 
     /**
@@ -49,10 +56,10 @@ public class PesquisaCliente extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         radioNome = new javax.swing.JRadioButton();
         radioDoc = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        btnOK = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -61,8 +68,8 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
         tableClientes.setModel(new ClienteTableModel());
         tableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableClientesMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableClientesMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tableClientes);
@@ -132,9 +139,13 @@ public class PesquisaCliente extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
-        jButton2.setText("Ok");
-        jButton2.setEnabled(false);
+        btnOK.setText("Ok");
+        btnOK.setEnabled(false);
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/forbidden.png"))); // NOI18N
         jButton1.setText("Cancelar");
@@ -151,7 +162,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnOK)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -163,7 +174,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnOK))
                 .addContainerGap())
         );
 
@@ -185,11 +196,14 @@ public class PesquisaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioNomeActionPerformed
 
-    private void tableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClientesMouseClicked
-        System.out.println("Click");
-        Cliente c = model.getProduto(0);
-        System.out.println(c.getPessoa().getNome());
-    }//GEN-LAST:event_tableClientesMouseClicked
+    private void tableClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClientesMousePressed
+
+    }//GEN-LAST:event_tableClientesMousePressed
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        clienteView.setCliente(model.getCliente(tableClientes.getSelectedRow()));
+        this.dispose();
+    }//GEN-LAST:event_btnOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,16 +214,10 @@ public class PesquisaCliente extends javax.swing.JFrame {
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
             /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-            */
+             */
             UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
             //</editor-fold>
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -220,22 +228,41 @@ public class PesquisaCliente extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void preencheTabela(List<Cliente> c){
+
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (Thread.currentThread().isAlive()) {
+                try {
+                    if (tableClientes.getSelectedRow() > -1) {
+                        btnOK.setEnabled(true);
+                    } else {
+                        btnOK.setEnabled(false);
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+
+    private void preencheTabela(List<Cliente> c) {
         model = new ClienteTableModel(c);
+        model.ordenarPorNome();
         tableClientes.setModel(model);
     }
-    
-    public List<Cliente> pesquisar(String nome, Boolean doc){
+
+    public List<Cliente> pesquisar(String nome, Boolean doc) {
         ClienteController cController = new ClienteController();
         List<Cliente> c = cController.pesquisar(nome, doc);
         return c;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOK;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -246,5 +273,5 @@ public class PesquisaCliente extends javax.swing.JFrame {
     private javax.swing.JTable tableClientes;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
-    
+
 }

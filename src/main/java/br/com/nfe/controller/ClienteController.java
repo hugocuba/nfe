@@ -81,6 +81,15 @@ public class ClienteController {
         return salvo;
     }
     
+    public boolean atualizar(Cliente cliente){
+        boolean atualizado = false;
+        ClienteDAO cDAO = new ClienteDAO();
+        if(cDAO.merge(cliente))
+            atualizado = true;
+        
+        return atualizado;
+    }
+    
     public List<Cliente> pesquisar(String nome, Boolean doc){
         List<Cliente> c;
         ClienteDAO cDAO = new ClienteDAO();
