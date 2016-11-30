@@ -70,6 +70,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Pesquise um cliente através de um dos campos abaixo:");
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         jButton3.setText("Pesquisar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +80,7 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
         buttonGroup1.add(radioNome);
         radioNome.setSelected(true);
-        radioNome.setText("Nome Social ou Nome Fantasia");
+        radioNome.setText("Nome, Razão Social ou Nome Fantasia");
         radioNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioNomeActionPerformed(evt);
@@ -131,9 +132,11 @@ public class PesquisaCliente extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
         jButton2.setText("Ok");
         jButton2.setEnabled(false);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/forbidden.png"))); // NOI18N
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
