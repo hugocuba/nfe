@@ -31,21 +31,24 @@ public class EmitenteDAO extends DAO<Emitente>{
     }
     
     public List<Emitente> findByNome(String nome) {
-        List<Emitente> e;
-        Query q = entityManager.createQuery("SELECT e FROM Cliente e INNER JOIN e.pessoa p WHERE p.nome LIKE :name");
+        List<Emitente> c;
+        Query q = entityManager.createQuery("SELECT e FROM Emitente e INNER JOIN e.pessoa p WHERE p.nome LIKE :name");
         q.setParameter("name", "%" + nome + "%");
-        e = q.getResultList();
-        return e;
+        c = q.getResultList();
+        return c;
 
     }
 
     public List<Emitente> findByDoc(String doc) {
-        List<Emitente> e;
-        Query q = entityManager.createQuery("SELECT e FROM Cliente e, Fisica f, Juridica j INNER JOIN e.pessoa p WHERE (p.idPessoa LIKE f.idPessoa AND f.cpf LIKE :doc) OR (p.idPessoa LIKE j.idPessoa AND j.cnpj LIKE :doc)");
-        q.setParameter("doc", "%" + doc + "%");
-        e = q.getResultList();
-        return e;
-
+        System.out.println("Procurando por doc");
+        List<Emitente> c;
+        Query f = entityManager.createQuery("SELECT e FROM Emitente e INNER JOIN e.pessoa p INNER JOIN Fisica f ON p.idPessoa = f.idPessoa WHERE f.cpf LIKE :cpf");
+        Query j = entityManager.createQuery("SELECT e FROM Emitente e INNER JOIN e.pessoa p INNER JOIN Juridica j ON p.idPessoa = j.idPessoa WHERE j.cnpj LIKE :cnpj");
+        f.setParameter("cpf", "%" + doc + "%");
+        j.setParameter("cnpj", "%" + doc + "%");
+        c = f.getResultList();
+        c.addAll(j.getResultList());
+        return c;
     }
     
 }

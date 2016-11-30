@@ -18,6 +18,7 @@ import java.util.List;
 public class PesquisaEmitente extends javax.swing.JFrame {
     
     private EmitenteTableModel model;
+    private EmitenteView emitenteView;
     
     /**
      * Creates new form PesquisaEmitente
@@ -35,6 +36,7 @@ public class PesquisaEmitente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -72,15 +74,16 @@ public class PesquisaEmitente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(radioNome);
         radioNome.setSelected(true);
         radioNome.setText("Razão Social ou Nome Fantasia");
-        radioNome.setActionCommand("Razão Social ou Nome Fantasia");
         radioNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioNomeActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(radioDoc);
         radioDoc.setText("CNPJ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -136,20 +139,24 @@ public class PesquisaEmitente extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
         jButton2.setText("Ok");
         jButton2.setEnabled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(43, 43, 43))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,7 +175,7 @@ public class PesquisaEmitente extends javax.swing.JFrame {
 
     private void tableEmitentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmitentesMouseClicked
         System.out.println("Click");
-        Emitente e = model.getProduto(0);
+        Emitente e = model.getEmitente(0);
         System.out.println(e.getPessoa().getNome());
     }//GEN-LAST:event_tableEmitentesMouseClicked
 
@@ -185,9 +192,15 @@ public class PesquisaEmitente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        emitenteView.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     private void preencheTabela(List<Emitente> e){
         model = new EmitenteTableModel(e);
+        model.ordenarPorNome();
         tableEmitentes.setModel(model);
     }
     
@@ -233,6 +246,7 @@ public class PesquisaEmitente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

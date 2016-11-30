@@ -329,7 +329,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame cadastroEmitente = new CadastroEmitenteView();
+        JFrame cadastroEmitente = new EmitenteView();
         cadastroEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
