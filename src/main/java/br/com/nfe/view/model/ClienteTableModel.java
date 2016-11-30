@@ -7,7 +7,6 @@
 package br.com.nfe.view.model;
 
 import br.com.nfe.model.Cliente;
-import br.com.nfe.view.Produto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

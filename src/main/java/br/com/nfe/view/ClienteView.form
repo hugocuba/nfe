@@ -296,7 +296,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Telefone:"/>
+            <Property name="text" type="java.lang.String" value="*Telefone:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfCpfCnpj">
@@ -500,7 +500,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Logradouro:"/>
+            <Property name="text" type="java.lang.String" value="*Logradouro:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textLogradouro">
@@ -522,7 +522,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="N&#xba;:"/>
+            <Property name="text" type="java.lang.String" value="*N&#xba;:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textBairro">
@@ -532,7 +532,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Bairro:"/>
+            <Property name="text" type="java.lang.String" value="*Bairro:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbPais">
@@ -540,7 +540,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pa&#xed;s:"/>
+            <Property name="text" type="java.lang.String" value="*Pa&#xed;s:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="abreListaPais">
@@ -553,7 +553,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Estado:"/>
+            <Property name="text" type="java.lang.String" value="*Estado:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="abreListaEstado">
@@ -566,7 +566,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Munic&#xed;pio:"/>
+            <Property name="text" type="java.lang.String" value="*Munic&#xed;pio:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="abreListaMunicipio">
@@ -578,7 +578,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CEP: "/>
+            <Property name="text" type="java.lang.String" value="*CEP: "/>
           </Properties>
         </Component>
       </SubComponents>
@@ -608,6 +608,9 @@
         <Property name="text" type="java.lang.String" value="Novo"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btSalvar">
       <Properties>

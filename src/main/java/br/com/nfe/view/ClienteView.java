@@ -40,6 +40,9 @@ public class ClienteView extends javax.swing.JFrame {
     public ClienteView() {
         initComponents();
         preencheView();
+        liberarCampos(false);
+        btNovo.setEnabled(true);
+        btSalvar.setEnabled(false);
     }
 
     public void setCliente(Cliente cliente) {
@@ -141,7 +144,7 @@ public class ClienteView extends javax.swing.JFrame {
         textCep.setEnabled(opcao);
         abreListaPais.setEnabled(opcao);
         abreListaEstado.setEnabled(opcao);
-        abreListaPais.setEnabled(opcao);
+        abreListaMunicipio.setEnabled(opcao);
     }
 
     /*  public ClienteView() {
@@ -269,7 +272,7 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel5.setText("Nº Inscrição SUFRAMA:");
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel17.setText("Telefone:");
+        jLabel17.setText("*Telefone:");
 
         try {
             ftfCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -392,19 +395,19 @@ public class ClienteView extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         lbLogradouro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbLogradouro.setText("Logradouro:");
+        lbLogradouro.setText("*Logradouro:");
 
         lbComplemento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbComplemento.setText("Complemento: ");
 
         lbNum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbNum.setText("Nº:");
+        lbNum.setText("*Nº:");
 
         lbBairro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbBairro.setText("Bairro:");
+        lbBairro.setText("*Bairro:");
 
         lbPais.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbPais.setText("País:");
+        lbPais.setText("*País:");
 
         abreListaPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +416,7 @@ public class ClienteView extends javax.swing.JFrame {
         });
 
         lbEstado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbEstado.setText("Estado:");
+        lbEstado.setText("*Estado:");
 
         abreListaEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,10 +425,10 @@ public class ClienteView extends javax.swing.JFrame {
         });
 
         lbMunicipio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbMunicipio.setText("Município:");
+        lbMunicipio.setText("*Município:");
 
         lbCep.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbCep.setText("CEP: ");
+        lbCep.setText("*CEP: ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -521,6 +524,11 @@ public class ClienteView extends javax.swing.JFrame {
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btNovo.setText("Novo");
         btNovo.setEnabled(false);
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btSalvar.setText("Salvar");
@@ -681,7 +689,7 @@ public class ClienteView extends javax.swing.JFrame {
             if (salvar()) {
                 JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 limparCampos();
-                liberarCampos(false);
+                liberarCampos(true);
             }
         }
         else{
@@ -721,6 +729,11 @@ public class ClienteView extends javax.swing.JFrame {
         liberarCampos(true);
     }//GEN-LAST:event_btModificarActionPerformed
 
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        liberarCampos(true);
+        btNovo.setEnabled(false);
+    }//GEN-LAST:event_btNovoActionPerformed
+
     private void fechar() {
         this.dispose();
     }
@@ -730,13 +743,51 @@ public class ClienteView extends javax.swing.JFrame {
 
         if ("".equals(textNome.getText())) {
             valido = false;
-            textNome.setBackground(Color.yellow);
+            textNome.setBackground(new Color(238, 221, 130));
             textNome.requestFocus();
         } else {
+            textNome.setBackground(Color.WHITE);
             if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))) {
                 valido = false;
-                ftfCpfCnpj.setBackground(Color.yellow);
+                ftfCpfCnpj.setBackground(new Color(238, 221, 130));
                 ftfCpfCnpj.requestFocus();
+            }else{
+                ftfCpfCnpj.setBackground(Color.WHITE);
+                if ("".equals(tftFone.getText().replaceAll("\\D", ""))) {
+                    valido = false;
+                    tftFone.setBackground(new Color(238, 221, 130));
+                    tftFone.requestFocus();
+                }else{
+                    tftFone.setBackground(Color.WHITE);
+                    if ("".equals(textLogradouro.getText())) {
+                        valido = false;
+                        textLogradouro.setBackground(new Color(238, 221, 130));
+                        textLogradouro.requestFocus();
+                    }else{
+                        textLogradouro.setBackground(Color.WHITE);
+                        if ("".equals(textNum.getText().replaceAll("\\D", ""))) {
+                            valido = false;
+                            textNum.setBackground(new Color(238, 221, 130));
+                            textNum.requestFocus();
+                        }else{
+                            textNum.setBackground(Color.WHITE);
+                            if ("".equals(textBairro.getText())) {
+                                valido = false;
+                                textBairro.setBackground(new Color(238, 221, 130));
+                                textBairro.requestFocus();
+                            }else{
+                                textBairro.setBackground(Color.WHITE);
+                                if ("".equals(textCep.getText().replaceAll("\\D", ""))) {
+                                    valido = false;
+                                    textCep.setBackground(new Color(238, 221, 130));
+                                    textCep.requestFocus();
+                                } else {
+                                    textCep.setBackground(Color.WHITE);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
