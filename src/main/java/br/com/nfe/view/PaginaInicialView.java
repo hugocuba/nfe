@@ -6,7 +6,10 @@
 package br.com.nfe.view;
 
 import br.com.nfe.model.Sessao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -16,17 +19,32 @@ import javax.swing.UIManager;
  * @author a1502824
  */
 public class PaginaInicialView extends javax.swing.JFrame {
+    
+    Sessao sessao = Sessao.getInstance();
 
     /**
      * Creates new form PaginaInicial
      */
     public PaginaInicialView() {
         initComponents();
-        
-        Sessao sessao = Sessao.getInstance();
-        
         preencheView(sessao);
     }
+    
+        Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (Thread.currentThread().isAlive()) {
+                try {
+                    if (sessao.getEmitente() == null) {
+                        lblRazaoSocial.setText(sessao.getEmitente().getPessoa().getNome());
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -329,8 +347,10 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame cadastroEmitente = new EmitenteView();
-        cadastroEmitente.setVisible(true);
+        //JFrame cadastroEmitente = new EmitenteView();
+        //cadastroEmitente.setVisible(true);
+        JDialog pesquisaEmitente = new PesquisaEmitente();
+        pesquisaEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

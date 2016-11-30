@@ -88,7 +88,6 @@ public class EmitenteView extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         btProxEmitente = new javax.swing.JButton();
         btCancelarEmitente = new javax.swing.JButton();
-        btnPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtEndereco = new javax.swing.JTextField();
         ftCep = new javax.swing.JFormattedTextField();
@@ -189,9 +188,6 @@ public class EmitenteView extends javax.swing.JFrame {
             }
         });
 
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        btnPesquisar.setText("Pesquisar");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -225,7 +221,7 @@ public class EmitenteView extends javax.swing.JFrame {
                                             .addComponent(tfInscricaoMunicipal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfCnaeFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 323, Short.MAX_VALUE))
+                                .addGap(0, 496, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -241,9 +237,7 @@ public class EmitenteView extends javax.swing.JFrame {
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCancelarEmitente)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPesquisar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btProxEmitente)
                         .addContainerGap())))
         );
@@ -286,12 +280,11 @@ public class EmitenteView extends javax.swing.JFrame {
                             .addComponent(cbRegimeTributario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(68, 68, 68)
                         .addComponent(jLabel19)
-                        .addContainerGap(29, Short.MAX_VALUE))
+                        .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btProxEmitente)
-                            .addComponent(btnPesquisar)
                             .addComponent(btCancelarEmitente))
                         .addContainerGap())))
         );
@@ -803,7 +796,6 @@ public class EmitenteView extends javax.swing.JFrame {
     private javax.swing.JButton btSelecionarImagem;
     private javax.swing.JButton btVoltarEndereco;
     private javax.swing.JButton btVoltarLogotipo;
-    private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbRegimeTributario;
     private javax.swing.JComboBox comboEstado;
     private javax.swing.JComboBox comboMunicipio;

@@ -5,17 +5,21 @@
  */
 package br.com.nfe.view;
 
-import br.com.nfe.controller.ClienteController;
 import br.com.nfe.controller.EmitenteController;
 import br.com.nfe.model.Emitente;
+import br.com.nfe.model.Sessao;
 import br.com.nfe.view.model.EmitenteTableModel;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Minska
  */
-public class PesquisaEmitente extends javax.swing.JFrame {
+public class PesquisaEmitente extends javax.swing.JDialog {
+    
+    Sessao sessao = Sessao.getInstance();
     
     private EmitenteTableModel model;
     private EmitenteView emitenteView;
@@ -24,8 +28,27 @@ public class PesquisaEmitente extends javax.swing.JFrame {
      * Creates new form PesquisaEmitente
      */
     public PesquisaEmitente() {
+        this.setModalityType(ModalityType.DOCUMENT_MODAL);
         initComponents();
     }
+    
+        Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (Thread.currentThread().isAlive()) {
+                try {
+                    if (tableEmitentes.getSelectedRow() > -1) {
+                        btnOK.setEnabled(true);
+                    } else {
+                        btnOK.setEnabled(false);
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,9 +70,8 @@ public class PesquisaEmitente extends javax.swing.JFrame {
         radioNome = new javax.swing.JRadioButton();
         radioDoc = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnOK = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,8 +117,6 @@ public class PesquisaEmitente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel5))
@@ -105,8 +125,14 @@ public class PesquisaEmitente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(radioDoc)))
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtNome))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,12 +162,20 @@ public class PesquisaEmitente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
-        jButton2.setText("Ok");
-        jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
+        btnOK.setText("Ok");
+        btnOK.setEnabled(false);
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOKActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        jButton4.setText("Cadastrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -151,13 +185,15 @@ public class PesquisaEmitente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +202,8 @@ public class PesquisaEmitente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnOK)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -193,10 +230,22 @@ public class PesquisaEmitente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         emitenteView.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
+        sessao.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnOKActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        if(emitenteView == null){
+            emitenteView = new EmitenteView();
+            emitenteView.setVisible(true);
+        }
+        else{
+            emitenteView.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     private void preencheTabela(List<Emitente> e){
         model = new EmitenteTableModel(e);
@@ -246,10 +295,11 @@ public class PesquisaEmitente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOK;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
