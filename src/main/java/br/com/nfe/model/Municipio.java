@@ -25,6 +25,16 @@ public class Municipio {
 	@JoinColumn(name = "idEstado", nullable = false)
 	private Estado estado;
 
+    public Municipio(String nome, Estado estado) {
+        this.nome = nome;
+        this.estado = estado;
+    }
+
+    public Municipio() {
+    }
+        
+        
+
 	public Integer getIdMunicipio() {
 		return idMunicipio;
 	}

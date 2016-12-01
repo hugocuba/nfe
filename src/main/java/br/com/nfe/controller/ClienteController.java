@@ -6,9 +6,7 @@ import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Pessoa;
 import br.com.nfe.model.Cliente;
 import br.com.nfe.model.Endereco;
-import br.com.nfe.model.Estado;
 import br.com.nfe.model.Municipio;
-import br.com.nfe.model.Pais;
 import br.com.nfe.model.Telefone;
 import br.com.nfe.utils.Telephone;
 
@@ -30,9 +28,19 @@ public class ClienteController {
     public boolean salvar(Map<String, JComponent> dados) {
         boolean salvo = false;
 
+        Cliente cliente = preencherCliente(dados);
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+
+        if (clienteDAO.persist(cliente)) {
+            salvo = true;
+        }
+
+        return salvo;
+    }
+
+    public Cliente preencherCliente(Map<String, JComponent> dados) {
         Municipio municipio;
-        Estado estado;
-        Pais pais;
         Pessoa p;
 
         if (((JRadioButton) dados.get("tipo")).isSelected()) {
@@ -50,7 +58,6 @@ public class ClienteController {
         p.setInscricaoEstadual(((JTextField) dados.get("ie")).getText());
         p.setIsencaoIcms(((JCheckBox) dados.get("icms")).isSelected());
         p.setSuframa(((JTextField) dados.get("suframa")).getText());
-        
 
         municipio = (Municipio) (((JComboBox) dados.get("municipio")).getSelectedItem());
         Endereco endereco = new Endereco();
@@ -72,35 +79,34 @@ public class ClienteController {
         Cliente cliente = new Cliente();
         cliente.setPessoa(p);
 
-        ClienteDAO clienteDAO = new ClienteDAO();
+        return cliente;
+    }
 
-        if (clienteDAO.persist(cliente)) {
-            salvo = true;
+    public boolean atualizar(Map<String, JComponent> dados, Cliente cliente) {
+        boolean atualizado = false;
+
+        cliente = preencherCliente(dados);
+ 
+        ClienteDAO cDAO = new ClienteDAO();
+
+        if (!cDAO.merge(cliente)) {
+        } else {
+            atualizado = true;
         }
 
-        return salvo;
-    }
-    
-    public boolean atualizar(Cliente cliente){
-        boolean atualizado = false;
-        ClienteDAO cDAO = new ClienteDAO();
-        if(cDAO.merge(cliente))
-            atualizado = true;
-        
         return atualizado;
     }
-    
-    public List<Cliente> pesquisar(String nome, Boolean doc){
+
+    public List<Cliente> pesquisar(String nome, Boolean doc) {
         List<Cliente> c;
         ClienteDAO cDAO = new ClienteDAO();
-        
-        if(doc){
+
+        if (doc) {
             c = cDAO.findByDoc(nome);
-        }
-        else{
+        } else {
             c = cDAO.findByNome(nome);
         }
-        
+
         return c;
     }
 }

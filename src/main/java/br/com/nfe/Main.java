@@ -68,14 +68,17 @@ public class Main {
 
 		lDAO.persist(usuario);
                 
-                Pais p = new Pais("Brasil");
+                /*Pais p = new Pais("Brasil");
                 Estado e = new Estado("São Paulo", p);
-                Municipio m = new Municipio();
-                m.setEstado(e);
-                m.setNome("Caraguatatuba");
+                Municipio m = new Municipio("Caraguatautuba", e);
+                
+                Pais p1 = new Pais("Argentina");
+                Estado e1 = new Estado("Buenos Aires", p1);
+                Municipio m1 = new Municipio("La Plata", e1);
                 
                 MunicipioDAO mDAO = new MunicipioDAO();
                 mDAO.persist(m);
+                mDAO.persist(m1);*/
 		
 		//Login login = lDAO.verifica("hugo");
 		

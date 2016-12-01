@@ -19,7 +19,6 @@ import br.com.nfe.model.Telefone;
 import static br.com.nfe.utils.DocumentsValidation.validaCNPJ;
 import static br.com.nfe.utils.DocumentsValidation.validaCpf;
 import java.awt.Color;
-import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +48,8 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public void setCliente(Cliente cliente) {
+        
+        System.out.println("----------------ID:" + cliente.getIdCliente());
         this.cliente = cliente;
 
         limparCampos();
@@ -72,9 +73,9 @@ public class ClienteView extends javax.swing.JFrame {
         textBairro.setText(e.get(0).getBairro());
         textComplemento.setText(e.get(0).getComplemento());
         textCep.setText(e.get(0).getCep());
-        abreListaPais.addItem(e.get(0).getMunicipio().getEstado().getPais());
-        abreListaEstado.addItem(e.get(0).getMunicipio().getEstado());
-        abreListaMunicipio.addItem(e.get(0).getMunicipio());
+        abreListaPais.setSelectedItem(e.get(0).getMunicipio().getEstado().getPais());
+        abreListaEstado.setSelectedItem(e.get(0).getMunicipio().getEstado());
+        abreListaMunicipio.setSelectedItem(e.get(0).getMunicipio());
 
         if (cliente.getPessoa() instanceof Fisica) {
             jRadioButtonPF.setEnabled(true);
@@ -88,7 +89,7 @@ public class ClienteView extends javax.swing.JFrame {
 
     }
 
-    public void preencheView() {
+    private void preencheView() {
         abreListaMunicipio.removeAllItems();
         abreListaEstado.removeAllItems();
         abreListaPais.removeAllItems();
@@ -97,6 +98,8 @@ public class ClienteView extends javax.swing.JFrame {
         for (Pais pais : listPais) {
             abreListaPais.addItem(pais);
         }
+        abreListaPais.setSelectedIndex(-1);
+        
     }
 
     public void preencheEstados(Pais pais) {
@@ -104,6 +107,8 @@ public class ClienteView extends javax.swing.JFrame {
         for (Estado estado : pais.getEstados()) {
             abreListaEstado.addItem(estado);
         }
+        abreListaEstado.setSelectedIndex(-1);
+        
     }
 
     public void preencheCidades(Estado estado) {
@@ -111,6 +116,8 @@ public class ClienteView extends javax.swing.JFrame {
         for (Municipio municipio : estado.getMunicipios()) {
             abreListaMunicipio.addItem(municipio);
         }
+        abreListaMunicipio.setSelectedIndex(-1);
+        
     }
 
     public void limparCampos() {
@@ -230,7 +237,7 @@ public class ClienteView extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -622,13 +629,14 @@ public class ClienteView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
 
@@ -732,13 +740,19 @@ public class ClienteView extends javax.swing.JFrame {
 
     private void abreListaPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaPaisActionPerformed
         if (abreListaPais.getSelectedItem() != null) {
+            abreListaEstado.setEnabled(true);
             preencheEstados((Pais) abreListaPais.getSelectedItem());
+        }else{
+            abreListaEstado.setEnabled(false);
         }
     }//GEN-LAST:event_abreListaPaisActionPerformed
 
     private void abreListaEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaEstadoActionPerformed
         if (abreListaEstado.getSelectedItem() != null) {
+            abreListaMunicipio.setEnabled(true);
             preencheCidades((Estado) abreListaEstado.getSelectedItem());
+        }else{
+            abreListaMunicipio.setEnabled(false);
         }
     }//GEN-LAST:event_abreListaEstadoActionPerformed
 
@@ -776,7 +790,7 @@ public class ClienteView extends javax.swing.JFrame {
             textNome.requestFocus();
         } else {
             textNome.setBackground(Color.WHITE);
-            if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", "")) || validaCampos(ftfCpfCnpj.getText().replaceAll("\\D", ""))) {
+            if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))){ //|| validaCampos(ftfCpfCnpj.getText().replaceAll("\\D", ""))) {
                 valido = false;
                 ftfCpfCnpj.setBackground(new Color(238, 221, 130));
                 ftfCpfCnpj.requestFocus();
@@ -838,6 +852,19 @@ public class ClienteView extends javax.swing.JFrame {
 
         if (verificaCampos()) {
 
+            ClienteController cController = new ClienteController();
+
+            if (cController.salvar(preencherCliente())) {
+                salvo = true;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return salvo;
+    }
+    
+    private Map<String, JComponent> preencherCliente(){
             Map<String, JComponent> dados = new HashMap<>();
 
             dados.put("tipo", jRadioButtonPF);
@@ -856,26 +883,16 @@ public class ClienteView extends javax.swing.JFrame {
             dados.put("estado", abreListaEstado);
             dados.put("municipio", abreListaMunicipio);
             dados.put("documento", ftfCpfCnpj);
-
-            ClienteController cController = new ClienteController();
-
-            if (cController.salvar(dados)) {
-                salvo = true;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Erro", JOptionPane.WARNING_MESSAGE);
-        }
-
-        return salvo;
+            
+            return dados;
     }
 
-    private boolean atualizar(Cliente c) {
-        
+    private boolean atualizar(Cliente c) {       
         boolean atualizado = false;
-
+        
         ClienteController cController = new ClienteController();
         
-        if(cController.atualizar(cliente))
+        if(cController.atualizar(preencherCliente(), cliente))
             atualizado = true;
         
         return atualizado;

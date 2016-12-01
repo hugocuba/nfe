@@ -7,6 +7,8 @@
 package br.com.nfe.view.model;
 
 import br.com.nfe.model.Cliente;
+import br.com.nfe.model.Fisica;
+import br.com.nfe.model.Juridica;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -76,7 +78,12 @@ public class ClienteTableModel extends AbstractTableModel {
         if (columnIndex == COL_NOME) {
             return c.getPessoa().getNome();
         } else if (columnIndex == COL_DOC) {
-            return c.getPessoa().getEmail();
+            if(c.getPessoa() instanceof Fisica){
+                return ((Fisica)c.getPessoa()).getCpf();
+            }
+            else{
+                return ((Juridica) c.getPessoa()).getCnpj();
+            }
         }
         return "";
     }

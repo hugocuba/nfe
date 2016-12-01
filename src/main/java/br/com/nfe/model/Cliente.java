@@ -5,6 +5,7 @@
  */
 package br.com.nfe.model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,13 +22,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Cliente {
+public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCliente;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, targetEntity = Pessoa.class)
 	@JoinColumn(name = "idPessoa", nullable = false)
 	private Pessoa pessoa;
 
@@ -38,4 +39,14 @@ public class Cliente {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+        
+        
 }
