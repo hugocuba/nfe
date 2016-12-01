@@ -595,7 +595,10 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="* Item de preenchimento obrigat&#xf3;rio"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="* Campo de preenchimento obrigat&#xf3;rio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

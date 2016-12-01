@@ -111,7 +111,7 @@ public class EmitenteView extends javax.swing.JFrame {
         btVoltarEndereco = new javax.swing.JButton();
         btCancelarEndereco = new javax.swing.JButton();
         comboMunicipio = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btSelecionarImagem = new javax.swing.JButton();
@@ -146,7 +146,7 @@ public class EmitenteView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("*Regime Tributário");
 
-        cbRegimeTributario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simples Nacional", "Simples Nacional - excesso de sublimite de receita bruta", "Regime normal" }));
+        cbRegimeTributario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Simples Nacional", "Simples Nacional - excesso de sublimite de receita bruta", "Regime normal" }));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("*Nome/Razão Social");
@@ -322,7 +322,7 @@ public class EmitenteView extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel14.setText("CEP");
+        jLabel14.setText("*CEP");
 
         comboPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,14 +369,14 @@ public class EmitenteView extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel21.setText("E-mail");
+        jLabel21.setText("*E-mail");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -389,13 +389,12 @@ public class EmitenteView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel17)))
-                        .addGap(34, 34, 34)
+                        .addGap(73, 73, 73)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ftCep, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,10 +414,12 @@ public class EmitenteView extends javax.swing.JFrame {
                                 .addGap(68, 68, 68)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ftTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(67, 67, 67)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addGap(38, 38, 38)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -469,11 +470,11 @@ public class EmitenteView extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel21)
-                        .addGap(19, 83, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -482,9 +483,9 @@ public class EmitenteView extends javax.swing.JFrame {
                         .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ftTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btProximoEndereco)
                             .addComponent(btVoltarEndereco)
@@ -496,7 +497,7 @@ public class EmitenteView extends javax.swing.JFrame {
         tpEmitente.addTab("Endereço", jPanel2);
 
         btSelecionarImagem.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btSelecionarImagem.setText("Selecionar imagem...");
+        btSelecionarImagem.setText("*Selecionar imagem...");
         btSelecionarImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSelecionarImagemActionPerformed(evt);
@@ -675,9 +676,9 @@ public class EmitenteView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_comboEstadoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -717,15 +718,102 @@ public class EmitenteView extends javax.swing.JFrame {
 
         if ("".equals(tfRazaoSocial.getText())) {
             valido = false;
-            tpEmitente.requestFocus();
-            tfRazaoSocial.setBackground(Color.yellow);
+            tpEmitente.setSelectedIndex(0);
+            tfRazaoSocial.setBackground(new Color(238, 221, 130));
             tfRazaoSocial.requestFocus();
         } else {
+            tfRazaoSocial.setBackground(Color.WHITE);
             if ("".equals(ftCnpj.getText().replaceAll("\\D", ""))) {
                 valido = false;
-                tpEmitente.requestFocus();
-                ftCnpj.setBackground(Color.yellow);
+                tpEmitente.setSelectedIndex(0);
+                ftCnpj.setBackground(new Color(238, 221, 130));
                 ftCnpj.requestFocus();
+            }else{
+                ftCnpj.setBackground(Color.WHITE);
+                if ("".equals(tfInscricaoEstadual.getText().replaceAll("\\D", ""))) {
+                    valido = false;
+                    tpEmitente.setSelectedIndex(0);
+                    tfInscricaoEstadual.setBackground(new Color(238, 221, 130));
+                    tfInscricaoEstadual.requestFocus();
+                }else{
+                    tfInscricaoEstadual.setBackground(Color.WHITE);
+                    if ("Nenhum".equals(cbRegimeTributario.getSelectedItem())) {               
+                        valido = false;
+                        tpEmitente.setSelectedIndex(0);
+                        cbRegimeTributario.setBackground(new Color(238, 221, 130));
+                        cbRegimeTributario.requestFocus();
+                    }else{
+                        cbRegimeTributario.setBackground(Color.WHITE);
+                        if ("".equals(txtEndereco.getText())) {               
+                            valido = false;
+                            tpEmitente.setSelectedIndex(1);
+                            txtEndereco.setBackground(new Color(238, 221, 130));
+                            txtEndereco.requestFocus();
+                        }else{
+                            txtEndereco.setBackground(Color.WHITE);
+                            if ("".equals(txtNumero.getText().replaceAll("\\D", ""))) {               
+                                valido = false;
+                                tpEmitente.setSelectedIndex(1);
+                                txtNumero.setBackground(new Color(238, 221, 130));
+                                txtNumero.requestFocus();
+                            }else{
+                                txtNumero.setBackground(Color.WHITE);
+                                if ("".equals(txtBairro.getText())) {               
+                                    valido = false;
+                                    tpEmitente.setSelectedIndex(1);
+                                    txtBairro.setBackground(new Color(238, 221, 130));
+                                    txtBairro.requestFocus();
+                                }else{
+                                    txtBairro.setBackground(Color.WHITE);
+                                    if ("".equals(ftCep.getText().replaceAll("\\D", ""))) {               
+                                        valido = false;
+                                        tpEmitente.setSelectedIndex(1);
+                                        ftCep.setBackground(new Color(238, 221, 130));
+                                        ftCep.requestFocus();
+                                    }else{
+                                        ftCep.setBackground(Color.WHITE);
+                                        if ("null".equals(comboPais.getSelectedItem())) {               
+                                            valido = false;
+                                            tpEmitente.setSelectedIndex(1);
+                                            comboPais.setBackground(new Color(238, 221, 130));
+                                            comboPais.requestFocus();
+                                        }else{
+                                            comboPais.setBackground(Color.WHITE);
+                                            if ("null".equals(comboEstado.getSelectedItem())) {               
+                                                valido = false;
+                                                tpEmitente.setSelectedIndex(1);
+                                                comboEstado.setBackground(new Color(238, 221, 130));
+                                                comboEstado.requestFocus();
+                                            }else{
+                                                comboEstado.setBackground(Color.WHITE);
+                                                if ("null".equals(comboMunicipio.getSelectedItem())) {               
+                                                    valido = false;
+                                                    tpEmitente.setSelectedIndex(1);
+                                                    comboMunicipio.setBackground(new Color(238, 221, 130));
+                                                    comboMunicipio.requestFocus();
+                                                }else{
+                                                    comboMunicipio.setBackground(Color.WHITE);
+                                                    if ("".equals(txtEmail.getText())) {               
+                                                        valido = false;
+                                                        tpEmitente.setSelectedIndex(1);
+                                                        txtEmail.setBackground(new Color(238, 221, 130));
+                                                        txtEmail.requestFocus();
+                                                    }else{
+                                                        txtEmail.setBackground(Color.WHITE);
+                                                        if (jlImagem.getIcon() == null) {               
+                                                            valido = false;
+                                                            JOptionPane.showMessageDialog(this, "A seleção do logotipo é obrigatória.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         return valido;
@@ -831,7 +919,6 @@ public class EmitenteView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JTextField tfCnaeFiscal;
     private javax.swing.JTextField tfIESubstTributario;
@@ -842,6 +929,7 @@ public class EmitenteView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpEmitente;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
