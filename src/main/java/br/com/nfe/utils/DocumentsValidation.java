@@ -15,6 +15,7 @@ public class DocumentsValidation {
         /* Realiza a validação do CPF.
          @param   strCPF número de CPF a ser validado
          @return  true se o CPF é válido e false se não é válido*/
+        
         if (strCpf.trim().length() == 0) {
             return false;
         }

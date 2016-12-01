@@ -17,6 +17,8 @@ import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.Sessao;
 import br.com.nfe.model.Telefone;
+import static br.com.nfe.utils.DocumentsValidation.validaCNPJ;
+import static br.com.nfe.utils.DocumentsValidation.validaCpf;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
@@ -631,18 +633,24 @@ public class EmitenteView extends javax.swing.JFrame {
     }//GEN-LAST:event_btProxEmitenteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (verificaCampos()) {
-            try {
-                if (salvar()) {
-                    JOptionPane.showMessageDialog(this, "Emitente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Falha ao cadastrar emitente.", "Erro", JOptionPane.ERROR_MESSAGE);
+        if(validaCampos(ftCnpj.getText().replaceAll("\\D", ""))){
+            if (verificaCampos()) {
+                try {
+                    if (salvar()) {
+                        JOptionPane.showMessageDialog(this, "Emitente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Falha ao cadastrar emitente.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(EmitenteView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(EmitenteView.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }else{
+            tpEmitente.setSelectedIndex(0);
+            ftCnpj.requestFocus();
+            JOptionPane.showMessageDialog(this, "O CNPJ digitado não é um CNPJ válido.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -772,21 +780,22 @@ public class EmitenteView extends javax.swing.JFrame {
                                         ftCep.requestFocus();
                                     }else{
                                         ftCep.setBackground(Color.WHITE);
-                                        if ("null".equals(comboPais.getSelectedItem())) {               
+                                        if (comboPais.getSelectedItem() == null) {               
                                             valido = false;
                                             tpEmitente.setSelectedIndex(1);
                                             comboPais.setBackground(new Color(238, 221, 130));
                                             comboPais.requestFocus();
                                         }else{
+                                            System.out.println(comboEstado.getSelectedItem());
                                             comboPais.setBackground(Color.WHITE);
-                                            if ("null".equals(comboEstado.getSelectedItem())) {               
+                                            if (comboEstado.getSelectedItem() == null) {               
                                                 valido = false;
                                                 tpEmitente.setSelectedIndex(1);
                                                 comboEstado.setBackground(new Color(238, 221, 130));
                                                 comboEstado.requestFocus();
                                             }else{
                                                 comboEstado.setBackground(Color.WHITE);
-                                                if ("null".equals(comboMunicipio.getSelectedItem())) {               
+                                                if (comboMunicipio.getSelectedItem() == null) {               
                                                     valido = false;
                                                     tpEmitente.setSelectedIndex(1);
                                                     comboMunicipio.setBackground(new Color(238, 221, 130));
@@ -845,6 +854,10 @@ public class EmitenteView extends javax.swing.JFrame {
             comboMunicipio.addItem(municipio);
         }
         comboMunicipio.setSelectedIndex(-1);
+    }
+    
+    private boolean validaCampos (String documento){
+        return validaCNPJ(documento);
     }
 
     private Boolean salvar() throws IOException {

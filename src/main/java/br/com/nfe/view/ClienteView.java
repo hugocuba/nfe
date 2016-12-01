@@ -669,8 +669,6 @@ public class ClienteView extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonPFMouseClicked
 
     private void jRadioButtonPJMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonPJMouseClicked
@@ -711,27 +709,34 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxICMSActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (cliente == null) {
-            if (salvar()) {
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                limparCampos();
-                liberarCampos(false);
-                btNovo.setEnabled(true);
-                btSalvar.setEnabled(false);
+        if(validaCampos(ftfCpfCnpj.getText().replaceAll("\\D", ""))){
+            if (cliente == null) {
+                if (salvar()) {
+                    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    limparCampos();
+                    liberarCampos(false);
+                    btNovo.setEnabled(true);
+                    btSalvar.setEnabled(false);
+                }
+            }else{
+                if(atualizar(cliente)){
+                    JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    liberarCampos(false);
+                    btNovo.setEnabled(true);
+                    btSalvar.setEnabled(false);
+                }
             }
+        }else{
+            if (jRadioButtonPF.isSelected())
+                JOptionPane.showMessageDialog(this, "O CPF digitado não é um CPF válido.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(this, "O CNPJ digitado não é um CNPJ válido.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
         }
-        else{
-            if(atualizar(cliente)){
-                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                liberarCampos(false);
-                btNovo.setEnabled(true);
-                btSalvar.setEnabled(false);
-            }
-        }
+        
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void tftFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftFoneActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tftFoneActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
@@ -775,7 +780,7 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void ftfCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfCpfCnpjActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ftfCpfCnpjActionPerformed
 
     private void fechar() {
@@ -791,7 +796,7 @@ public class ClienteView extends javax.swing.JFrame {
             textNome.requestFocus();
         } else {
             textNome.setBackground(Color.WHITE);
-            if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))){ //|| validaCampos(ftfCpfCnpj.getText().replaceAll("\\D", ""))) {
+            if ("".equals(ftfCpfCnpj.getText().replaceAll("\\D", ""))){
                 valido = false;
                 ftfCpfCnpj.setBackground(new Color(238, 221, 130));
                 ftfCpfCnpj.requestFocus();
@@ -827,6 +832,27 @@ public class ClienteView extends javax.swing.JFrame {
                                     textCep.requestFocus();
                                 } else {
                                     textCep.setBackground(Color.WHITE);
+                                    if (abreListaPais.getSelectedItem() == null) {               
+                                            valido = false;
+                                            abreListaPais.setBackground(new Color(238, 221, 130));
+                                            abreListaPais.requestFocus();
+                                    }else{
+                                        abreListaPais.setBackground(Color.WHITE);
+                                        if (abreListaEstado.getSelectedItem() == null) {               
+                                            valido = false;
+                                            abreListaEstado.setBackground(new Color(238, 221, 130));
+                                            abreListaEstado.requestFocus();
+                                        }else{
+                                            abreListaEstado.setBackground(Color.WHITE);
+                                            if (abreListaMunicipio.getSelectedItem() == null) {               
+                                                valido = false;
+                                                abreListaMunicipio.setBackground(new Color(238, 221, 130));
+                                                abreListaMunicipio.requestFocus();
+                                            }else{
+                                                abreListaMunicipio.setBackground(Color.WHITE);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -834,8 +860,6 @@ public class ClienteView extends javax.swing.JFrame {
                 }
             }
         }
-
-        System.out.println(ftfCpfCnpj.getText().replaceAll("\\D", ""));
 
         return valido;
     }
