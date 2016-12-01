@@ -5,29 +5,61 @@
  */
 package br.com.nfe.model;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author hugo
  */
-public class SituacaoTributaria {
-	private Integer idSituacaoTributaria;
-	private RegimeTributario regimeTributario;
-	private String situacaoTributaria;
+@Entity
+public class SituacaoTributaria implements Serializable {
 
-	public RegimeTributario getRegimeTributario() {
-		return regimeTributario;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idSituacaoTributaria;
 
-	public void setRegimeTributario(RegimeTributario regimeTributario) {
-		this.regimeTributario = regimeTributario;
-	}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idRegimeTributario", nullable = false)
+    private RegimeTributario regimeTributario;
 
-	public String getSituacaoTributaria() {
-		return situacaoTributaria;
-	}
+    private String situacaoTributaria;
 
-	public void setSituacaoTributaria(String situacaoTributaria) {
-		this.situacaoTributaria = situacaoTributaria;
-	}
+    public RegimeTributario getRegimeTributario() {
+        return regimeTributario;
+    }
+
+    public void setRegimeTributario(RegimeTributario regimeTributario) {
+        this.regimeTributario = regimeTributario;
+    }
+
+    public String getSituacaoTributaria() {
+        return situacaoTributaria;
+    }
+
+    public void setSituacaoTributaria(String situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
+    }
+
+    public Integer getIdSituacaoTributaria() {
+        return idSituacaoTributaria;
+    }
+
+    public void setIdSituacaoTributaria(Integer idSituacaoTributaria) {
+        this.idSituacaoTributaria = idSituacaoTributaria;
+    }
+
+    @Override
+    public String toString() {
+        return situacaoTributaria;
+    }
 
 }

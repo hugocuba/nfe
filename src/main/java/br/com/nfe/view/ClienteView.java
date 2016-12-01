@@ -41,15 +41,13 @@ public class ClienteView extends javax.swing.JFrame {
      */
     public ClienteView() {
         initComponents();
-        preencheView();
         liberarCampos(false);
         btNovo.setEnabled(true);
         btSalvar.setEnabled(false);
+        preencheView();
     }
 
     public void setCliente(Cliente cliente) {
-        
-        System.out.println("----------------ID:" + cliente.getIdCliente());
         this.cliente = cliente;
 
         limparCampos();
@@ -90,8 +88,6 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     private void preencheView() {
-        abreListaMunicipio.removeAllItems();
-        abreListaEstado.removeAllItems();
         abreListaPais.removeAllItems();
         PaisDAO pDAO = new PaisDAO();
         List<Pais> listPais = pDAO.findAll();
@@ -240,7 +236,7 @@ public class ClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro de Cliente");
 
@@ -424,15 +420,20 @@ public class ClienteView extends javax.swing.JFrame {
         lbPais.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbPais.setText("*País:");
 
-        abreListaPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abreListaPaisActionPerformed(evt);
+        abreListaPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                abreListaPaisItemStateChanged(evt);
             }
         });
 
         lbEstado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbEstado.setText("*Estado:");
 
+        abreListaEstado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                abreListaEstadoItemStateChanged(evt);
+            }
+        });
         abreListaEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abreListaEstadoActionPerformed(evt);
@@ -740,27 +741,9 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_tftFoneActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        JDialog pesquisaCliente = new PesquisaCliente(this);
+        PesquisaClienteView pesquisaCliente = new PesquisaClienteView(this, true, this);
         pesquisaCliente.setVisible(true);
     }//GEN-LAST:event_btPesquisarActionPerformed
-
-    private void abreListaPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaPaisActionPerformed
-        if (abreListaPais.getSelectedItem() != null) {
-            abreListaEstado.setEnabled(true);
-            preencheEstados((Pais) abreListaPais.getSelectedItem());
-        }else{
-            abreListaEstado.setEnabled(false);
-        }
-    }//GEN-LAST:event_abreListaPaisActionPerformed
-
-    private void abreListaEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaEstadoActionPerformed
-        if (abreListaEstado.getSelectedItem() != null) {
-            abreListaMunicipio.setEnabled(true);
-            preencheCidades((Estado) abreListaEstado.getSelectedItem());
-        }else{
-            abreListaMunicipio.setEnabled(false);
-        }
-    }//GEN-LAST:event_abreListaEstadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -782,6 +765,29 @@ public class ClienteView extends javax.swing.JFrame {
     private void ftfCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfCpfCnpjActionPerformed
         
     }//GEN-LAST:event_ftfCpfCnpjActionPerformed
+
+    private void abreListaPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_abreListaPaisItemStateChanged
+        System.out.println("Evento");
+        if (abreListaPais.getSelectedItem() != null) {
+            abreListaEstado.setEnabled(true);
+            preencheEstados((Pais) abreListaPais.getSelectedItem());
+        }else{
+            abreListaEstado.setEnabled(false);
+        }
+    }//GEN-LAST:event_abreListaPaisItemStateChanged
+
+    private void abreListaEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_abreListaEstadoItemStateChanged
+        if (abreListaEstado.getSelectedItem() != null) {
+            abreListaMunicipio.setEnabled(true);
+            preencheCidades((Estado) abreListaEstado.getSelectedItem());
+        }else{
+            abreListaMunicipio.setEnabled(false);
+        }
+    }//GEN-LAST:event_abreListaEstadoItemStateChanged
+
+    private void abreListaEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_abreListaEstadoActionPerformed
 
     private void fechar() {
         this.dispose();

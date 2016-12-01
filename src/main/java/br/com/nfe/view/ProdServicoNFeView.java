@@ -9,12 +9,12 @@ package br.com.nfe.view;
  *
  * @author a1502778
  */
-public class ProdServicoNFe extends javax.swing.JFrame {
+public class ProdServicoNFeView extends javax.swing.JFrame {
 
     /**
      * Creates new form ProdServicoNFe
      */
-    public ProdServicoNFe() {
+    public ProdServicoNFeView() {
         initComponents();
     }
 
@@ -590,7 +590,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NVE: (Máximo 8)", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NVE: (Máximo 8)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -711,7 +711,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
         lbRegime.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbRegime.setText("Regime*:");
 
-        PanelSimplesNacional.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Simples Nacional", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        PanelSimplesNacional.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Simples Nacional", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         lbSituacaoTributaria.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbSituacaoTributaria.setText("Situação Tributária*:");
@@ -777,18 +777,19 @@ public class ProdServicoNFe extends javax.swing.JFrame {
                     .addComponent(lbOrigem)
                     .addComponent(comboOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelSimplesNacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbAliquota)
-                    .addComponent(textAliquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelSimplesNacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelSimplesNacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbCreditoIcms)
-                        .addComponent(textCreditoIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textCreditoIcms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelSimplesNacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbAliquota)
+                        .addComponent(textAliquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tributação Normal", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tributação Normal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ICMS", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ICMS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Modalidade de determinação da BC ICMS*:");
@@ -1105,7 +1106,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("IPI", jPanel9);
 
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PIS", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PIS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel26.setText("Situação Tributária*:");
@@ -1199,7 +1200,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PIS ST", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PIS ST", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel39.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel39.setText("Tipo de cálculo:");
@@ -1299,7 +1300,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("PIS", jPanel10);
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COFINS", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COFINS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel33.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel33.setText("Situação Tributária*:");
@@ -1396,7 +1397,7 @@ public class ProdServicoNFe extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COFINS ST", 0, 0, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COFINS ST", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel46.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel46.setText("Tipo de cálculo:");
@@ -1747,20 +1748,21 @@ public class ProdServicoNFe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProdServicoNFe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProdServicoNFeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProdServicoNFe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProdServicoNFeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProdServicoNFe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProdServicoNFeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProdServicoNFe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProdServicoNFeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProdServicoNFe().setVisible(true);
+                new ProdServicoNFeView().setVisible(true);
             }
         });
     }

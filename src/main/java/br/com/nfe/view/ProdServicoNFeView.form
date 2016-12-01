@@ -1090,12 +1090,14 @@
                                           <Component id="comboOrigem" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbAliquota" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textAliquota" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="lbCreditoIcms" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="textCreditoIcms" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lbAliquota" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textAliquota" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>

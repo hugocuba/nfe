@@ -5,11 +5,15 @@
  */
 package br.com.nfe.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,17 +23,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Produto {
+public class Produto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProduto;
     
-    private ArrayList<String> icms = new ArrayList<String>();
+    @OneToMany(targetEntity = Icms.class, mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<String> icms = new ArrayList<String>();
+    
     private String descricao, EAN, EAN_unid, EXTIPE, genero, NMC, CEST, unid_com, valor_unid_com, unid_trib, qtd_trib, valor_unit_trib, classe_en, CEL, CNPJ_produtor;
+    
     private String codigo;
     
-    public ArrayList<String> getIcms() {
+    public List<String> getIcms() {
         return icms;
     }
 
