@@ -7,16 +7,13 @@ package br.com.nfe.view;
 
 import br.com.nfe.controller.EmitenteController;
 import br.com.nfe.dao.PaisDAO;
-import br.com.nfe.model.Cliente;
+import br.com.nfe.dao.RegimeTributarioDAO;
 import br.com.nfe.model.Emitente;
-import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Estado;
-import br.com.nfe.model.Fisica;
-import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
+import br.com.nfe.model.RegimeTributario;
 import br.com.nfe.model.Sessao;
-import br.com.nfe.model.Telefone;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
@@ -37,14 +34,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Minska
  */
 public class EmitenteView extends javax.swing.JFrame {
-    
+
     Sessao sessao = Sessao.getInstance();
     Emitente emitente;
 
     /**
      * Creates new form CadastroEmitente
+     * @throws java.lang.InterruptedException
      */
-    public EmitenteView() {
+    public EmitenteView() throws InterruptedException {
         initComponents();
         preencheView();
     }
@@ -54,7 +52,6 @@ public class EmitenteView extends javax.swing.JFrame {
 
         //limparCampos();
         //liberarCampos(false);
-
     }
 
     /**
@@ -76,7 +73,7 @@ public class EmitenteView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         tfIESubstTributario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cbRegimeTributario = new javax.swing.JComboBox<>();
+        cbRegimeTributario = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         tfRazaoSocial = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -123,7 +120,7 @@ public class EmitenteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro de Emitente");
 
@@ -145,8 +142,6 @@ public class EmitenteView extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("*Regime Tributário");
-
-        cbRegimeTributario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simples Nacional", "Simples Nacional - excesso de sublimite de receita bruta", "Regime normal" }));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("*Nome/Razão Social");
@@ -315,18 +310,18 @@ public class EmitenteView extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("*Bairro");
 
-        comboEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEstadoActionPerformed(evt);
+        comboEstado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboEstadoItemStateChanged(evt);
             }
         });
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("CEP");
 
-        comboPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboPaisActionPerformed(evt);
+        comboPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboPaisItemStateChanged(evt);
             }
         });
 
@@ -583,8 +578,8 @@ public class EmitenteView extends javax.swing.JFrame {
                 .addComponent(tpEmitente, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(352, 352, 352)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -657,27 +652,27 @@ public class EmitenteView extends javax.swing.JFrame {
         tpEmitente.setSelectedIndex(2);
     }//GEN-LAST:event_btProximoEnderecoActionPerformed
 
-    private void comboPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPaisActionPerformed
-        if (comboPais.getSelectedItem() != null) {
-            comboEstado.setEnabled(true);
-            preencheEstados((Pais) comboPais.getSelectedItem());
-        }else{
-            comboEstado.setEnabled(false);
-        }
-    }//GEN-LAST:event_comboPaisActionPerformed
-
-    private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
-        if (comboEstado.getSelectedItem() != null) {
-            comboMunicipio.setEnabled(true);
-            preencheCidades((Estado) comboEstado.getSelectedItem());
-        }else{
-            comboMunicipio.setEnabled(false);
-        }
-    }//GEN-LAST:event_comboEstadoActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void comboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPaisItemStateChanged
+        if (comboPais.getSelectedItem() != null) {
+            comboEstado.setEnabled(true);
+            preencheEstados((Pais) comboPais.getSelectedItem());
+        } else {
+            comboEstado.setEnabled(false);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPaisItemStateChanged
+
+    private void comboEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboEstadoItemStateChanged
+        if (comboEstado.getSelectedItem() != null) {
+            comboMunicipio.setEnabled(true);
+            preencheCidades((Estado) comboEstado.getSelectedItem());
+        } else {
+            comboMunicipio.setEnabled(false);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEstadoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -690,15 +685,14 @@ public class EmitenteView extends javax.swing.JFrame {
          */
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmitenteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmitenteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmitenteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EmitenteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -707,7 +701,11 @@ public class EmitenteView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmitenteView().setVisible(true);
+                try {
+                    new EmitenteView().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(EmitenteView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -732,8 +730,6 @@ public class EmitenteView extends javax.swing.JFrame {
     }
 
     private void preencheView() {
-        comboMunicipio.removeAllItems();
-        comboEstado.removeAllItems();
         comboPais.removeAllItems();
         PaisDAO pDAO = new PaisDAO();
         List<Pais> listPais = pDAO.findAll();
@@ -741,6 +737,13 @@ public class EmitenteView extends javax.swing.JFrame {
             comboPais.addItem(pais);
         }
         comboPais.setSelectedIndex(-1);
+
+        cbRegimeTributario.removeAllItems();
+        RegimeTributarioDAO rDAO = new RegimeTributarioDAO();
+        List<RegimeTributario> listRegime = rDAO.findAll();
+        for (RegimeTributario regime : listRegime) {
+            cbRegimeTributario.addItem(regime);
+        }
     }
 
     private void preencheEstados(Pais pais) {
@@ -780,6 +783,7 @@ public class EmitenteView extends javax.swing.JFrame {
         dados.put("cidade", comboMunicipio);
         dados.put("tel", ftTelefone);
         dados.put("imagem", jlImagem);
+        dados.put("regime", cbRegimeTributario);
 
         EmitenteController emitenteController = new EmitenteController();
 
@@ -799,7 +803,7 @@ public class EmitenteView extends javax.swing.JFrame {
     private javax.swing.JButton btSelecionarImagem;
     private javax.swing.JButton btVoltarEndereco;
     private javax.swing.JButton btVoltarLogotipo;
-    private javax.swing.JComboBox<String> cbRegimeTributario;
+    private javax.swing.JComboBox cbRegimeTributario;
     private javax.swing.JComboBox comboEstado;
     private javax.swing.JComboBox comboMunicipio;
     private javax.swing.JComboBox comboPais;

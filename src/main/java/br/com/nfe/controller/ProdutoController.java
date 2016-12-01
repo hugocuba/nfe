@@ -9,6 +9,7 @@ import br.com.nfe.model.Produto;
 import br.com.nfe.dao.ProdutoDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,9 +19,12 @@ import java.util.Map;
 public class ProdutoController {
 
     Map<String , String> dados = new HashMap<>();
-    ArrayList<String> icms;
+    List<String> icms;
     
-    public void Incluir(Map<String, String> dados, ArrayList icms) {
+    public Boolean Incluir(Map<String, String> dados, ArrayList icms) {
+        
+        Boolean inserido = false;
+        
         Produto p = new Produto();
         ProdutoDAO pd = new ProdutoDAO();
 
@@ -42,8 +46,10 @@ public class ProdutoController {
         p.setCNPJ_produtor(dados.get("CNPJ_produtor"));
         p.setIcms(icms);
 
-        pd.persist(p);
-
+        if(pd.persist(p));
+            inserido = true;
+            
+        return inserido;
     }
 
     public void exportar(String codigo) {
@@ -74,7 +80,7 @@ public class ProdutoController {
     public Map<String,String> getDados(){
         return dados;
     }
-    public  ArrayList<String> getIcms(){
+    public List<String> getIcms(){
         return icms;
     }
 

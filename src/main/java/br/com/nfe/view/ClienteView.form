@@ -132,7 +132,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="18" style="1"/>
+          <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Cadastro de Cliente"/>
@@ -543,7 +543,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="abreListaPais">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abreListaPaisActionPerformed"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="abreListaPaisItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstado">
@@ -556,6 +556,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="abreListaEstado">
           <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="abreListaEstadoItemStateChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abreListaEstadoActionPerformed"/>
           </Events>
         </Component>

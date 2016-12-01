@@ -11,6 +11,7 @@ import br.com.nfe.model.Endereco;
 import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pessoa;
+import br.com.nfe.model.RegimeTributario;
 import br.com.nfe.model.Telefone;
 import br.com.nfe.utils.Telephone;
 import java.awt.Graphics2D;
@@ -53,6 +54,7 @@ public class EmitenteController {
         endereco.setMunicipio((Municipio) ((JComboBox) dados.get("cidade")).getSelectedItem());
         endereco.setEndereco(((JTextComponent) dados.get("endereco")).getText());
         endereco.setPessoa(p);
+        
 
         ArrayList<Endereco> enderecos = new ArrayList<>();
         enderecos.add(endereco);
@@ -70,6 +72,7 @@ public class EmitenteController {
         e.setCnaeFiscal(((JTextComponent) dados.get("cnaeFiscal")).getText());
         e.setInscricaoEstadualSubstTributario(((JTextComponent) dados.get("iest")).getText());
         e.setInscricaoMunicipal(((JTextComponent) dados.get("ie")).getText());
+        e.setRegimeTributario((RegimeTributario) ((JComboBox) dados.get("regime")).getSelectedItem());
 
         Icon icon = (((JLabel) dados.get("imagem")).getIcon());
         BufferedImage img = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);

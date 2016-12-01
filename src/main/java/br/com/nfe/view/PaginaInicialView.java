@@ -49,7 +49,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(PesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PesquisaClienteView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -369,7 +369,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //JFrame cadastroEmitente = new EmitenteView();
         //cadastroEmitente.setVisible(true);
-        JDialog pesquisaEmitente = new PesquisaEmitente();
+        JDialog pesquisaEmitente = new PesquisaEmitenteView();
         pesquisaEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -379,17 +379,17 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JFrame cadastroProduto = new Produto();
+        JFrame cadastroProduto = new ProdutoView();
         cadastroProduto.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JFrame notaFiscal = new NotaFiscal();
+        JFrame notaFiscal = new NotaFiscalView();
         notaFiscal.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        JDialog pesquisaEmitente = new PesquisaEmitente();
+        JDialog pesquisaEmitente = new PesquisaEmitenteView();
         pesquisaEmitente.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 

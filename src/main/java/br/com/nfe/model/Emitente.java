@@ -20,73 +20,90 @@ import javax.persistence.Table;
  *
  * @author a1502778
  */
-
 @Entity
 @Table
 public class Emitente implements Serializable {
 
-        @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idEmitente;
-        
-        @OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idPessoa", nullable = false)
-	private Pessoa pessoa;
-        
-	private String inscricaoEstadualSubstTributario;
-	private String cnaeFiscal;
-	private String inscricaoMunicipal;
-	//private RegimeTributario regimeTributario;
-        
-        @Lob
-	private byte[] logotipo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idEmitente;
 
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPessoa", nullable = false)
+    private Pessoa pessoa;
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
+    private String inscricaoEstadualSubstTributario;
+    private String cnaeFiscal;
+    private String inscricaoMunicipal;
 
-	public String getInscricaoEstadualSubstTributario() {
-		return inscricaoEstadualSubstTributario;
-	}
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = RegimeTributario.class)
+    @JoinColumn(name = "idRegime", nullable = false)
+    private RegimeTributario regimeTributario;
 
-	public void setInscricaoEstadualSubstTributario(String inscricaoEstadualSubstTributario) {
-		this.inscricaoEstadualSubstTributario = inscricaoEstadualSubstTributario;
-	}
+    public Integer getIdEmitente() {
+        return idEmitente;
+    }
 
-	public String getCnaeFiscal() {
-		return cnaeFiscal;
-	}
+    public void setIdEmitente(Integer idEmitente) {
+        this.idEmitente = idEmitente;
+    }
 
-	public void setCnaeFiscal(String cnaeFiscal) {
-		this.cnaeFiscal = cnaeFiscal;
-	}
+    public RegimeTributario getRegimeTributario() {
+        return regimeTributario;
+    }
 
-	public String getInscricaoMunicipal() {
-		return inscricaoMunicipal;
-	}
+    public void setRegimeTributario(RegimeTributario regimeTributario) {
+        this.regimeTributario = regimeTributario;
+    }
 
-	public void setInscricaoMunicipal(String inscricaoMunicipal) {
-		this.inscricaoMunicipal = inscricaoMunicipal;
-	}
+    @Lob
+    private byte[] logotipo;
 
-	/*public RegimeTributario getRegimeTributario() {
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public String getInscricaoEstadualSubstTributario() {
+        return inscricaoEstadualSubstTributario;
+    }
+
+    public void setInscricaoEstadualSubstTributario(String inscricaoEstadualSubstTributario) {
+        this.inscricaoEstadualSubstTributario = inscricaoEstadualSubstTributario;
+    }
+
+    public String getCnaeFiscal() {
+        return cnaeFiscal;
+    }
+
+    public void setCnaeFiscal(String cnaeFiscal) {
+        this.cnaeFiscal = cnaeFiscal;
+    }
+
+    public String getInscricaoMunicipal() {
+        return inscricaoMunicipal;
+    }
+
+    public void setInscricaoMunicipal(String inscricaoMunicipal) {
+        this.inscricaoMunicipal = inscricaoMunicipal;
+    }
+
+    /*public RegimeTributario getRegimeTributario() {
 		return regimeTributario;
 	}
 
 	public void setRegimeTributario(RegimeTributario regimeTributario) {
 		this.regimeTributario = regimeTributario;
 	}*/
+    public byte[] getLogotipo() {
+        return logotipo;
+    }
 
-	public byte[] getLogotipo() {
-		return logotipo;
-	}
-
-	public void setLogotipo(byte[] logotipo) {
-		this.logotipo = logotipo;
-	}
+    public void setLogotipo(byte[] logotipo) {
+        this.logotipo = logotipo;
+    }
 
 }
