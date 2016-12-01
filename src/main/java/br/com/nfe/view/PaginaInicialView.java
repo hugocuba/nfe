@@ -5,6 +5,7 @@
  */
 package br.com.nfe.view;
 
+import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Sessao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -28,6 +30,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
     public PaginaInicialView() {
         initComponents();
         preencheView(sessao);
+        t.start();
     }
     
         Thread t = new Thread(new Runnable() {
@@ -35,8 +38,14 @@ public class PaginaInicialView extends javax.swing.JFrame {
         public void run() {
             while (Thread.currentThread().isAlive()) {
                 try {
-                    if (sessao.getEmitente() == null) {
+                    if (sessao.getEmitente() != null) {
                         lblRazaoSocial.setText(sessao.getEmitente().getPessoa().getNome());
+                        lblCnpj.setText(((Juridica)sessao.getEmitente().getPessoa()).getCnpj());
+                        lblIE.setText(sessao.getEmitente().getPessoa().getInscricaoEstadual());
+                    }else{
+                        lblRazaoSocial.setText(null);
+                        lblCnpj.setText(null);
+                        lblIE.setText(null);
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
@@ -153,11 +162,11 @@ public class PaginaInicialView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Inscrição Estadual:");
 
-        lblRazaoSocial.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        lblRazaoSocial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lblCnpj.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        lblCnpj.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lblIE.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        lblIE.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,6 +202,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo_nfe.png"))); // NOI18N
 
+        lblLogadoComo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLogadoComo.setText("Logado como");
 
         jMenu1.setText("Notas Fiscais");
@@ -231,9 +241,19 @@ public class PaginaInicialView extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setText("Selecionar Emitente");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuItem9.setText("Sair do Emitente Atual");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
@@ -368,6 +388,22 @@ public class PaginaInicialView extends javax.swing.JFrame {
         notaFiscal.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        JDialog pesquisaEmitente = new PesquisaEmitente();
+        pesquisaEmitente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        removeEmitenteAtual();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void removeEmitenteAtual(){
+        if(JOptionPane.showConfirmDialog(this, "Tem certeza que deseja desselecionar o emitente atual?", "Atenção", JOptionPane.OK_CANCEL_OPTION) == 1){
+            sessao.setEmitente(null);
+            JOptionPane.showMessageDialog(this, "Emitente desselecionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */

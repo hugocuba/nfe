@@ -18,21 +18,22 @@ import java.util.logging.Logger;
  * @author Minska
  */
 public class PesquisaEmitente extends javax.swing.JDialog {
-    
+
     Sessao sessao = Sessao.getInstance();
-    
+
     private EmitenteTableModel model;
     private EmitenteView emitenteView;
-    
+
     /**
      * Creates new form PesquisaEmitente
      */
     public PesquisaEmitente() {
         this.setModalityType(ModalityType.DOCUMENT_MODAL);
         initComponents();
+        t.start();
     }
-    
-        Thread t = new Thread(new Runnable() {
+
+    Thread t = new Thread(new Runnable() {
         @Override
         public void run() {
             while (Thread.currentThread().isAlive()) {
@@ -72,6 +73,8 @@ public class PesquisaEmitente extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         btnOK = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -115,6 +118,7 @@ public class PesquisaEmitente extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -123,12 +127,9 @@ public class PesquisaEmitente extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(radioNome)
                                 .addGap(18, 18, 18)
-                                .addComponent(radioDoc)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNome))
+                                .addComponent(radioDoc))
+                            .addComponent(jButton3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,6 +209,7 @@ public class PesquisaEmitente extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableEmitentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmitentesMouseClicked
@@ -231,34 +233,33 @@ public class PesquisaEmitente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        emitenteView.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
+        //emitenteView.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
         sessao.setEmitente(model.getEmitente(tableEmitentes.getSelectedRow()));
         this.dispose();
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
-        if(emitenteView == null){
+        if (emitenteView == null) {
             emitenteView = new EmitenteView();
             emitenteView.setVisible(true);
-        }
-        else{
+        } else {
             emitenteView.setVisible(true);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-    
-    private void preencheTabela(List<Emitente> e){
+
+    private void preencheTabela(List<Emitente> e) {
         model = new EmitenteTableModel(e);
         model.ordenarPorNome();
         tableEmitentes.setModel(model);
     }
-    
-    public List<Emitente> pesquisar(String nome, Boolean doc){
+
+    public List<Emitente> pesquisar(String nome, Boolean doc) {
         EmitenteController eController = new EmitenteController();
         List<Emitente> e = eController.pesquisar(nome, doc);
         return e;
     }
-    
+
     /**
      * @param args the command line arguments
      */
