@@ -59,7 +59,6 @@ public class PesquisaCliente extends javax.swing.JDialog {
         btnOK = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -139,6 +138,7 @@ public class PesquisaCliente extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
+        btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
         btnOK.setText("Ok");
         btnOK.setEnabled(false);
         btnOK.addActionListener(new java.awt.event.ActionListener() {
