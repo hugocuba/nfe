@@ -98,6 +98,7 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -394,8 +395,7 @@ public class ProdutoView extends javax.swing.JFrame {
         });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export-document.png"))); // NOI18N
-        jButton7.setText("Exportar");
-        jButton7.setEnabled(false);
+        jButton7.setText("Importar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -469,6 +469,13 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
+        jButton9.setText("Pesquisar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -492,6 +499,8 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -510,7 +519,8 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -585,7 +595,7 @@ public class ProdutoView extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         jTextField1.setEditable(true);
-        jTextField2.setEditable(true);
+        jTextField2.setEditable(false);
         jTextField3.setEditable(true);
         jTextField4.setEditable(true);
         jTextField5.setEditable(true);
@@ -614,7 +624,7 @@ public class ProdutoView extends javax.swing.JFrame {
         ProdutoController pc = new ProdutoController();
         Map<String , String> dados = new HashMap<>();
         List<String> icms;
-        String codigo = (JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
+        Integer codigo = Integer.parseInt(JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
 
         pc.exportar(codigo);
         dados = pc.getDados();
@@ -658,6 +668,12 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextField16.setEditable(false);
 
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        PesquisaProdutoView pp = new PesquisaProdutoView();
+        pp.setVisible(true);
+
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -705,6 +721,7 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

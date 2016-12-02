@@ -9,10 +9,8 @@ import br.com.nfe.model.Juridica;
 import br.com.nfe.model.Sessao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -31,6 +29,7 @@ public class PaginaInicialView extends javax.swing.JFrame {
         initComponents();
         preencheView(sessao);
         t.start();
+        jMenuItem21.setEnabled(false);
     }
     
         Thread t = new Thread(new Runnable() {
@@ -39,13 +38,12 @@ public class PaginaInicialView extends javax.swing.JFrame {
             while (Thread.currentThread().isAlive()) {
                 try {
                     if (sessao.getEmitente() != null) {
+                        habilitarMenu(true);
                         lblRazaoSocial.setText(sessao.getEmitente().getPessoa().getNome());
                         lblCnpj.setText(((Juridica)sessao.getEmitente().getPessoa()).getCnpj());
                         lblIE.setText(sessao.getEmitente().getPessoa().getInscricaoEstadual());
                     }else{
-                        lblRazaoSocial.setText(null);
-                        lblCnpj.setText(null);
-                        lblIE.setText(null);
+                        habilitarMenu(false);
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
@@ -261,9 +259,19 @@ public class PaginaInicialView extends javax.swing.JFrame {
         jMenu3.setText("Cadastros");
 
         jMenuItem19.setText("Cliente");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem19);
 
         jMenuItem20.setText("Produto");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem20);
 
         jMenuItem21.setText("Transportadora");
@@ -367,8 +375,6 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //JFrame cadastroEmitente = new EmitenteView();
-        //cadastroEmitente.setVisible(true);
         JDialog pesquisaEmitente = new PesquisaEmitenteView();
         pesquisaEmitente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -397,12 +403,32 @@ public class PaginaInicialView extends javax.swing.JFrame {
         removeEmitenteAtual();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        JFrame cadastroCliente = new ClienteView();
+        cadastroCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        JFrame cadastroProduto = new ProdutoView();
+        cadastroProduto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     private void removeEmitenteAtual(){
-        if(JOptionPane.showConfirmDialog(this, "Tem certeza que deseja desselecionar o emitente atual?", "Atenção", JOptionPane.OK_CANCEL_OPTION) == 1){
+        int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja descontinuar a sessão do emitente atual?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
+        System.out.println(opcao);
+        if(opcao == 0){
             sessao.setEmitente(null);
+            lblRazaoSocial.setText("");
+            lblCnpj.setText("");
+            lblIE.setText("");
             JOptionPane.showMessageDialog(this, "Emitente desselecionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
         
+    }
+    
+    private void habilitarMenu(boolean opc){
+        jMenuItem7.setEnabled(opc);
+        jMenuItem9.setEnabled(opc);
     }
     /**
      * @param args the command line arguments

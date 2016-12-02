@@ -70,7 +70,7 @@ public class ProdutoController {
         return inserido;
     }
 
-    public void exportar(String codigo) {
+    public void exportar(Integer codigo) {
         Produto p = new Produto();
         ProdutoDAO pd = new ProdutoDAO();
         p = pd.getByCod(codigo);
