@@ -6,6 +6,7 @@
 package br.com.nfe.view;
 
 import br.com.nfe.controller.ClienteController;
+import br.com.nfe.controller.NotaController;
 import br.com.nfe.dao.PaisDAO;
 import br.com.nfe.model.Cliente;
 import br.com.nfe.model.Juridica;
@@ -21,6 +22,10 @@ import br.com.nfe.model.Pais;
 import br.com.nfe.model.Produto;
 import br.com.nfe.view.model.ProdutoTableModel;
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +38,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
     ProdutoTableModel model;
     DefaultTableModel dtm = new DefaultTableModel();
     List<Produto> produtos = new ArrayList<>();
+    Cliente cliente;
     Pais pais;
 
     /**
@@ -371,7 +377,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        btnTransmitir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -383,6 +389,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTabbedPane1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        jPanel13.setEnabled(false);
         jPanel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -413,56 +420,74 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Informar Código Numérico:");
+        jLabel5.setEnabled(false);
 
         jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField5.setEnabled(false);
 
         jTextField6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField6.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("DV");
+        jLabel6.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Forma de pagamento*:");
+        jLabel9.setEnabled(false);
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - À Vista", "1 - À Prazo", "2 - Outros" }));
+        jComboBox2.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Forma de Emissão*:");
+        jLabel10.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("Finalidade de Emissão*:");
+        jLabel11.setEnabled(false);
 
         jComboBox3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - Operação Interna", "1 - Operação Interestadual", "2 - Operação com Exterior" }));
+        jComboBox3.setEnabled(false);
 
         jComboBox4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Contigência FS-IA", "Contigência via EPEC", "Contigência FS-DA", "Contigência SVC-AN", "Contigência RVC-RS" }));
+        jComboBox4.setEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel12.setText("Tipo de Impressão DANFE*:");
+        jLabel12.setEnabled(false);
 
         jComboBox5.setEditable(true);
         jComboBox5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Retrato", "Paisagem" }));
+        jComboBox5.setEnabled(false);
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("Destino da Operação*:");
+        jLabel14.setEnabled(false);
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel15.setText("Tipo de Atendimento*:");
+        jLabel15.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("Natureza da Operação*:");
+        jLabel16.setEnabled(false);
 
         jComboBox6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - Não se Aplica", "1 - Operação Presencial", "2 - Operação NÃO presencial - pela INTERNET", "3 - Operação NÃO presencial - pela TELEATEDIMENTO", "4 - Operação NÃO presencial - OUTROS" }));
         jComboBox6.setToolTipText("");
+        jComboBox6.setEnabled(false);
 
         jComboBox7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - NF-e Normal", "2 - NF-e Complementar", "3 - NF-e de Ajuste", "4 - Devolução de Mercadoria" }));
+        jComboBox7.setEnabled(false);
 
         jTextField8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField8.setEnabled(false);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -486,9 +511,11 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - Saída", "1 - Entrada" }));
+        jComboBox1.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Tipo de Documento*:");
+        jLabel7.setEnabled(false);
 
         checkConsumidor.setText("Consumidor final");
 
@@ -1534,6 +1561,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         jLabel61.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel61.setText("Logradouro*:");
+        jLabel61.setEnabled(false);
 
         jLabel62.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel62.setText("Número*:");
@@ -1724,6 +1752,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         jLabel77.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel77.setText("Tipo de contribuinte:");
+        jLabel77.setEnabled(false);
 
         txtCpfCnpj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -1735,6 +1764,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         jComboBox21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Contribuinte ICMS", "2 - Contribuinte ISENTO", "3 - Não Contribuinte" }));
+        jComboBox21.setEnabled(false);
 
         txtDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         txtDoc.setText("Pesquisar");
@@ -2351,9 +2381,9 @@ public class NotaFiscalView extends javax.swing.JFrame {
             }
         });
 
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export-document.png"))); // NOI18N
-        jButton15.setText("Transmitir");
-        jButton15.setEnabled(false);
+        btnTransmitir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export-document.png"))); // NOI18N
+        btnTransmitir.setText("Transmitir");
+        btnTransmitir.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2364,7 +2394,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTransmitir, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -2372,7 +2402,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(btnTransmitir, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(GuiaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2440,7 +2470,20 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if (verificaCampos()) {
-
+            
+            Map<String, JComponent> dados = new HashMap<>();
+            
+            dados.put("serie", textSerie);
+            dados.put("numero", textNumero);
+            dados.put("cidade", abreListaMunicipio);
+            dados.put("detalhes", tableDetalhes);
+            dados.put("consumidor", checkConsumidor);
+            
+            NotaController notaController = new NotaController();
+            if(notaController.salvar(dados, sessao, cliente, produtos)){
+                JOptionPane.showMessageDialog(this, "Nota salva com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                btnTransmitir.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -2533,13 +2576,13 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane GuiaPrincipal;
     private javax.swing.JComboBox abreListaEstado;
     private javax.swing.JComboBox abreListaMunicipio;
+    private javax.swing.JButton btnTransmitir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox checkConsumidor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

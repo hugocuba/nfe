@@ -7,6 +7,7 @@ package br.com.nfe.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -37,6 +38,8 @@ public class ProdutosNota implements Serializable {
     
     private Integer quantidade;
     
+    private Double valor;
+    
     public Nota getNota() {
         return nota;
     }
@@ -60,4 +63,22 @@ public class ProdutosNota implements Serializable {
     public void setIdProdutosNota(Integer idProdutosNota) {
         this.idProdutosNota = idProdutosNota;
     }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+    
+    
 }

@@ -24,17 +24,16 @@ public class Nota {
     private Emitente emitente;
 
     @OneToMany(targetEntity = ProdutosNota.class, mappedBy = "nota", cascade = CascadeType.ALL)
-    private List<Produto> produtos = new ArrayList<>();
+    private List<ProdutosNota> produtosNota = new ArrayList<>();
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPais", nullable = false)
+    
     private Municipio municipio;
     
     private String serie;
     
     private String numero;
-    
-    private Boolean tipoDocumento;
 
     private boolean consumidorFinal;
     
@@ -56,12 +55,12 @@ public class Nota {
         this.emitente = emitente;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<ProdutosNota> getProdutosNota() {
+        return produtosNota;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setProdutosNota(List<ProdutosNota> produtosNota) {
+        this.produtosNota = produtosNota;
     }
 
     public boolean isConsumidorFinal() {
@@ -72,4 +71,37 @@ public class Nota {
         this.consumidorFinal = consumidorFinal;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Long getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Long dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    
 }
