@@ -789,9 +789,6 @@ public class ClienteView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_abreListaEstadoActionPerformed
 
-    private void fechar() {
-        this.dispose();
-    }
 
     private Boolean verificaCampos() {
         Boolean valido = true;
