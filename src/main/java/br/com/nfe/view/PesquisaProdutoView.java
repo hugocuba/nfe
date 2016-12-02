@@ -100,6 +100,11 @@ public class PesquisaProdutoView extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/forbidden.png"))); // NOI18N
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
         jButton2.setText("Ok");
@@ -185,6 +190,10 @@ public class PesquisaProdutoView extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
