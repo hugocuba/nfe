@@ -34,7 +34,9 @@ public class ProdutosNota implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Produto.class)
     @JoinColumn(name = "idProduto", nullable = false)
     private Produto produto;
-
+    
+    private Integer quantidade;
+    
     public Nota getNota() {
         return nota;
     }

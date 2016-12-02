@@ -21,11 +21,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class PesquisaClienteView extends javax.swing.JDialog {
 
     private ClienteTableModel model;
-    private ClienteView clienteView;
+    private Object clienteView;
     /**
      * Creates new form PesquisaCliente
      */
-    public PesquisaClienteView(java.awt.Frame parent, boolean modal, ClienteView clienteView) {
+    public PesquisaClienteView(java.awt.Frame parent, boolean modal, Object clienteView) {
         super(parent, modal);
         this.clienteView = clienteView;
         initComponents();
@@ -202,7 +202,16 @@ public class PesquisaClienteView extends javax.swing.JDialog {
     }//GEN-LAST:event_tableClientesMousePressed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        clienteView.setCliente(model.getCliente(tableClientes.getSelectedRow()));
+        if(clienteView.getClass() == ClienteView.class){
+            ((ClienteView)clienteView).setCliente(model.getCliente(tableClientes.getSelectedRow()));
+        }
+            
+        
+        if(clienteView.getClass() == NotaFiscalView.class){
+            ((NotaFiscalView)clienteView).setCliente(model.getCliente(tableClientes.getSelectedRow()));
+        }
+            
+        
         this.dispose();
     }//GEN-LAST:event_btnOKActionPerformed
 

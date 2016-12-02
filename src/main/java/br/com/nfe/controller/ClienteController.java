@@ -109,4 +109,18 @@ public class ClienteController {
 
         return c;
     }
+    
+    public Cliente pesquisarPorCpf(String nome, Boolean cpf) {
+        Cliente c = null;
+        ClienteDAO cDAO = new ClienteDAO();
+
+        if (cpf) {
+            //c = cDAO.findByDoc(nome);
+        } else {
+            //c = cDAO.findByNome(nome);
+        }
+
+        return c;
+    }
+    
 }
