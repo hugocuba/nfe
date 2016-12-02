@@ -20,7 +20,7 @@ public class ProdutoDAO extends DAO<Produto>{
 		return p;
 	}
         
-	public Produto getByCod(String codigo) {
+	public Produto getByCod(Integer codigo) {
 		Produto p;
 		p = entityManager.find(Produto.class, codigo);
 		return p;
