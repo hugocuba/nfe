@@ -390,8 +390,14 @@ public class PaginaInicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JFrame notaFiscal = new NotaFiscalView();
-        notaFiscal.setVisible(true);
+        if(sessao.getEmitente() != null){
+            JFrame notaFiscal = new NotaFiscalView();
+            notaFiscal.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Primeiro selecione um Emitente.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed

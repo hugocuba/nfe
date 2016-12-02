@@ -434,11 +434,6 @@ public class ClienteView extends javax.swing.JFrame {
                 abreListaEstadoItemStateChanged(evt);
             }
         });
-        abreListaEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abreListaEstadoActionPerformed(evt);
-            }
-        });
 
         lbMunicipio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbMunicipio.setText("*Município:");
@@ -767,7 +762,6 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_ftfCpfCnpjActionPerformed
 
     private void abreListaPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_abreListaPaisItemStateChanged
-        System.out.println("Evento");
         if (abreListaPais.getSelectedItem() != null) {
             abreListaEstado.setEnabled(true);
             preencheEstados((Pais) abreListaPais.getSelectedItem());
@@ -784,10 +778,6 @@ public class ClienteView extends javax.swing.JFrame {
             abreListaMunicipio.setEnabled(false);
         }
     }//GEN-LAST:event_abreListaEstadoItemStateChanged
-
-    private void abreListaEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreListaEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_abreListaEstadoActionPerformed
 
     private void fechar() {
         this.dispose();

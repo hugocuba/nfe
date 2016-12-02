@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -22,18 +23,22 @@ public class Nota {
     @JoinColumn(name = "idEmitente", nullable = false)
     private Emitente emitente;
 
-    @OneToMany(targetEntity = ProdutosNota.class, mappedBy = "produto", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = ProdutosNota.class, mappedBy = "nota", cascade = CascadeType.ALL)
     private List<Produto> produtos = new ArrayList<>();
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPais", nullable = false)
+    private Municipio municipio;
     
     private String serie;
     
     private String numero;
     
     private Boolean tipoDocumento;
-    
-    
 
     private boolean consumidorFinal;
+    
+    private Long dataCadastro;
 
     public Integer getIdNota() {
         return idNota;
