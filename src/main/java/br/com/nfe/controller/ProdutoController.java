@@ -44,7 +44,7 @@ public class ProdutoController {
         p.setClasse_en(dados.get("Classe_en"));
         p.setCEL(dados.get("CEL"));
         p.setCNPJ_produtor(dados.get("CNPJ_produtor"));
-        p.setIcms(icms);
+       // p.setIcms(icms);
 
         if(pd.persist(p));
             inserido = true;
@@ -52,10 +52,10 @@ public class ProdutoController {
         return inserido;
     }
 
-    public void exportar(String codigo) {
+    public void exportar(Integer codigo) {
         Produto p = new Produto();
         ProdutoDAO pd = new ProdutoDAO();
-        p = pd.getByCod(codigo);
+        p = pd.getById(codigo);
        
         
         dados.put("Descrição",p.getDescricao());
