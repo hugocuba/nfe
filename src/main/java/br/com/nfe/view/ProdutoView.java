@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 /**
@@ -548,10 +549,8 @@ public class ProdutoView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         ArrayList<String> icms = new ArrayList<String> ();
-        icms.add("testando");
-        icms.add("testando2");
-        Map<String , String> dados = new HashMap<>();
         
+        Map<String , String> dados = new HashMap<>();
          
         dados.put("Descrição",jTextField1.getText());
         dados.put("Codigo",jTextField2.getText());
@@ -570,9 +569,12 @@ public class ProdutoView extends javax.swing.JFrame {
         dados.put("CEL",jTextField15.getText());
         dados.put("CNPJ_produtor",jTextField15.getText());
         
+        Map<String, JComponent> dadosIcms = new HashMap<>();
+        dadosIcms.put("icms", tableIcms);
+        
         ProdutoController pc = new ProdutoController();
         
-        if(pc.Incluir(dados,icms)){
+        if(pc.Incluir(dados,dadosIcms)){
             JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
         else{

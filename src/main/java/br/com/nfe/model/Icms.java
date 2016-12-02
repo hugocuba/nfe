@@ -30,11 +30,11 @@ public class Icms {
 	@JoinColumn(name = "idProduto", nullable = false)
 	private Produto produto;
         
-        @OneToOne(cascade = CascadeType.ALL, targetEntity = Pessoa.class)
+        @OneToOne(cascade = CascadeType.ALL, targetEntity = SituacaoTributaria.class)
 	@JoinColumn(name = "idSituacaoTributaria", nullable = false)
 	private SituacaoTributaria situacaoTributaria;
         
-        @OneToOne(cascade = CascadeType.ALL, targetEntity = Pessoa.class)
+        @OneToOne(cascade = CascadeType.ALL, targetEntity = Origem.class)
 	@JoinColumn(name = "idOrigem", nullable = false)
 	private Origem origem;
 
@@ -52,6 +52,7 @@ public class Icms {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+                produto.addIcms(this);
 	}
 
 	public SituacaoTributaria getSituacaoTributaria() {

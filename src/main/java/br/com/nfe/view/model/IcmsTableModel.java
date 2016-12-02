@@ -87,7 +87,7 @@ public class IcmsTableModel extends AbstractTableModel{
         //verifica qual valor deve ser retornado
         switch (columnIndex) {
             case COL_REGIME:
-                return c.getSituacaoTributaria().getRegimeTributario().getNome();
+                return c.getSituacaoTributaria().getRegimeTributario();
             case COL_SITUACAO:
                 return c.getSituacaoTributaria();
             case COL_ORIGEM:

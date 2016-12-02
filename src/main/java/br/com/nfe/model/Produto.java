@@ -30,18 +30,22 @@ public class Produto implements Serializable {
     private Integer idProduto;
     
     @OneToMany(targetEntity = Icms.class, mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<String> icms = new ArrayList<String>();
+    private List<Icms> icms = new ArrayList<>();
     
     private String descricao, EAN, EAN_unid, EXTIPE, genero, NMC, CEST, unid_com, valor_unid_com, unid_trib, qtd_trib, valor_unit_trib, classe_en, CEL, CNPJ_produtor;
     
     private String codigo;
     
-    public List<String> getIcms() {
+    public List<Icms> getIcms() {
         return icms;
     }
 
-    public void setIcms(ArrayList<String> icms) {
+    public void setIcms(ArrayList<Icms> icms) {
         this.icms = icms;
+    }
+    
+    public void addIcms(Icms icms){
+        this.icms.add(icms);
     }
 
     public String getDescricao() {

@@ -20,6 +20,12 @@ public class RegimeTributarioDAO extends DAO<RegimeTributario>{
             p = entityManager.createQuery("SELECT e FROM RegimeTributario e").getResultList();
             return p;
     }
+    
+    public List<RegimeTributario> findComSituacao(){
+        List<RegimeTributario> r;
+        r = entityManager.createQuery("SELECT e FROM RegimeTributario e INNER JOIN e.situacaoTributaria").getResultList();
+        return r;
+    }
 
     @Override
     public RegimeTributario getById(Integer id) {

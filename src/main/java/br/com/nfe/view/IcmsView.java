@@ -43,10 +43,13 @@ public class IcmsView extends javax.swing.JDialog {
         comboSituacao.removeAllItems();
         
         RegimeTributarioDAO rDAO = new RegimeTributarioDAO();
-        List<RegimeTributario> listRegime = rDAO.findAll();
+        List<RegimeTributario> listRegime = rDAO.findComSituacao();
         
         for(RegimeTributario regime : listRegime){
-            comboRegime.addItem(regime);
+            if(regime.getSituacaoTributaria() != null){
+                System.out.println(regime.getSituacaoTributaria());
+                comboRegime.addItem(regime);
+            }                
         }
         
         comboRegime.setSelectedIndex(-1);

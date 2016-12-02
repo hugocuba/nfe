@@ -7,10 +7,17 @@ package br.com.nfe.controller;
 
 import br.com.nfe.model.Produto;
 import br.com.nfe.dao.ProdutoDAO;
+import br.com.nfe.model.Icms;
+import br.com.nfe.model.Origem;
+import br.com.nfe.model.RegimeTributario;
+import br.com.nfe.model.SituacaoTributaria;
+import br.com.nfe.view.model.IcmsTableModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JComponent;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,13 +25,13 @@ import java.util.Map;
  */
 public class ProdutoController {
 
-    Map<String , String> dados = new HashMap<>();
+    Map<String, String> dados = new HashMap<>();
     List<String> icms;
-    
-    public Boolean Incluir(Map<String, String> dados, ArrayList icms) {
-        
+
+    public Boolean Incluir(Map<String, String> dados, Map<String, JComponent> dadosIcms) {
+
         Boolean inserido = false;
-        
+
         Produto p = new Produto();
         ProdutoDAO pd = new ProdutoDAO();
 
@@ -44,11 +51,22 @@ public class ProdutoController {
         p.setClasse_en(dados.get("Classe_en"));
         p.setCEL(dados.get("CEL"));
         p.setCNPJ_produtor(dados.get("CNPJ_produtor"));
-        p.setIcms(icms);
+        
+        IcmsTableModel model = (IcmsTableModel)((JTable) dadosIcms.get("icms")).getModel();
 
-        if(pd.persist(p));
-            inserido = true;
-            
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Icms icms = new Icms();
+
+            SituacaoTributaria st = (SituacaoTributaria) model.getValueAt(i, 1);
+            st.setRegimeTributario((RegimeTributario) model.getValueAt(i, 0));
+            icms.setSituacaoTributaria(st);
+            icms.setOrigem((Origem) model.getValueAt(i, 2));
+            icms.setProduto(p);
+        }
+
+        if (pd.persist(p));
+        inserido = true;
+
         return inserido;
     }
 
@@ -56,31 +74,31 @@ public class ProdutoController {
         Produto p = new Produto();
         ProdutoDAO pd = new ProdutoDAO();
         p = pd.getByCod(codigo);
-       
-        
-        dados.put("Descrição",p.getDescricao());
-        dados.put("Codigo",p.getCodigo());
-        dados.put("EAN",p.getEAN());
-        dados.put("EXTIPE",p.getEXTIPE());
-        dados.put("Unid_com",p.getUnid_com());
-        dados.put("Unid_trib",p.getUnid_trib());
-        dados.put("EAN_unid",p.getEAN_unid());
-        dados.put("Genero",p.getGenero());
-        dados.put("Valor_unid_com",p.getValor_unid_com());
-        dados.put("Qtd_trib",p.getQtd_trib());
-        dados.put("Valor_unit_trib",p.getValor_unit_trib());
-        dados.put("NMC",p.getNMC());
-        dados.put("CEST",p.getCEST());
-        dados.put("Classe_en",p.getClasse_en());
-        dados.put("CEL",p.getCEL());
-        dados.put("CNPJ_produtor",p.getCNPJ_produtor());
-        
-        icms = p.getIcms();
+
+        dados.put("Descrição", p.getDescricao());
+        dados.put("Codigo", p.getCodigo());
+        dados.put("EAN", p.getEAN());
+        dados.put("EXTIPE", p.getEXTIPE());
+        dados.put("Unid_com", p.getUnid_com());
+        dados.put("Unid_trib", p.getUnid_trib());
+        dados.put("EAN_unid", p.getEAN_unid());
+        dados.put("Genero", p.getGenero());
+        dados.put("Valor_unid_com", p.getValor_unid_com());
+        dados.put("Qtd_trib", p.getQtd_trib());
+        dados.put("Valor_unit_trib", p.getValor_unit_trib());
+        dados.put("NMC", p.getNMC());
+        dados.put("CEST", p.getCEST());
+        dados.put("Classe_en", p.getClasse_en());
+        dados.put("CEL", p.getCEL());
+        dados.put("CNPJ_produtor", p.getCNPJ_produtor());
+
     }
-    public Map<String,String> getDados(){
+
+    public Map<String, String> getDados() {
         return dados;
     }
-    public List<String> getIcms(){
+
+    public List<String> getIcms() {
         return icms;
     }
 
