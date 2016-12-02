@@ -7,6 +7,7 @@ package br.com.nfe.view;
 
 import br.com.nfe.controller.ProdutoController;
 import br.com.nfe.model.Icms;
+import br.com.nfe.model.Produto;
 import br.com.nfe.view.model.IcmsTableModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -23,20 +24,31 @@ import javax.swing.JOptionPane;
  */
 public class ProdutoView extends javax.swing.JFrame {
 
-     br.com.nfe.model.Produto p = new br.com.nfe.model.Produto();
-     private List<Icms> icmss = new ArrayList<>();
-     IcmsTableModel model;
+    br.com.nfe.model.Produto p = new br.com.nfe.model.Produto();
+    private List<Icms> icmss = new ArrayList<>();
+    IcmsTableModel model;
+
     /**
      * Creates new form Produto
      */
     public ProdutoView() {
         initComponents();
     }
-    
-    public void addIcms(Icms icms){
+
+    public void addIcms(Icms icms) {
         icmss.add(icms);
         model = new IcmsTableModel(this.icmss);
         tableIcms.setModel(model);
+    }
+
+    public void preencheView(Produto p) {
+        icmss.clear();
+        txtCodigo.setText(p.getCodigo());
+        txtDescricao.setText(p.getDescricao());
+
+        for (Icms icms : p.getIcms()) {
+            addIcms(icms);
+        }
     }
 
     /**
@@ -50,9 +62,9 @@ public class ProdutoView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDescricao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -109,18 +121,18 @@ public class ProdutoView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("Produto");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtDescricaoActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("*Descrição");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -190,8 +202,8 @@ public class ProdutoView extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
+                            .addComponent(txtDescricao)
+                            .addComponent(txtCodigo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,11 +257,11 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -528,13 +540,13 @@ public class ProdutoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtDescricaoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -558,44 +570,43 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ArrayList<String> icms = new ArrayList<String> ();
-        
-        Map<String , String> dados = new HashMap<>();
-         
-        dados.put("Descrição",jTextField1.getText());
-        dados.put("Codigo",jTextField2.getText());
-        dados.put("EAN",jTextField3.getText());
-        dados.put("EXTIPE",jTextField4.getText());
-        dados.put("Unid_com",jTextField5.getText());
-        dados.put("Unid_trib",jTextField6.getText());
-        dados.put("EAN_unid",jTextField7.getText());
-        dados.put("Genero",jTextField8.getText());
-        dados.put("Valor_unid_com",jTextField9.getText());
-        dados.put("Qtd_trib",jTextField10.getText());
-        dados.put("Valor_unit_trib",jTextField11.getText());
-        dados.put("NMC",jTextField12.getText());
-        dados.put("CEST",jTextField13.getText());
-        dados.put("Classe_en",jTextField14.getText());
-        dados.put("CEL",jTextField15.getText());
-        dados.put("CNPJ_produtor",jTextField15.getText());
-        
+        ArrayList<String> icms = new ArrayList<String>();
+
+        Map<String, String> dados = new HashMap<>();
+
+        dados.put("Descrição", txtDescricao.getText());
+        dados.put("Codigo", txtCodigo.getText());
+        dados.put("EAN", jTextField3.getText());
+        dados.put("EXTIPE", jTextField4.getText());
+        dados.put("Unid_com", jTextField5.getText());
+        dados.put("Unid_trib", jTextField6.getText());
+        dados.put("EAN_unid", jTextField7.getText());
+        dados.put("Genero", jTextField8.getText());
+        dados.put("Valor_unid_com", jTextField9.getText());
+        dados.put("Qtd_trib", jTextField10.getText());
+        dados.put("Valor_unit_trib", jTextField11.getText());
+        dados.put("NMC", jTextField12.getText());
+        dados.put("CEST", jTextField13.getText());
+        dados.put("Classe_en", jTextField14.getText());
+        dados.put("CEL", jTextField15.getText());
+        dados.put("CNPJ_produtor", jTextField15.getText());
+
         Map<String, JComponent> dadosIcms = new HashMap<>();
         dadosIcms.put("icms", tableIcms);
-        
+
         ProdutoController pc = new ProdutoController();
-        
-        if(pc.Incluir(dados,dadosIcms)){
+
+        if (pc.Incluir(dados, dadosIcms)) {
             JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Falha ao cadastrar produto", "Erro", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTextField1.setEditable(true);
-        jTextField2.setEditable(false);
+        txtDescricao.setEditable(true);
+        txtCodigo.setEditable(false);
         jTextField3.setEditable(true);
         jTextField4.setEditable(true);
         jTextField5.setEditable(true);
@@ -610,19 +621,19 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextField14.setEditable(true);
         jTextField15.setEditable(true);
         jTextField16.setEditable(true);
-        
+
         jButton5.setEnabled(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    ProdutoController pc = new ProdutoController();
-    pc.excluir(p.getCodigo());
-    
+        ProdutoController pc = new ProdutoController();
+        pc.excluir(p.getCodigo());
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         ProdutoController pc = new ProdutoController();
-        Map<String , String> dados = new HashMap<>();
+        Map<String, String> dados = new HashMap<>();
         List<String> icms;
         Integer codigo = Integer.parseInt(JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
 
@@ -630,8 +641,8 @@ public class ProdutoView extends javax.swing.JFrame {
         dados = pc.getDados();
         icms = pc.getIcms();
 
-        jTextField1.setText(dados.get("Descrição"));
-        jTextField2.setText(dados.get("Codigo"));
+        txtDescricao.setText(dados.get("Descrição"));
+        txtCodigo.setText(dados.get("Codigo"));
         jTextField3.setText(dados.get("EAN"));
         jTextField4.setText(dados.get("EXTIPE"));
         jTextField5.setText(dados.get("Unid_com"));
@@ -650,8 +661,8 @@ public class ProdutoView extends javax.swing.JFrame {
         jButton5.setEnabled(true);
         jButton6.setEnabled(true);
 
-        jTextField1.setEditable(false);
-        jTextField2.setEditable(false);
+        txtDescricao.setEditable(false);
+        txtCodigo.setEditable(false);
         jTextField3.setEditable(false);
         jTextField4.setEditable(false);
         jTextField5.setEditable(false);
@@ -670,7 +681,7 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        PesquisaProdutoView pp = new PesquisaProdutoView();
+        PesquisaProdutoView pp = new PesquisaProdutoView(this, true, this);
         pp.setVisible(true);
 
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -747,7 +758,6 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -755,7 +765,6 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -764,5 +773,7 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tableIcms;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescricao;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,28 +5,65 @@
  */
 package br.com.nfe.view;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import br.com.nfe.model.Juridica;
+import br.com.nfe.model.Sessao;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.UIManager;
-import org.apache.commons.net.ntp.NTPUDPClient;
-import org.apache.commons.net.ntp.TimeInfo;
+import br.com.nfe.model.Endereco;
+import br.com.nfe.model.Produto;
+import br.com.nfe.view.model.ProdutoTableModel;
 
 /**
  *
  * @author a1502778
  */
 public class NotaFiscalView extends javax.swing.JFrame {
-
+    
+    Sessao sessao = Sessao.getInstance();
+    ProdutoTableModel model;
+    List<Produto> produtos = new ArrayList<>();
+    
     /**
      * Creates new form NotaFiscal
      */
     public NotaFiscalView() {
         initComponents();
+        preecheView();
+        
+    }
+    
+    public void preencheTabela(Produto p){
+        produtos.add(p);
+        model = new ProdutoTableModel(produtos);
+        tableProduto.setModel(model);
     }
 
+    private void preecheView(){
+        if(sessao.getEmitente() != null){
+            txtRazaoSocial.setText(sessao.getEmitente().getPessoa().getNome());
+            txtNomeFantasia.setText(((Juridica) sessao.getEmitente().getPessoa()).getNomeFantasia());
+            txtCNPJ.setText(((Juridica) sessao.getEmitente().getPessoa()).getCnpj());
+            txtIE.setText((sessao.getEmitente().getPessoa()).getInscricaoEstadual());
+            txtIEST.setText((sessao.getEmitente().getInscricaoEstadualSubstTributario()));
+            txtIM.setText(sessao.getEmitente().getInscricaoMunicipal());
+            txtCNAE.setText(sessao.getEmitente().getCnaeFiscal());
+            txtRegime.setText(sessao.getEmitente().getRegimeTributario().getNome());
+            
+            List<Endereco> e = new ArrayList<>();
+            e = sessao.getEmitente().getPessoa().getEnderecos();
+            
+            txtLogradouro.setText(e.get(0).getEndereco());
+            txtNumero.setText(String.valueOf(e.get(0).getNumero()));
+            txtBairro.setText(e.get(0).getBairro());
+            txtCEP.setText(e.get(0).getBairro());
+            txtComplemento.setText(e.get(0).getComplemento());
+            txtPais.setText(e.get(0).getMunicipio().getEstado().getPais().toString());
+            txtMunicipio.setText(e.get(0).getMunicipio().getEstado().getMunicipios().get(0).getNome());
+            txtUF.setText(e.get(0).getMunicipio().getEstado().toString());
+            txtTelefone.setText("(" + sessao.getEmitente().getPessoa().getTelefones().get(0).getDdd() + ")" + sessao.getEmitente().getPessoa().getTelefones().get(0).getNumero());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,33 +198,33 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jTextField25 = new javax.swing.JTextField();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
-        jComboBox16 = new javax.swing.JComboBox<>();
+        txtRazaoSocial = new javax.swing.JTextField();
+        txtNomeFantasia = new javax.swing.JTextField();
+        txtCNPJ = new javax.swing.JTextField();
+        txtIE = new javax.swing.JTextField();
+        txtIEST = new javax.swing.JTextField();
+        txtIM = new javax.swing.JTextField();
+        txtCNAE = new javax.swing.JTextField();
+        txtRegime = new javax.swing.JTextField();
         jPanel24 = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
+        txtLogradouro = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
+        txtComplemento = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        txtCEP = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
-        jTextField33 = new javax.swing.JTextField();
+        txtPais = new javax.swing.JTextField();
         jLabel58 = new javax.swing.JLabel();
-        jComboBox17 = new javax.swing.JComboBox<>();
         jLabel59 = new javax.swing.JLabel();
-        jComboBox18 = new javax.swing.JComboBox<>();
         jLabel60 = new javax.swing.JLabel();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
+        txtUF = new javax.swing.JTextField();
+        txtMunicipio = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
@@ -277,10 +314,9 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jCheckBox3 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tableProduto = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -1185,22 +1221,35 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jLabel51.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel51.setText("Regime Tributário:");
 
-        jTextField21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtRazaoSocial.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtRazaoSocial.setEnabled(false);
+        txtRazaoSocial.setFocusable(false);
 
-        jTextField22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNomeFantasia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNomeFantasia.setEnabled(false);
+        txtNomeFantasia.setFocusable(false);
 
-        jTextField23.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCNPJ.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCNPJ.setEnabled(false);
+        txtCNPJ.setFocusable(false);
 
-        jTextField24.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIE.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIE.setEnabled(false);
+        txtIE.setFocusable(false);
 
-        jTextField25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIEST.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIEST.setEnabled(false);
+        txtIEST.setFocusable(false);
 
-        jTextField26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIM.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIM.setEnabled(false);
+        txtIM.setFocusable(false);
 
-        jTextField27.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCNAE.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCNAE.setEnabled(false);
+        txtCNAE.setFocusable(false);
 
-        jComboBox16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simples Nacional", "Simples Nacional - excesso de sublimite de receita bruta", "Regime Normal" }));
+        txtRegime.setEnabled(false);
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -1212,43 +1261,43 @@ public class NotaFiscalView extends javax.swing.JFrame {
                     .addGroup(jPanel23Layout.createSequentialGroup()
                         .addComponent(jLabel46)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField21)
+                        .addComponent(txtRazaoSocial)
                         .addGap(10, 10, 10)
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addComponent(jLabel48)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField25))
+                                .addComponent(txtIEST))
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addComponent(jLabel47)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel23Layout.createSequentialGroup()
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addComponent(jLabel49)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel50))
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addComponent(jLabel44)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCNAE, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel51)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox16, 0, 355, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtRegime)
                                 .addContainerGap())
                             .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addComponent(jTextField24)
+                                .addComponent(txtIE, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                                 .addGap(447, 447, 447))))))
         );
         jPanel23Layout.setVerticalGroup(
@@ -1258,24 +1307,25 @@ public class NotaFiscalView extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
                     .addComponent(jLabel47)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
                     .addComponent(jLabel45)
                     .addComponent(jLabel48)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIEST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel50)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel51)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel49)
+                        .addComponent(jLabel50)
+                        .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel51)
+                        .addComponent(txtCNAE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRegime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1294,43 +1344,57 @@ public class NotaFiscalView extends javax.swing.JFrame {
         jLabel55.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel55.setText("Bairro*:");
 
-        jTextField28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField28.addActionListener(new java.awt.event.ActionListener() {
+        txtLogradouro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtLogradouro.setEnabled(false);
+        txtLogradouro.setFocusable(false);
+        txtLogradouro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField28ActionPerformed(evt);
+                txtLogradouroActionPerformed(evt);
             }
         });
 
-        jTextField29.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNumero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNumero.setEnabled(false);
+        txtNumero.setFocusable(false);
 
-        jTextField30.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtBairro.setEnabled(false);
+        txtBairro.setFocusable(false);
 
-        jTextField31.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtComplemento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtComplemento.setEnabled(false);
+        txtComplemento.setFocusable(false);
 
         jLabel56.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel56.setText("CEP*:");
 
-        jTextField32.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCEP.setEnabled(false);
+        txtCEP.setFocusable(false);
 
         jLabel57.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel57.setText("País*:");
 
-        jTextField33.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtPais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtPais.setEnabled(false);
+        txtPais.setFocusable(false);
 
         jLabel58.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel58.setText("UF*:");
 
-        jComboBox17.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         jLabel59.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel59.setText("Minicípio*:");
-
-        jComboBox18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel60.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel60.setText("Telefone:");
 
-        jFormattedTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtTelefone.setEnabled(false);
+        txtTelefone.setFocusable(false);
+        txtTelefone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        txtUF.setEnabled(false);
+
+        txtMunicipio.setEnabled(false);
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -1342,48 +1406,48 @@ public class NotaFiscalView extends javax.swing.JFrame {
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addComponent(jLabel52)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField28)
+                        .addComponent(txtLogradouro)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel53)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel24Layout.createSequentialGroup()
                                 .addComponent(jLabel59)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMunicipio))
                             .addGroup(jPanel24Layout.createSequentialGroup()
                                 .addComponent(jLabel54)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel24Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel60)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 70, Short.MAX_VALUE))
                             .addGroup(jPanel24Layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
                                 .addComponent(jLabel56)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField32)))))
+                                .addComponent(txtCEP)))))
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel55)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField30))
+                        .addComponent(txtBairro))
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel57)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField33)
+                        .addComponent(txtPais, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel58)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
@@ -1394,25 +1458,25 @@ public class NotaFiscalView extends javax.swing.JFrame {
                     .addComponent(jLabel52)
                     .addComponent(jLabel53)
                     .addComponent(jLabel55)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel56)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel57)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel58)
-                    .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel59)
-                    .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel60)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -2060,7 +2124,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         GuiaPrincipal.addTab("Destinatário/Remetente", jPanel3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tableProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -2076,16 +2140,20 @@ public class NotaFiscalView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tableProduto);
 
         jButton12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         jButton12.setText("Inserir");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
         jButton13.setText("Excluir");
-
-        jButton14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton14.setText("Alterar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -2096,23 +2164,20 @@ public class NotaFiscalView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton12)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton13)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton14)))
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton12)
                     .addComponent(jButton13)
-                    .addComponent(jButton14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         GuiaPrincipal.addTab("Produtos/Serviços", jPanel4);
@@ -2231,7 +2296,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(GuiaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
 
         GuiaPrincipal.getAccessibleContext().setAccessibleName("Emitente");
@@ -2264,9 +2329,9 @@ public class NotaFiscalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
+    private void txtLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLogradouroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28ActionPerformed
+    }//GEN-LAST:event_txtLogradouroActionPerformed
 
     private void jTextField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField34ActionPerformed
         // TODO add your handling code here:
@@ -2291,6 +2356,11 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        PesquisaProdutoView pesquisaProdutoView = new PesquisaProdutoView(this, true, this);
+        pesquisaProdutoView.setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2353,7 +2423,6 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2372,9 +2441,6 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JComboBox<String> jComboBox15;
-    private javax.swing.JComboBox<String> jComboBox16;
-    private javax.swing.JComboBox<String> jComboBox17;
-    private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox20;
@@ -2398,7 +2464,6 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField10;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JFormattedTextField jFormattedTextField5;
     private javax.swing.JFormattedTextField jFormattedTextField6;
     private javax.swing.JFormattedTextField jFormattedTextField7;
@@ -2542,7 +2607,6 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -2556,20 +2620,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
@@ -2599,6 +2650,24 @@ public class NotaFiscalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tableProduto;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCEP;
+    private javax.swing.JTextField txtCNAE;
+    private javax.swing.JTextField txtCNPJ;
+    private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtIE;
+    private javax.swing.JTextField txtIEST;
+    private javax.swing.JTextField txtIM;
+    private javax.swing.JTextField txtLogradouro;
+    private javax.swing.JTextField txtMunicipio;
+    private javax.swing.JTextField txtNomeFantasia;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtRazaoSocial;
+    private javax.swing.JTextField txtRegime;
+    private javax.swing.JFormattedTextField txtTelefone;
+    private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }
 

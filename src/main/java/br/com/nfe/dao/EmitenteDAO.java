@@ -40,7 +40,6 @@ public class EmitenteDAO extends DAO<Emitente>{
     }
 
     public List<Emitente> findByDoc(String doc) {
-        System.out.println("Procurando por doc");
         List<Emitente> c;
         Query f = entityManager.createQuery("SELECT e FROM Emitente e INNER JOIN e.pessoa p INNER JOIN Fisica f ON p.idPessoa = f.idPessoa WHERE f.cpf LIKE :cpf");
         Query j = entityManager.createQuery("SELECT e FROM Emitente e INNER JOIN e.pessoa p INNER JOIN Juridica j ON p.idPessoa = j.idPessoa WHERE j.cnpj LIKE :cnpj");

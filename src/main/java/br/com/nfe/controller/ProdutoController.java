@@ -106,4 +106,18 @@ public class ProdutoController {
         ProdutoDAO pd = new ProdutoDAO();
         pd.removeByCod(codigo);
     }
+
+    public List<Produto> pesquisar(String texto, Boolean descricao) {
+        List<Produto> p;
+        ProdutoDAO pDAO = new ProdutoDAO();
+        
+        if(descricao){
+            p = pDAO.findByDescricao(texto);
+        }
+        else{
+            p = pDAO.findByCod(texto);
+        }
+        
+        return p;
+    }
 }

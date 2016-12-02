@@ -154,6 +154,7 @@ public class LoginView extends javax.swing.JFrame {
             if (loginController.verificaUsuarioSenha(dados)) {
                 PaginaInicialView paginaInicialView = new PaginaInicialView();
                 paginaInicialView.setVisible(true);
+                this.setVisible(false);
             } else {
                 lblIncorreto.setVisible(true);
             }

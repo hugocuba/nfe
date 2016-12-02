@@ -102,6 +102,10 @@ public class IcmsTableModel extends AbstractTableModel{
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
+    
+    public void limpar(Integer inicio, Integer fim){
+        fireTableRowsDeleted(inicio, fim);
+    }
 
     public void inserir(Icms c) {
         icmss.add(c);
