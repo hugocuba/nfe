@@ -9,8 +9,8 @@ import br.com.nfe.controller.ProdutoController;
 import br.com.nfe.model.Icms;
 import br.com.nfe.model.Produto;
 import br.com.nfe.view.model.IcmsTableModel;
+import java.awt.Color;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,12 +27,17 @@ public class ProdutoView extends javax.swing.JFrame {
     br.com.nfe.model.Produto p = new br.com.nfe.model.Produto();
     private List<Icms> icmss = new ArrayList<>();
     IcmsTableModel model;
+    
+    Produto produto;
 
     /**
      * Creates new form Produto
      */
     public ProdutoView() {
         initComponents();
+        liberarCampos(false);
+        btNovo.setEnabled(true);
+        btSalvar.setEnabled(false);
     }
 
     public void addIcms(Icms icms) {
@@ -49,6 +54,48 @@ public class ProdutoView extends javax.swing.JFrame {
         for (Icms icms : p.getIcms()) {
             addIcms(icms);
         }
+    }
+    
+    public void limparCampos() {
+        txtDescricao.setText(null);
+        txtCodigo.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        jTextField9.setText(null);
+        jTextField10.setText(null);
+        jTextField11.setText(null);
+        jTextField12.setText(null);
+        jTextField13.setText(null);
+        jTextField14.setText(null);
+        jTextField15.setText(null);
+        jTextField16.setText(null);
+        icmss.clear();
+    }
+    
+    private void liberarCampos(Boolean opcao) {
+        txtDescricao.setEnabled(opcao);
+        txtCodigo.setEnabled(opcao);
+        jTextField3.setEnabled(opcao);
+        jTextField4.setEnabled(opcao);
+        jTextField5.setEnabled(opcao);
+        jTextField6.setEnabled(opcao);
+        jTextField7.setEnabled(opcao);
+        jTextField8.setEnabled(opcao);
+        jTextField9.setEnabled(opcao);
+        jTextField10.setEnabled(opcao);
+        jTextField11.setEnabled(opcao);
+        jTextField12.setEnabled(opcao);
+        jTextField13.setEnabled(opcao);
+        jTextField14.setEnabled(opcao);
+        jTextField15.setEnabled(opcao);
+        jTextField16.setEnabled(opcao);
+        jButton1.setEnabled(opcao);
+        jButton2.setEnabled(opcao);
+        jButton3.setEnabled(opcao);
     }
 
     /**
@@ -97,11 +144,10 @@ public class ProdutoView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btSair = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,7 +156,8 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -297,9 +344,11 @@ public class ProdutoView extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Impostos");
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("ICMS");
 
         tableIcms.setModel(new javax.swing.table.DefaultTableModel(
@@ -380,49 +429,47 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        jButton4.setText("Incluir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btNovo.setText("Novo");
+        btNovo.setActionCommand("Novo");
+        btNovo.setPreferredSize(new java.awt.Dimension(77, 33));
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btNovoActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        jButton5.setText("Editar");
-        jButton5.setEnabled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.setEnabled(false);
+        btEditar.setPreferredSize(new java.awt.Dimension(81, 33));
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btEditarActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
-        jButton6.setText("Excluir");
-        jButton6.setEnabled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
+        btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
+        btExcluir.setPreferredSize(new java.awt.Dimension(83, 33));
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btExcluirActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export-document.png"))); // NOI18N
-        jButton7.setText("Importar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
+        btSair.setText("Sair");
+        btSair.setPreferredSize(new java.awt.Dimension(71, 33));
+        btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/forbidden.png"))); // NOI18N
-        jButton8.setText("Cancelar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btSairActionPerformed(evt);
             }
         });
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("IPI");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -481,10 +528,21 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
-        jButton9.setText("Pesquisar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        btPesquisar.setText("Pesquisar");
+        btPesquisar.setPreferredSize(new java.awt.Dimension(99, 33));
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
+            }
+        });
+
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        btSalvar.setText("Salvar");
+        btSalvar.setPreferredSize(new java.awt.Dimension(83, 33));
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
             }
         });
 
@@ -493,28 +551,27 @@ public class ProdutoView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,12 +584,12 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -565,11 +622,80 @@ public class ProdutoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btSairActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        limparCampos();
+        liberarCampos(true);
+        btNovo.setEnabled(false);
+        btSalvar.setEnabled(true);
+    }//GEN-LAST:event_btNovoActionPerformed
+
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        txtDescricao.setEditable(true);
+        txtCodigo.setEditable(true);
+        jTextField3.setEditable(true);
+        jTextField4.setEditable(true);
+        jTextField5.setEditable(true);
+        jTextField6.setEditable(true);
+        jTextField7.setEditable(true);
+        jTextField8.setEditable(true);
+        jTextField9.setEditable(true);
+        jTextField10.setEditable(true);
+        jTextField11.setEditable(true);
+        jTextField12.setEditable(true);
+        jTextField13.setEditable(true);
+        jTextField14.setEditable(true);
+        jTextField15.setEditable(true);
+        jTextField16.setEditable(true);
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+
+        btEditar.setEnabled(false);
+    }//GEN-LAST:event_btEditarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        ProdutoController pc = new ProdutoController();
+        pc.excluir(p.getCodigo());
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        PesquisaProdutoView pp = new PesquisaProdutoView(this, true, this);
+        pp.setVisible(true);
+    }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if (produto == null) {
+            if (salvar()) {
+                limparCampos();
+                liberarCampos(false);
+                btNovo.setEnabled(true);
+                btSalvar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+    
+    private boolean salvar() {
+
+        boolean salvo = false;
+
+        if (verificaCampos()) {
+            if (preencherProduto()) {
+                salvo = true;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return salvo;
+    }
+    
+    private boolean preencherProduto(){
+        boolean salvo = false;
+        
         ArrayList<String> icms = new ArrayList<String>();
 
         Map<String, String> dados = new HashMap<>();
@@ -589,7 +715,7 @@ public class ProdutoView extends javax.swing.JFrame {
         dados.put("CEST", jTextField13.getText());
         dados.put("Classe_en", jTextField14.getText());
         dados.put("CEL", jTextField15.getText());
-        dados.put("CNPJ_produtor", jTextField15.getText());
+        dados.put("CNPJ_produtor", jTextField16.getText());
 
         Map<String, JComponent> dadosIcms = new HashMap<>();
         dadosIcms.put("icms", tableIcms);
@@ -598,41 +724,36 @@ public class ProdutoView extends javax.swing.JFrame {
 
         if (pc.Incluir(dados, dadosIcms)) {
             JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            salvo = true;
         } else {
-            JOptionPane.showMessageDialog(this, "Falha ao cadastrar produto", "Erro", JOptionPane.WARNING_MESSAGE);
+            salvo = false;
         }
+        
+        return salvo;
+    }
+    
+    private Boolean verificaCampos() {
+        Boolean valido = true;
 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        txtDescricao.setEditable(true);
-        txtCodigo.setEditable(false);
-        jTextField3.setEditable(true);
-        jTextField4.setEditable(true);
-        jTextField5.setEditable(true);
-        jTextField6.setEditable(true);
-        jTextField7.setEditable(true);
-        jTextField8.setEditable(true);
-        jTextField9.setEditable(true);
-        jTextField10.setEditable(true);
-        jTextField11.setEditable(true);
-        jTextField12.setEditable(true);
-        jTextField13.setEditable(true);
-        jTextField14.setEditable(true);
-        jTextField15.setEditable(true);
-        jTextField16.setEditable(true);
-
-        jButton5.setEnabled(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ProdutoController pc = new ProdutoController();
-        pc.excluir(p.getCodigo());
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        ProdutoController pc = new ProdutoController();
+        if ("".equals(txtDescricao.getText())) {
+            valido = false;
+            txtDescricao.setBackground(new Color(238, 221, 130));
+            txtDescricao.requestFocus();
+        } else {
+            txtDescricao.setBackground(Color.WHITE);
+            if ("".equals(txtCodigo.getText())) {
+                valido = false;
+                txtCodigo.setBackground(new Color(238, 221, 130));
+                txtCodigo.requestFocus();
+            } else {
+                txtCodigo.setBackground(Color.WHITE);
+            }
+        }
+        
+        return valido;
+    }
+    
+    /*ProdutoController pc = new ProdutoController();
         Map<String, String> dados = new HashMap<>();
         List<String> icms;
         Integer codigo = Integer.parseInt(JOptionPane.showInputDialog("Diga o codigo do Produto a ser exportado"));
@@ -676,43 +797,31 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextField13.setEditable(false);
         jTextField14.setEditable(false);
         jTextField15.setEditable(false);
-        jTextField16.setEditable(false);
-
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        PesquisaProdutoView pp = new PesquisaProdutoView(this, true, this);
-        pp.setVisible(true);
-
-    }//GEN-LAST:event_jButton9ActionPerformed
-
+        jTextField16.setEditable(false);*/
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProdutoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProdutoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProdutoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProdutoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -721,18 +830,19 @@ public class ProdutoView extends javax.swing.JFrame {
                 new ProdutoView().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btEditar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btNovo;
+    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btSair;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -779,9 +779,6 @@ public class ClienteView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_abreListaEstadoItemStateChanged
 
-    private void fechar() {
-        this.dispose();
-    }
 
     private Boolean verificaCampos() {
         Boolean valido = true;

@@ -12,7 +12,6 @@ import br.com.nfe.model.Origem;
 import br.com.nfe.model.RegimeTributario;
 import br.com.nfe.model.SituacaoTributaria;
 import br.com.nfe.view.model.IcmsTableModel;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
