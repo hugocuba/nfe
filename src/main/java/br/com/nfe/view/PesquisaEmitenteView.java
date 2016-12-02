@@ -116,6 +116,9 @@ public class PesquisaEmitenteView extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome)
@@ -127,13 +130,12 @@ public class PesquisaEmitenteView extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(radioNome)
                                 .addGap(18, 18, 18)
-                                .addComponent(radioDoc))
-                            .addComponent(jButton3))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(radioDoc)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +150,9 @@ public class PesquisaEmitenteView extends javax.swing.JDialog {
                     .addComponent(radioDoc))
                 .addGap(14, 14, 14)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -164,7 +166,7 @@ public class PesquisaEmitenteView extends javax.swing.JDialog {
         });
 
         btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/success.png"))); // NOI18N
-        btnOK.setText("Ok");
+        btnOK.setText("Selecionar");
         btnOK.setEnabled(false);
         btnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,9 +215,9 @@ public class PesquisaEmitenteView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableEmitentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmitentesMouseClicked
-        System.out.println("Click");
+        //System.out.println("Click");
         Emitente e = model.getEmitente(0);
-        System.out.println(e.getPessoa().getNome());
+        //System.out.println(e.getPessoa().getNome());
     }//GEN-LAST:event_tableEmitentesMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

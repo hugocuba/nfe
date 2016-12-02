@@ -14,9 +14,7 @@ import br.com.nfe.model.Municipio;
 import br.com.nfe.model.Pais;
 import br.com.nfe.model.RegimeTributario;
 import br.com.nfe.model.Sessao;
-import br.com.nfe.model.Telefone;
 import static br.com.nfe.utils.DocumentsValidation.validaCNPJ;
-import static br.com.nfe.utils.DocumentsValidation.validaCpf;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
@@ -27,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -634,6 +633,9 @@ public class EmitenteView extends javax.swing.JFrame {
                 try {
                     if (salvar()) {
                         JOptionPane.showMessageDialog(this, "Emitente cadastrado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        JDialog pesquisaEmitente = new PesquisaEmitenteView();
+                        pesquisaEmitente.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(this, "Falha ao cadastrar emitente.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
@@ -785,7 +787,6 @@ public class EmitenteView extends javax.swing.JFrame {
                                             comboPais.setBackground(new Color(238, 221, 130));
                                             comboPais.requestFocus();
                                         }else{
-                                            System.out.println(comboEstado.getSelectedItem());
                                             comboPais.setBackground(Color.WHITE);
                                             if (comboEstado.getSelectedItem() == null) {               
                                                 valido = false;
